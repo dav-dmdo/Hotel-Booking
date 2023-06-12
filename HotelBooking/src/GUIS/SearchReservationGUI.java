@@ -5,6 +5,9 @@
  */
 package GUIS;
 
+import ImportantClasses.Helpers;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Andrea
@@ -34,7 +37,7 @@ public class SearchReservationGUI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        clientID = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
@@ -59,9 +62,9 @@ public class SearchReservationGUI extends javax.swing.JFrame {
         jLabel3.setText("Please enter an ID to know its owner's reservation details");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, -1, -1));
 
-        jTextField1.setBackground(java.awt.SystemColor.controlHighlight);
-        jTextField1.setForeground(new java.awt.Color(137, 103, 103));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 200, -1));
+        clientID.setBackground(java.awt.SystemColor.controlHighlight);
+        clientID.setForeground(new java.awt.Color(137, 103, 103));
+        jPanel1.add(clientID, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 200, -1));
 
         jTextArea1.setEditable(false);
         jTextArea1.setBackground(java.awt.SystemColor.controlHighlight);
@@ -92,6 +95,11 @@ public class SearchReservationGUI extends javax.swing.JFrame {
         searchReservation.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         searchReservation.setForeground(new java.awt.Color(137, 103, 103));
         searchReservation.setText("Search");
+        searchReservation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchReservationActionPerformed(evt);
+            }
+        });
         jPanel1.add(searchReservation, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 90, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 400));
@@ -102,6 +110,20 @@ public class SearchReservationGUI extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
       this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void searchReservationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchReservationActionPerformed
+          try {
+
+            String ID_String = clientID.getText();
+            int ID = Helpers.valorNumero(ID_String);
+            if (ID!= -1) {
+                JOptionPane.showMessageDialog(this, "Not a valid number. ");
+
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error! type: " + e);
+        }
+    }//GEN-LAST:event_searchReservationActionPerformed
 
     /**
      * @param args the command line arguments
@@ -139,6 +161,7 @@ public class SearchReservationGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField clientID;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -147,7 +170,6 @@ public class SearchReservationGUI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton searchReservation;
     // End of variables declaration//GEN-END:variables
 }

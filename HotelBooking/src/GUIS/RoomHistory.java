@@ -5,6 +5,9 @@
  */
 package GUIS;
 
+import ImportantClasses.Helpers;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Andrea
@@ -33,7 +36,7 @@ public class RoomHistory extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        roomNumber = new javax.swing.JTextField();
         searchRoomHistory = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
@@ -56,19 +59,24 @@ public class RoomHistory extends javax.swing.JFrame {
         jLabel2.setText("Please enter a room number to find the history of everyone who has stayed in the room");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
 
-        jTextField1.setBackground(java.awt.SystemColor.controlHighlight);
-        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        roomNumber.setBackground(java.awt.SystemColor.controlHighlight);
+        roomNumber.setForeground(new java.awt.Color(0, 0, 0));
+        roomNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                roomNumberActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 290, -1));
+        jPanel1.add(roomNumber, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 290, -1));
 
         searchRoomHistory.setBackground(java.awt.SystemColor.controlHighlight);
         searchRoomHistory.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         searchRoomHistory.setForeground(new java.awt.Color(137, 103, 103));
         searchRoomHistory.setText("Search");
+        searchRoomHistory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchRoomHistoryActionPerformed(evt);
+            }
+        });
         jPanel1.add(searchRoomHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, 120, -1));
 
         jTextArea1.setEditable(false);
@@ -102,13 +110,26 @@ public class RoomHistory extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void roomNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roomNumberActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_roomNumberActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       this.dispose();
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void searchRoomHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchRoomHistoryActionPerformed
+        try {
+
+            String room = roomNumber.getText();
+            int roomNumber = Helpers.valorNumero(room);
+            if (roomNumber != -1) {
+               
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error! type: " + e);
+        }
+    }//GEN-LAST:event_searchRoomHistoryActionPerformed
 
     /**
      * @param args the command line arguments
@@ -153,7 +174,7 @@ public class RoomHistory extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField roomNumber;
     private javax.swing.JButton searchRoomHistory;
     // End of variables declaration//GEN-END:variables
 }

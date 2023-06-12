@@ -94,6 +94,7 @@ public class RegisterClientGUI extends javax.swing.JFrame {
         jTextArea1.setEditable(false);
         jTextArea1.setBackground(java.awt.SystemColor.controlHighlight);
         jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTextArea1.setForeground(new java.awt.Color(137, 103, 103));
         jTextArea1.setRows(5);
         jTextArea1.setText("//set info client");
