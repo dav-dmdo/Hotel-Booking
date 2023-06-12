@@ -9,5 +9,14 @@ package ImportantClasses;
  * @author david
  */
 public class Room {
+    public Integer roomNumber;
+    public String roomType;
+    public Integer roomFloor;
+    public boolean busy;
+    
+    
+    public Room(){
+        
+    }
     
 }
