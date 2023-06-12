@@ -161,7 +161,8 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_searchReservationActionPerformed
 
     private void searchRoomHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchRoomHistoryActionPerformed
-        // TODO add your handling code here:
+        RoomHistory seeRoomHistory = new RoomHistory();
+        seeRoomHistory.show();
     }//GEN-LAST:event_searchRoomHistoryActionPerformed
 
     private void CheckOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckOutActionPerformed
