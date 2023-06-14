@@ -4,10 +4,17 @@
  */
 package App;
 
+import GUIS.MainGUI;
+
 /**
  *
  * @author david
  */
 public class App {
+    //Atributos
+    MainGUI menu = new MainGUI();
     
+    //Methods
+    public void showMenu(){
+    menu.show();}
 }

@@ -51,7 +51,7 @@ public class HashTable {
         }
     }
 
-    public Object searchByKey(Object key) {
+    public String findKey(Object key) {
         int hash1 = Math.abs(key.hashCode() % capacity);
         int hash2 = Math.abs(key.hashCode() % (capacity - 2) + 1);
 
@@ -59,6 +59,20 @@ public class HashTable {
             hash1 = (hash1 + hash2) % capacity;
         }
 
-        return keys[hash1] != null ? values[hash1] : null;
+        if (keys[hash1] != null && keys[hash1].equals(key)) {
+            return "El usuario: " + key + " esta hospedado en la habitacion: " + values[hash1];
+        } else {
+            return "El usuario: " + key + " no se encuentra registrado.";
+        }
+    }
+
+    public int size() {
+        int count = 0;
+        for (int i = 0; i < capacity; i++) {
+            if (keys[i] != null) {
+                count++;
+            }
+        }
+        return count;
     }
 }

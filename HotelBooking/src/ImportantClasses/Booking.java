@@ -9,5 +9,14 @@ package ImportantClasses;
  * @author david
  */
 public class Booking {
+    public Client client;
+    public String arrivalDate;
+    public String departureDate;
+    
+    public Booking(Client client, String arrivalDate, String departureDate){
+        this.client = client;
+        this.arrivalDate = arrivalDate;
+        this.departureDate = departureDate;
+    }
     
 }
