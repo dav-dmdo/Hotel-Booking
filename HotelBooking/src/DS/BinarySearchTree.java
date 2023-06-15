@@ -4,6 +4,8 @@
  */
 package DS;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author andrea
@@ -72,8 +74,9 @@ public class BinarySearchTree<T> {
 
         } else {
             NodeABB<T> nodeAux = this.searchParent(this.root, data);
-            if (nodeAux != null) {
-                nodeAux.setCounter(nodeAux.getCounter() + 1);
+            if (nodeAux == null) {
+                JOptionPane.showMessageDialog(null, "repeated");
+                //nodeAux.setCounter(nodeAux.getCounter() + 1);
 
             }else if (Integer.parseInt(nodeAux.getData().toString()) > Integer.parseInt(toAdd.getData().toString())) {
                 nodeAux.setLeft(toAdd);
