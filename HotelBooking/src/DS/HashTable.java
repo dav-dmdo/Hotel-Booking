@@ -4,6 +4,13 @@
  */
 package DS;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.JCheckBox;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
 /**
  *
  * @author david
@@ -64,6 +71,37 @@ public class HashTable {
         } else {
             return "El usuario: " + key + " no se encuentra registrado.";
         }
+    }
+
+    public void read(String filename, String a, JTextArea b, JTextField c) {
+        HashTable hashtable = new HashTable(1000);
+
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(filename));
+            String line;
+            int cont = 0;
+            while ((line = reader.readLine()) != null) {
+                String[] data = line.split(",");
+                String key = data[1].trim() + " " + data[2].trim();
+                String value = data[0].trim();
+                hashtable.insert(key, value);
+                if (key.equals(c.getText())) {
+                    b.setText("El usuario: " + key + " esta hospedado en la habitacion: " + value);
+                } else {
+                    cont++;
+                }
+
+            }
+
+            if (cont == 301) {
+                String client = findKey(c.getText());
+                b.setText(client);
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public int size() {
