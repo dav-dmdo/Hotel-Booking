@@ -178,8 +178,7 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_CheckInActionPerformed
 
     private void registerClient1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerClient1ActionPerformed
-        RegisterClientGUI registerClient = new RegisterClientGUI();
-        registerClient.show();
+        
     }//GEN-LAST:event_registerClient1ActionPerformed
 
     /**
