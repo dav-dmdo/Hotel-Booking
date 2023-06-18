@@ -4,6 +4,8 @@
  */
 package DS;
 
+import FileManagement.FileManager;
+
 /**
  *
  * @author andre
@@ -14,14 +16,16 @@ public class NewMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        HashTable hash = new HashTable(10);
-        hash.insert("pablo",1 );
-        hash.insert("pbloa",2 );
-        hash.insert("olbap",3 );
-        hash.insert("juan",4 );
-        hash.insert("nuaj",5 );
+//        HashTable hash = new HashTable(10);
+//        hash.insert("pablo",1 );
+//        hash.insert("pbloa",2 );
+//        hash.insert("olbap",3 );
+//        hash.insert("juan",4 );
+//        hash.insert("nuaj",5 );
+//        
+//        System.out.println(hash.searchByKey("olbap"));
         
-        System.out.println(hash.searchByKey("olbap"));
+
 
     }
     

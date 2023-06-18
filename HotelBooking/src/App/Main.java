@@ -4,6 +4,8 @@
  */
 package App;
 
+import FileManagement.FileManager;
+
 /**
  *
  * @author david
@@ -14,8 +16,10 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       App app = new App();
-       app.showMenu();
+//       App app = new App();
+//       app.showMenu();
+       FileManager fm = new FileManager();
+       fm.readBookingsCSV();
     }
     
 }
