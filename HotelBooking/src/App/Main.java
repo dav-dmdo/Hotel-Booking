@@ -19,7 +19,11 @@ public class Main {
 //       App app = new App();
 //       app.showMenu();
        FileManager fm = new FileManager();
-       fm.readBookingsCSV();
+       fm.readRecordsCSV();
+       //fm.readBookingsCSV();
+       //fm.readRoomsCSV();
+       //fm.readStatusCSV();
+       
     }
     
 }
