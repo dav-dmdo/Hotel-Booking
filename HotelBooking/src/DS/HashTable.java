@@ -4,6 +4,13 @@
  */
 package DS;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.JCheckBox;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
 /**
  *
  * @author david
@@ -51,7 +58,7 @@ public class HashTable {
         }
     }
 
-    public Object searchByKey(Object key) {
+    public String findKey(Object key) {
         int hash1 = Math.abs(key.hashCode() % capacity);
         int hash2 = Math.abs(key.hashCode() % (capacity - 2) + 1);
 
@@ -59,6 +66,51 @@ public class HashTable {
             hash1 = (hash1 + hash2) % capacity;
         }
 
-        return keys[hash1] != null ? values[hash1] : null;
+        if (keys[hash1] != null && keys[hash1].equals(key)) {
+            return "El usuario: " + key + " esta hospedado en la habitacion: " + values[hash1];
+        } else {
+            return "El usuario: " + key + " no se encuentra registrado.";
+        }
+    }
+
+    public void read(String filename, String a, JTextArea b, JTextField c) {
+        HashTable hashtable = new HashTable(1000);
+
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(filename));
+            String line;
+            int cont = 0;
+            while ((line = reader.readLine()) != null) {
+                String[] data = line.split(",");
+                String key = data[1].trim() + " " + data[2].trim();
+                String value = data[0].trim();
+                hashtable.insert(key, value);
+                if (key.equals(c.getText())) {
+                    b.setText("El usuario: " + key + " esta hospedado en la habitacion: " + value);
+                } else {
+                    cont++;
+                }
+
+            }
+
+            if (cont == 301) {
+                String client = findKey(c.getText());
+                b.setText(client);
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public int size() {
+        int count = 0;
+        for (int i = 0; i < capacity; i++) {
+            if (keys[i] != null) {
+                count++;
+            }
+        }
+        return count;
     }
 }
