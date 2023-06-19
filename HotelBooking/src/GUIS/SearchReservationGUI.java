@@ -120,38 +120,41 @@ public class SearchReservationGUI extends javax.swing.JFrame {
             String ID_String = clientID.getText();
             int ID = Helpers.valorNumero(ID_String);
             if (ID== -1) {
-                JOptionPane.showMessageDialog(this, "Not a valid number. ");
+                
 
             }else{
-                int id = 30495934;
-    String first_name = "Andrea";
-    String second_name = "Linares";
-    String email = "Hausiua";
-    String gender = "female";
-    String phoneNumber = "437829";
-    int id3 = 30495935;
-    String first_name3 = "Andrea";
-    String second_name3 = "Linares";
-    String email3 = "Hausiua";
-    String gender3= "female";
-    String phoneNumber3 = "437829";
-    int id2 = 239023;
-    String first_name2 = "Andrea";
-    String second_name2 = "Linares";
-    String email2 = "Hausiua";
-    String gender2 = "female";
-    String phoneNumber2 = "437829";
-    Booking booking = new Booking(id, first_name, second_name, email,gender,phoneNumber, null,null);
-    Booking booking2 = new Booking(id2, first_name2, second_name2, email2,gender2,phoneNumber2, null,null);
-    Booking booking3= new Booking(id3, first_name3, second_name3, email3,gender3,phoneNumber3, null,null);
-    BinarySearchTree<Booking> bst = new BinarySearchTree();
-    bst.insertID(booking);
-    bst.insertID(booking2);
-    bst.insertID(booking3);
-    String output = bst.postorder();
-        System.out.println(output);
-        String NodeSearch = bst.SearchID(id2, bst.getRoot());
-        System.out.println(NodeSearch);
+//                int id = 250;
+//    String first_name = "Andrea";
+//    String second_name = "Linares";
+//    String email = "Hausiua";
+//    String gender = "female";
+//    String phoneNumber = "437829";
+//    int id3 =100;
+//    String first_name3 = "Andrea";
+//    String second_name3 = "Linares";
+//    String email3 = "Hausiua";
+//    String gender3= "female";
+//    String phoneNumber3 = "437829";
+//    int id2 = 300;
+//    String first_name2 = "Andrea";
+//    String second_name2 = "Linares";
+//    String email2 = "Hausiua";
+//    String gender2 = "female";
+//    String phoneNumber2 = "437829";
+//    Booking booking = new Booking(id, first_name, second_name, email,gender,phoneNumber, null,null);
+//    Booking booking2 = new Booking(id2, first_name2, second_name2, email2,gender2,phoneNumber2, null,null);
+//    Booking booking3= new Booking(id3, first_name3, second_name3, email3,gender3,phoneNumber3, null,null);
+//    BinarySearchTree<Booking> bst = new BinarySearchTree();
+//    bst.insertID(booking);
+//    bst.insertID(booking2);
+//    bst.insertID(booking3);
+//    String output = bst.postorder();
+//        System.out.println(output);
+        String NodeSearch = bst.SearchID(ID, bst.getRoot());
+//        System.out.println(NodeSearch);
+//        bst.deleteNode(bst.getRoot(), id); 
+//        output = bst.postorder();
+//        System.out.println(output);
                 
                 showInfo.setText(NodeSearch);
                 

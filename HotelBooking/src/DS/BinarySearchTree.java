@@ -5,7 +5,7 @@
 package DS;
 
 import ImportantClasses.Booking;
-import ImportantClasses.Client;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -21,11 +21,11 @@ public class BinarySearchTree<T> {
     public BinarySearchTree() {
         this.root = null;
     }
-
-    //Primitives 
+    //Primitives  
     public boolean isEmpty() {
         return root == null;
     }
+    //Primitives ID
     /**
      * This method searches for a parent fit-able for the node to add following
      * the rules of the ABB in terms of client ID.
@@ -39,12 +39,11 @@ public class BinarySearchTree<T> {
         if (booking.id < root.getData().id) {
             return this.addedProccessID(root, root.getLeft(), booking);
 
-        } else if (booking.id> root.getData().id) {
+        } else if (booking.id > root.getData().id) {
             return this.addedProccessID(root, root.getRight(), booking);
         }
         return found;
     }
-
     /**
      * Added method so you dont repeat the code, it searches the parent
      * depending on the parameter received.
@@ -62,34 +61,12 @@ public class BinarySearchTree<T> {
             return father;
         }
     }
-
     /**
      * This inserts a new node into the tree.
      *
-     * @param client
-     * @param data
+     * @param booking
      */
-//    public void insertHistory(T data) {
-//        NodeABB<T> toAdd = new NodeABB(data);
-//        if (this.isEmpty()) {
-//            this.root = toAdd;
-//
-//        } else {
-//            //NodeABB<T> nodeAux = this.searchParent(this.root, data);
-//            if (nodeAux == null) {
-//                JOptionPane.showMessageDialog(null, "repeated");
-//                //nodeAux.setCounter(nodeAux.getCounter() + 1);
-//
-//            }else if (Integer.parseInt(nodeAux.getData().toString()) > Integer.parseInt(toAdd.getData().toString())) {
-//                nodeAux.setLeft(toAdd);
-//
-//            } else {
-//                nodeAux.setRight(toAdd);
-//            }
-//        }
-//    }
-
-     public void insertID(Booking booking) {
+    public void insertID(Booking booking) {
         NodeABB<Booking> toAdd = new NodeABB(booking);
         if (this.isEmpty()) {
             this.root = (NodeABB<T>) ((T) toAdd);
@@ -100,7 +77,7 @@ public class BinarySearchTree<T> {
                 JOptionPane.showMessageDialog(null, "Repeated ID, cannot add.");
                 //nodeAux.setCounter(nodeAux.getCounter() + 1);
 
-            }else if (nodeAux.getData().id >toAdd.getData().id)  {
+            } else if (nodeAux.getData().id > toAdd.getData().id) {
                 nodeAux.setLeft(toAdd);
 
             } else {
@@ -108,8 +85,6 @@ public class BinarySearchTree<T> {
             }
         }
     }
-    
-    
     /**
      * This method is a two segment method we will access with this one, the
      * first one calls the actual method.
@@ -120,7 +95,6 @@ public class BinarySearchTree<T> {
         String toPrint = this.preorder((NodeABB<Booking>) this.root, "");
         return toPrint + "//";
     }
-
     /**
      * This is the second segment method, this one runs the binary search tree
      * in pre-order.
@@ -142,7 +116,6 @@ public class BinarySearchTree<T> {
         return output;
 
     }
-
     /**
      * This is the method we will have access to, it will call the recursive
      * option to run in inorder
@@ -153,7 +126,6 @@ public class BinarySearchTree<T> {
         String toPrint = this.inorder((NodeABB<Booking>) this.root, "");
         return toPrint + "//";
     }
-
     /**
      * This is the second part of the method, it will run the tree in inorder.
      *
@@ -174,7 +146,6 @@ public class BinarySearchTree<T> {
 
         return output;
     }
-
     /**
      * This is the public method we will call to run the post order print.
      *
@@ -185,7 +156,6 @@ public class BinarySearchTree<T> {
         toPrint = this.postorder((NodeABB<Booking>) this.root, "");
         return toPrint + "//";
     }
-
     /**
      * This is the second part of the method, it will run the tree in post order
      *
@@ -202,27 +172,28 @@ public class BinarySearchTree<T> {
             output = postorder(root.getRight(), output);
 
         }
-       
-        output += root.getData().id+ "-->";
+
+        output += root.getData().id + "-->";
         return output;
     }
-    
     /**
      * This method searches an ID number and returns the Node it belongs.
-     * @param valor    
-     * @param root    
-     * @return     
-    */
+     *
+     * @param valor
+     * @param root
+     * @return
+     */
     public String SearchID(int valor, NodeABB<Booking> root) {
-        String output = "CLIENT INFORMATION:\n";
+        String output = "";
+        output = "CLIENT INFORMATION:\n";
         if (this.isEmpty()) {
             output = "This ID wasn't found.";
             return output;
 
         } else {
-            
+
             if (root.getData().id == valor) {
-                output += "ID: " + root.getData().id + "\nNAME: " + root.getData().firstName+ " " + root.getData().lastName +"\nEMAIL: " + root.getData().email +"\nGENRE: "+root.getData().gender + "\nPHONE NUMBER: " + root.getData().phoneNumber +"\nARRIVAL: " + root.getData().arrivalDate + "\nDEPARTURE DATE: "+ root.getData().departureDate +"\n\n";
+                output += "ID: " + root.getData().id + "\nNAME: " + root.getData().firstName + " " + root.getData().lastName + "\nEMAIL: " + root.getData().email + "\nGENRE: " + root.getData().gender + "\nPHONE NUMBER: " + root.getData().phoneNumber + "\nARRIVAL: " + root.getData().arrivalDate + "\nDEPARTURE DATE: " + root.getData().departureDate + "\n\n";
                 return output;
 
             } else {
@@ -234,8 +205,58 @@ public class BinarySearchTree<T> {
             }
         }
     }
-    //Getters & Setters
+/**
+ * This deletes an element from the tree.
+ * @param root
+ * @param key
+ * @return 
+ */
+    public NodeABB deleteNode(NodeABB<Booking> root, int key) {
+        if(root == null) return root;
+        if(key > root.getData().id){ 
+            root.setRight(deleteNode(root.getRight(), key));
+        }else if(key < root.getData().id){ 
+            root.setLeft(deleteNode(root.getLeft(), key));
+        }else{ 
+            if(root.getLeft() == null && root.getRight() == null){ 
+                root = null;
+            }else if(root.getRight() != null){ 
+                root.setData(successor(root).getData()); // my worthy successor
+                root.setRight(deleteNode(root.getRight(), root.getData().id));
+            }else{ //oh it seems that I do not have a worthy successor, fallback, fallback ...
+                root.setData(predecessor(root).getData());
+                root.setLeft(deleteNode(root.getLeft(), root.getData().id));
+            }
+        }
+        return root;
+    }
+    /**
+     * Return node's successor value
+     * @param root
+     * @return
+     */
+    private NodeABB<Booking> successor(NodeABB<Booking> root){
+        root = root.getRight();
+        while(root.getLeft() != null){
+            root = root.getLeft();
+        }
+        return root;
+    }
+    /**
+     * Return node's predecessor value
+     * @param root
+     * @return
+     */
+    private NodeABB<Booking> predecessor(NodeABB<Booking> root){
+        root = root.getLeft();
+        while(root.getRight() != null){
+            root = root.getRight();
+        }
+        return root;
+    }
 
+
+//Getters & Setters
     /**
      * @return the root
      */
