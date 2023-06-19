@@ -4,6 +4,8 @@
  */
 package FileManagement;
 
+import DS.BinarySearchTree;
+import DS.HashTable;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -25,6 +27,17 @@ public class FileManager {
     final String roomsPath = "test\\rooms.csv";
     final String statusPath = "test\\status.csv";
     final String recordsPath = "test\\records.csv";
+    
+    public HashTable guests;
+    public BinarySearchTree rooms;
+    public BinarySearchTree bookings;
+    
+    public FileManager(HashTable guests, BinarySearchTree rooms, BinarySearchTree bookings ){
+        this.guests = guests;
+        this.rooms = rooms;
+        this.bookings = bookings;
+    }
+    
     
     
     public void initializeProgram(){
