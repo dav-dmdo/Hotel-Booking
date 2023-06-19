@@ -38,8 +38,6 @@ public class FileManager {
         this.bookings = bookings;
     }
     
-    
-    
     public void initializeProgram(){
         this.readBookingsCSV();
         this.readRoomsCSV();
