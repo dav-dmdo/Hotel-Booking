@@ -5,6 +5,11 @@
  */
 package ImportantClasses;
 
+import DS.HashTable;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -13,12 +18,12 @@ import javax.swing.JOptionPane;
  *
  */
 public class Helpers {
-     /**
-     * This method checks if the parameter sent is a int.
+
+/**
      *
      * @param numString
      * @return
-     */
+ */
     public static int valorNumero(String numString) {
         int num;
         try {
@@ -36,7 +41,5 @@ public class Helpers {
             return -1;
         }
 
-       
     }
-    
 }
