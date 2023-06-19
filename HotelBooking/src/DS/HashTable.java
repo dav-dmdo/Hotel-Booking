@@ -85,7 +85,7 @@ public class HashTable {
     }
 
     // Método para leer datos desde un archivo y almacenarlos en la tabla
-    public void read(String filename, String a, JTextArea b, JTextField c) {
+    public void read(String filename, JTextArea b, JTextField c) {
         HashTable hashtable = new HashTable(1000);   // Se crea una tabla hash vacía
 
         try {
