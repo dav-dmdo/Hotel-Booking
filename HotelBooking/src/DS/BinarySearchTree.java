@@ -4,6 +4,7 @@
  */
 package DS;
 
+import ImportantClasses.Client;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,7 +25,6 @@ public class BinarySearchTree<T> {
     public boolean isEmpty() {
         return root == null;
     }
-
     /**
      * This method searches for a parent fit-able for the node to add following
      * the rules of the ABB.
@@ -180,6 +180,25 @@ public class BinarySearchTree<T> {
         }
         output += root.getData() + "-->";
         return output;
+    }
+    
+    
+    public NodeABB SearchID(int valor, NodeABB<Client> root) {
+        if (this.isEmpty()) {
+            return null;
+
+        } else {
+            if (Integer.parseInt(root.toString()) == valor) {
+                return root;
+
+            } else {
+                if (valor < Integer.parseInt(root.toString())) {
+                    return SearchID(valor, root.getLeft());
+                } else {
+                    return SearchID(valor, root.getRight());
+                }
+            }
+        }
     }
     //Getters & Setters
 
