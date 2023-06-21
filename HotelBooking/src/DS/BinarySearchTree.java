@@ -31,10 +31,10 @@ public class BinarySearchTree<T> {
      * the rules of the ABB in terms of client ID.
      *
      * @param root
-     * @param data
+     * @param booking
      * @return NodeABB
      */
-    private NodeABB searchParentID(NodeABB<Booking> root, Booking booking) {
+    public NodeABB searchParentID(NodeABB<Booking> root, Booking booking) {
         NodeABB found = null;
         if (booking.id < root.getData().id) {
             return this.addedProccessID(root, root.getLeft(), booking);
@@ -50,10 +50,10 @@ public class BinarySearchTree<T> {
      *
      * @param father
      * @param son
-     * @param data
+     * @param booking
      * @return
      */
-    private NodeABB addedProccessID(NodeABB<Booking> father, NodeABB<Booking> son, Booking booking) {
+    public NodeABB addedProccessID(NodeABB<Booking> father, NodeABB<Booking> son, Booking booking) {
         if (son != null) {
             return this.searchParentID(son, booking);
 
