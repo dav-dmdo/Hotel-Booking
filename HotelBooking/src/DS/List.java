@@ -68,15 +68,15 @@ public class List<T> implements LinkedList{
     
     public String printListPerson(List<Client> list){
     ListNode <Client> pAux;
-    String resultado="";
+    String resultado="CLIENTS: \n";
         if (this.isEmpty()){
             resultado="There are no elements on the list";
 
         }else{
             pAux=pFirst;
             while(pAux!= null){
-                resultado=resultado + pAux.getData().firstName+ ", ";
-                pAux=próximo(pAux);
+                resultado+=  "ID: " + pAux.getData().id + "\nNAME: " + pAux.getData().firstName + " " + pAux.getData().lastName + "\nEMAIL: " + pAux.getData().email + "\nGENRE: " + pAux.getData().gender +  "\nARRIVAL: " + pAux.getData().arrival + "\n\n"+ ", ";
+                pAux= pAux.getpNext();
                 //pAux=pAux.pnext;
             }
         }
@@ -84,4 +84,4 @@ public class List<T> implements LinkedList{
  }
         
     }
-}
+
