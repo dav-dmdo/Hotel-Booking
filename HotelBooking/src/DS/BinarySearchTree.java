@@ -5,6 +5,7 @@
 package DS;
 
 import ImportantClasses.Booking;
+import ImportantClasses.Historical;
 
 import javax.swing.JOptionPane;
 
@@ -21,11 +22,12 @@ public class BinarySearchTree<T> {
     public BinarySearchTree() {
         this.root = null;
     }
-    //Primitives  
+    //Primitives
+    
     public boolean isEmpty() {
         return root == null;
     }
-    //Primitives ID
+        //Primitives ID
     /**
      * This method searches for a parent fit-able for the node to add following
      * the rules of the ABB in terms of client ID.
@@ -255,7 +257,73 @@ public class BinarySearchTree<T> {
         return root;
     }
 
+    
+        //ROOM METHODS
+    public void insertRoom(Historical history){
+        NodeABB<Historical> toAdd = new NodeABB(history);
+        if (this.isEmpty()) {
+            this.root = (NodeABB<T>) ((T) toAdd);
 
+        } else {
+            NodeABB<Historical> nodeAux = this.searchRoomParent((NodeABB<Historical>) this.root, history);
+           if (nodeAux.getData() == null) {
+                JOptionPane.showMessageDialog(null, "Room Already added.");
+                //nodeAux.setCounter(nodeAux.getCounter() + 1);
+                //Not 100% sure needs testing
+
+            } else if (nodeAux.getData().numeroHab> toAdd.getData().numeroHab) {
+                nodeAux.setLeft(toAdd);
+
+            } else {
+                nodeAux.setRight(toAdd);
+            }
+        }
+    }
+
+    public NodeABB<Historical> searchRoomParent(NodeABB<Historical> root, Historical history){
+     NodeABB found = null;
+        if (history.numeroHab < root.getData().numeroHab) {
+            return this.addedProccessRoom(root, root.getLeft(), history);
+
+        } else if (history.numeroHab> root.getData().numeroHab) {
+            return this.addedProccessRoom(root, root.getRight(), history);
+        }
+        return found;
+    }
+    
+     public NodeABB addedProccessRoom(NodeABB<Historical> father, NodeABB<Historical> son, Historical history) {
+        if (son != null) {
+            return this.searchRoomParent(son, history);
+
+        } else {
+            return father;
+        }
+    } 
+     public String preorderRoom() {
+        String toPrint = this.preorderRoom((NodeABB<Historical>) this.root, "");
+        return toPrint + "//";
+    }
+    /**
+     * This is the second segment method, this one runs the binary search tree
+     * in pre-order.
+     *
+     * @param root
+     * @param output
+     * @return
+     */
+    private String preorderRoom(NodeABB<Historical> root, String output) {
+        output += root.getData().Person.toString() + "--> ";
+        if (root.getLeft() != null) {
+            output = preorder(root.getLeft(), output);
+
+        }
+        if (root.getRight() != null) {
+            output = preorder(root.getRight(), output);
+
+        }
+        return output;
+
+    }
 //Getters & Setters
     /**
      * @return the root

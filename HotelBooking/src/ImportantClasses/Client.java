@@ -14,15 +14,17 @@ public class Client {
     public String lastName;
     public String email;
     public String gender;
-    public String phoneNumber;
+    //public String phoneNumber;
+    public String arrival;
     
-    public Client(Integer id, String firstName, String lastName, String email, String gender, String phoneNumber){
+    public Client(Integer id, String firstName, String lastName, String email, String gender, String phoneNumber, String arrival){
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.gender = gender;
-        this.phoneNumber = phoneNumber;
+        this.arrival = arrival;
+       // this.phoneNumber = phoneNumber;
     }
 
     
