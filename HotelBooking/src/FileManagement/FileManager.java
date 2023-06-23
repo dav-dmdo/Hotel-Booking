@@ -6,6 +6,8 @@ package FileManagement;
 
 import DS.BinarySearchTree;
 import DS.HashTable;
+import ImportantClasses.Booking;
+import ImportantClasses.Client;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -51,7 +53,10 @@ public class FileManager {
         String[] values; 
         br.readLine();
         while((line = br.readLine()) != null){
-            values = line.split(",");           
+            values = line.split(",");
+            Client client = new Client (Integer.parseInt(values[0]), values[1],values[2],values[3],values[4],values[6]);
+            Booking booking = new Booking(client, values[5], values[7], values[8]);
+            this.bookings.insert(booking);
             
         }
         }catch(IOException e){

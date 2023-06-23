@@ -4,7 +4,13 @@
  */
 package App;
 
+import DS.BinarySearchTree;
+import DS.HashTable;
+import FileManagement.FileManager;
 import GUIS.MainGUI;
+import ImportantClasses.Booking;
+import ImportantClasses.Client;
+import ImportantClasses.Room;
 
 /**
  *
@@ -17,4 +23,16 @@ public class App {
     //Methods
     public void showMenu(){
     menu.show();}
+    
+    public void start(){
+        BinarySearchTree<Booking> bookings = new BinarySearchTree<>();
+        BinarySearchTree<Room> rooms = new BinarySearchTree<>();
+        HashTable guests = new HashTable(347);
+        
+        FileManager fm = new FileManager(guests, rooms, bookings);
+        
+        fm.initializeProgram();
+        
+    }
+        
 }

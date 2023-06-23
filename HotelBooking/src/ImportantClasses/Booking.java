@@ -10,13 +10,15 @@ package ImportantClasses;
  */
 public class Booking {
     public Client client;
+    public String roomType;
     public String arrivalDate;
     public String departureDate;
     
-    public Booking(Client client, String arrivalDate, String departureDate){
+    public Booking(Client client, String roomType, String arrivalDate, String departureDate){
         this.client = client;
         this.arrivalDate = arrivalDate;
         this.departureDate = departureDate;
+        this.roomType = roomType;
     }
     
 }
