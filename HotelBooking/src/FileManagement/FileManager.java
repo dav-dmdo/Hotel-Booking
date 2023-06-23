@@ -78,6 +78,24 @@ public class FileManager {
         }  
         
     }
+    public void readRoomsCSV2(){
+        try(BufferedReader br = new BufferedReader(new FileReader(new File(roomsPath)))){
+        String line;
+        String[] values; 
+        br.readLine();
+        String datos="";
+        while((line = br.readLine()) != null){
+            datos += line;     
+            
+        }
+        values = datos.split(",");
+        
+        
+        }catch(IOException e){
+            System.out.println("Error produced while reading: "+roomsPath+"\n"+e.getMessage());
+        }  
+        
+    }
     public void readStatusCSV(){
         try(BufferedReader br = new BufferedReader(new FileReader(new File(statusPath)))){
         String line;
