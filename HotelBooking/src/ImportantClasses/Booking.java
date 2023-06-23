@@ -15,10 +15,11 @@ public class Booking {
     public String email;
     public String gender;
     public String phoneNumber;
+    public String roomType;
     public String arrivalDate;
     public String departureDate;
     
-    public Booking(int id, String firstName, String lastName, String email, String gender, String phoneNumber, String arrivalDate, String departureDate){
+    public Booking(int id, String firstName, String lastName, String email, String gender, String phoneNumber, String roomType, String arrivalDate, String departureDate){
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -28,5 +29,7 @@ public class Booking {
         this.arrivalDate = arrivalDate;
         this.departureDate = departureDate;
     }
+
+  
     
 }

@@ -4,6 +4,8 @@
  */
 package FileManagement;
 
+import DS.BinarySearchTree;
+import ImportantClasses.Booking;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -34,18 +36,32 @@ public class FileManager {
         this.readRecordsCSV();              
     }
     
+    public void insertBookingsToTree(String array[], BinarySearchTree bstBooking){
+        Booking booking = new Booking(Integer.parseInt(array[0]), array[1], array[2], array[3], array[4] , array[5], array[6], array[7], array[8]);
+        bstBooking.insertID(booking);
+        
+
+        
+    }
     public void readBookingsCSV(){
+        BinarySearchTree<Booking> booking = new BinarySearchTree();
         try(BufferedReader br = new BufferedReader(new FileReader(new File(bookingsPath)))){
+       // 
         String line;
         String[] values; 
         br.readLine();
         while((line = br.readLine()) != null){
-            values = line.split(",");           
+            values = line.split(",");  
+           insertBookingsToTree(values, booking); 
+            
             
         }
         }catch(IOException e){
             System.out.println("Error produced while reading: "+bookingsPath+"\n"+e.getMessage());
         }         
+        System.out.println(booking.inorder());
+        System.out.println(booking.SearchID(13502927, booking.getRoot()));
+        
     }
     
     public void readRoomsCSV(){
