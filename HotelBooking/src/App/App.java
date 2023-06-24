@@ -4,10 +4,13 @@
  */
 package App;
 
+import DS.BSTree;
 import DS.BinarySearchTree;
+import DS.List;
 import FileManagement.FileManager;
 import GUIS.MainGUI;
 import ImportantClasses.Booking;
+import ImportantClasses.BookingMethods;
 
 /**
  *
@@ -16,12 +19,16 @@ import ImportantClasses.Booking;
 public class App {
     //Atributos
     MainGUI main;
-    BinarySearchTree bstBooking;
+     BinarySearchTree bstBooking;
     FileManager file = new FileManager();
+    List list = new List();
+    BinarySearchTree historical;
 
     public App() {
         this.main = null;
-        this.bstBooking =  new BinarySearchTree();
+        BookingMethods bm = new BookingMethods();
+        this.bstBooking =  new  BinarySearchTree();
+this.historical = new BinarySearchTree();
     }
     
     
@@ -29,8 +36,16 @@ public class App {
     
     //Methods
     public void showMenu(){
+   
     
     this.bstBooking= file.readBookingsCSV();
-    this.main = new MainGUI(bstBooking);
+    this.historical = file.readRecordsCSV();
+    this.main = new MainGUI(bstBooking, historical);
+    
     main.show();}
-}
+
+        
+
+
+    }
+

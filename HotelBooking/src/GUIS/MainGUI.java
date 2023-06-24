@@ -7,6 +7,7 @@ package GUIS;
 
 import DS.BinarySearchTree;
 import ImportantClasses.Booking;
+import ImportantClasses.Historical;
 
 /**
  *
@@ -14,17 +15,19 @@ import ImportantClasses.Booking;
  */
 public class MainGUI extends javax.swing.JFrame {
     static BinarySearchTree<Booking> bstBooking;
+    static BinarySearchTree<Historical> bstHistory;
 
     /**
      * Creates new form MainGUI
      * @param bstBooking
      */
-    public MainGUI(BinarySearchTree<Booking> bstBooking) {
+    public MainGUI(BinarySearchTree<Booking> bstBooking, BinarySearchTree<Historical> bstHistory) {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.bstBooking = bstBooking;
+        this.bstHistory = bstHistory;
         
     }
 
@@ -170,7 +173,7 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_searchReservationActionPerformed
 
     private void searchRoomHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchRoomHistoryActionPerformed
-        RoomHistory seeRoomHistory = new RoomHistory();
+        RoomHistory seeRoomHistory = new RoomHistory(bstHistory);
         seeRoomHistory.show();
     }//GEN-LAST:event_searchRoomHistoryActionPerformed
 
@@ -223,7 +226,7 @@ public class MainGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainGUI(bstBooking).setVisible(true);
+                new MainGUI(bstBooking, bstHistory).setVisible(true);
             }
         });
     }

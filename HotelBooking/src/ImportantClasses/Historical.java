@@ -17,7 +17,7 @@ public class Historical {
     public int numeroHab;
 
     public Historical(List Person, int numeroHab) {
-        this.Person = null;
+        this.Person = Person;
         this.numeroHab = numeroHab;
     }
     

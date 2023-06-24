@@ -4,8 +4,14 @@
  */
 package FileManagement;
 
+import DS.BSTree;
 import DS.BinarySearchTree;
+import DS.List;
+import DS.ListNode;
 import ImportantClasses.Booking;
+import ImportantClasses.BookingMethods;
+import ImportantClasses.Historical;
+import ImportantClasses.Person;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -44,6 +50,7 @@ public class FileManager {
         
     }
     public BinarySearchTree<Booking> readBookingsCSV(){
+        BookingMethods bm = new BookingMethods();
         BinarySearchTree<Booking> booking = new BinarySearchTree();
         try(BufferedReader br = new BufferedReader(new FileReader(new File(bookingsPath)))){
       
@@ -108,20 +115,38 @@ public class FileManager {
             System.out.println("Error produced while reading: "+statusPath+"\n"+e.getMessage());
         }  
     }
-    public void readRecordsCSV(){
+    
+    public BinarySearchTree<Historical> insertrecords(String array[], BinarySearchTree bstBooking){
+        Person p = new Person(Integer.parseInt(array[0]), array[1], array[2], array[3], array[4] , array[5]);
+        
+        List l = new List();
+        l.addFirst(p);
+        //System.out.println(l.printListPerson(l));
+        Historical history = new Historical(l, Integer.parseInt(array[6]));
+        bstBooking.insertRoom(history);
+        
+        return bstBooking;
+        
+        
+    }
+    public BinarySearchTree<Historical> readRecordsCSV(){
+        BinarySearchTree bst = new BinarySearchTree();
         try(BufferedReader br = new BufferedReader(new FileReader(new File(recordsPath)))){
+        
         String line;
         String[] values; 
         br.readLine();
         while((line = br.readLine()) != null){
             values = line.split(",");
-            System.out.println(line);
+            bst = insertrecords(values,  bst);
+            //System.out.println(line);
             
         }
         }catch(IOException e){
             System.out.println("Error produced while reading: "+recordsPath+"\n"+e.getMessage());
         }  
         
+        return bst;
     }  
     
 }

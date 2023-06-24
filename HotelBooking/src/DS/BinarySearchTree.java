@@ -187,7 +187,7 @@ public class BinarySearchTree<T> {
      */
     public String SearchID(int valor, NodeABB<Booking> root) {
         String output = "";
-        output = "CLIENT INFORMATION:\n";
+        output = "CLIENT INFORMATION:\n\n";
         if (this.isEmpty()) {
             output = "This ID wasn't found.";
             return output;
@@ -223,9 +223,9 @@ public class BinarySearchTree<T> {
             if(root.getLeft() == null && root.getRight() == null){ 
                 root = null;
             }else if(root.getRight() != null){ 
-                root.setData(successor(root).getData()); // my worthy successor
+                root.setData(successor(root).getData()); 
                 root.setRight(deleteNode(root.getRight(), root.getData().id));
-            }else{ //oh it seems that I do not have a worthy successor, fallback, fallback ...
+            }else{ 
                 root.setData(predecessor(root).getData());
                 root.setLeft(deleteNode(root.getLeft(), root.getData().id));
             }
@@ -270,15 +270,22 @@ public class BinarySearchTree<T> {
 
         } else {
             NodeABB<Historical> nodeAux = this.searchRoomParent((NodeABB<Historical>) this.root, history);
-           if (nodeAux.getData() == null) {
-                JOptionPane.showMessageDialog(null, "Room Already added.");
+           if (nodeAux.getData().numeroHab == toAdd.getData().numeroHab) {
+               
+              
+               
+                //JOptionPane.showMessageDialog(null, "Room Already added.");
                 //nodeAux.setCounter(nodeAux.getCounter() + 1);
                 //Not 100% sure needs testing
+                
+                nodeAux.getData().Person.addFirst(toAdd.getData().Person.getpFirst().getData());
+                
 
-            } else if (nodeAux.getData().numeroHab> toAdd.getData().numeroHab) {
+            } else if (nodeAux.getData().numeroHab> toAdd.getData().numeroHab  ) {
                 nodeAux.setLeft(toAdd);
-
-            } else {
+                
+            }
+            else if (nodeAux.getData().numeroHab< toAdd.getData().numeroHab)  {
                 nodeAux.setRight(toAdd);
             }
         }
@@ -291,12 +298,19 @@ public class BinarySearchTree<T> {
  */
     public NodeABB<Historical> searchRoomParent(NodeABB<Historical> root, Historical history){
      NodeABB found = null;
-        if (history.numeroHab < root.getData().numeroHab) {
+        if (history.numeroHab == root.getData().numeroHab) {
+            return root;
+            
+        }
+        else if (history.numeroHab < root.getData().numeroHab) {
             return this.addedProccessRoom(root, root.getLeft(), history);
 
-        } else if (history.numeroHab> root.getData().numeroHab) {
+        } else if (history.numeroHab > root.getData().numeroHab) {
             return this.addedProccessRoom(root, root.getRight(), history);
         }
+        
+            
+        
         return found;
     }
     /**
@@ -417,7 +431,7 @@ public class BinarySearchTree<T> {
         } else {
 
             if (root.getData().numeroHab == valor) {
-               output += "ROOM NUMBER " + root.getData().numeroHab +"\n" + root.getData().Person.printListPerson(root.getData().Person);
+               output += "__________\nROOM NUMBER" + root.getData().numeroHab +"\n\n" + root.getData().Person.printListPerson(root.getData().Person);
                 return output;
 
             } else {
