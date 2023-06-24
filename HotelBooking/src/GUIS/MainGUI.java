@@ -5,21 +5,33 @@
  */
 package GUIS;
 
+import DS.BinarySearchTree;
+import ImportantClasses.Booking;
+import ImportantClasses.Historical;
+
 /**
  *
  * @author Andrea
  */
 public class MainGUI extends javax.swing.JFrame {
+    static BinarySearchTree<Booking> bstBooking;
+    static BinarySearchTree<Historical> bstHistory;
 
     /**
      * Creates new form MainGUI
+     * @param bstBooking
      */
-    public MainGUI() {
+    public MainGUI(BinarySearchTree<Booking> bstBooking, BinarySearchTree<Historical> bstHistory) {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.bstBooking = bstBooking;
+        this.bstHistory = bstHistory;
+        
     }
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -156,12 +168,12 @@ public class MainGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchReservationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchReservationActionPerformed
-        SearchReservationGUI searchReservation = new SearchReservationGUI();
+        SearchReservationGUI searchReservation = new SearchReservationGUI(bstBooking);
         searchReservation.show();
     }//GEN-LAST:event_searchReservationActionPerformed
 
     private void searchRoomHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchRoomHistoryActionPerformed
-        RoomHistory seeRoomHistory = new RoomHistory();
+        RoomHistory seeRoomHistory = new RoomHistory(bstHistory);
         seeRoomHistory.show();
     }//GEN-LAST:event_searchRoomHistoryActionPerformed
 
@@ -178,9 +190,10 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_CheckInActionPerformed
 
     private void registerClient1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerClient1ActionPerformed
-        RegisterClientGUI registerClient = new RegisterClientGUI();
-        registerClient.show();
-        
+
+        RegisterClientGUI registerClientGUI = new RegisterClientGUI();
+        registerClientGUI.show();
+
     }//GEN-LAST:event_registerClient1ActionPerformed
 
     /**
@@ -213,7 +226,7 @@ public class MainGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainGUI().setVisible(true);
+                new MainGUI(bstBooking, bstHistory).setVisible(true);
             }
         });
     }

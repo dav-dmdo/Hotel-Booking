@@ -5,6 +5,8 @@
  */
 package GUIS;
 
+import DS.BinarySearchTree;
+import ImportantClasses.Booking;
 import ImportantClasses.Helpers;
 import javax.swing.JOptionPane;
 
@@ -13,15 +15,19 @@ import javax.swing.JOptionPane;
  * @author Andrea
  */
 public class SearchReservationGUI extends javax.swing.JFrame {
+    static BinarySearchTree<Booking> bstBooking = new BinarySearchTree();
+    
 
     /**
      * Creates new form SearchReservationGUI
+     * @param bstBooking
      */
-    public SearchReservationGUI() {
+    public SearchReservationGUI(BinarySearchTree<Booking> bstBooking) {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.bstBooking = bstBooking;
     }
 
     /**
@@ -39,7 +45,7 @@ public class SearchReservationGUI extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         clientID = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        showInfo = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         searchReservation = new javax.swing.JButton();
@@ -66,14 +72,13 @@ public class SearchReservationGUI extends javax.swing.JFrame {
         clientID.setForeground(new java.awt.Color(137, 103, 103));
         jPanel1.add(clientID, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 200, -1));
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setBackground(java.awt.SystemColor.controlHighlight);
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jTextArea1.setForeground(new java.awt.Color(137, 103, 103));
-        jTextArea1.setRows(5);
-        jTextArea1.setText("//set info de reservacion\n");
-        jScrollPane1.setViewportView(jTextArea1);
+        showInfo.setEditable(false);
+        showInfo.setBackground(java.awt.SystemColor.controlHighlight);
+        showInfo.setColumns(20);
+        showInfo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        showInfo.setForeground(new java.awt.Color(137, 103, 103));
+        showInfo.setRows(5);
+        jScrollPane1.setViewportView(showInfo);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 320, 230));
 
@@ -116,13 +121,20 @@ public class SearchReservationGUI extends javax.swing.JFrame {
 
             String ID_String = clientID.getText();
             int ID = Helpers.valorNumero(ID_String);
-            if (ID!= -1) {
-                JOptionPane.showMessageDialog(this, "Not a valid number. ");
+            if (ID == -1) {
+
+            } else {
+                String NodeSearch = bstBooking.SearchID(ID, bstBooking.getRoot());
+
+                showInfo.setText(NodeSearch);
+                clientID.setText("");
 
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error! type: " + e);
+        } catch (NullPointerException e) {
+            showInfo.setText(clientID.getText() + " doesn't have a reservation.");
+            clientID.setText("");
         }
+
     }//GEN-LAST:event_searchReservationActionPerformed
 
     /**
@@ -155,7 +167,7 @@ public class SearchReservationGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SearchReservationGUI().setVisible(true);
+                new SearchReservationGUI(bstBooking).setVisible(true);
             }
         });
     }
@@ -169,7 +181,7 @@ public class SearchReservationGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton searchReservation;
+    private javax.swing.JTextArea showInfo;
     // End of variables declaration//GEN-END:variables
 }

@@ -131,7 +131,7 @@ public class RegisterClientGUI extends javax.swing.JFrame {
     private void RegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterButtonActionPerformed
      
         HashTable hash = new HashTable(1000);
-        hash.read("test\\Estado.csv", ShowClient,inputName,cont);
+        hash.read("test\\status.csv", ShowClient,inputName,cont);
         cont++;
     }//GEN-LAST:event_RegisterButtonActionPerformed
 

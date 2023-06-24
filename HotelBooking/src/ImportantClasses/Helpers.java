@@ -18,12 +18,14 @@ import javax.swing.JOptionPane;
  */
 public class Helpers {
 
+
+/**
     /**
-     * This method checks if the parameter sent is a int.
+     * 
      *
      * @param numString
      * @return
-     */
+ */
     public static int valorNumero(String numString) {
         int num;
         try {
@@ -42,5 +44,4 @@ public class Helpers {
         }
 
     }
-
 }
