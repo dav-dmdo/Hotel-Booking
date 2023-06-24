@@ -43,7 +43,7 @@ public class FileManager {
     }
     
     public BinarySearchTree<Booking> insertBookingsToTree(String array[], BinarySearchTree bstBooking){
-        Booking booking = new Booking(Integer.parseInt(array[0]), array[1], array[2], array[3], array[4] , array[5], array[6], array[7], array[8]);
+        Booking booking = new Booking(Integer.parseInt(array[0]), array[1],array[2], array[3], array[4], array[5], array[6],array[7],array[8]);
         bstBooking.insertID(booking);
         return bstBooking;
 

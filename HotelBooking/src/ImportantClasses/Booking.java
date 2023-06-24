@@ -14,22 +14,24 @@ public class Booking {
     public String lastName;
     public String email;
     public String gender;
-    public String phoneNumber;
     public String roomType;
+    public String phoneNumber;
     public String arrivalDate;
     public String departureDate;
-    
-    public Booking(int id, String firstName, String lastName, String email, String gender, String phoneNumber, String roomType, String arrivalDate, String departureDate){
+
+    public Booking(Integer id, String firstName, String lastName, String email, String gender, String roomType, String phoneNumber, String arrivalDate, String departureDate) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.gender = gender;
+        this.roomType = roomType;
         this.phoneNumber = phoneNumber;
         this.arrivalDate = arrivalDate;
         this.departureDate = departureDate;
     }
-
+    
+    
   
     
 }
