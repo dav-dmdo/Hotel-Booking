@@ -15,16 +15,19 @@ import javax.swing.JOptionPane;
  * @author Andrea
  */
 public class SearchReservationGUI extends javax.swing.JFrame {
-    static BinarySearchTree<Booking> bst = new BinarySearchTree();
+    static BinarySearchTree<Booking> bstBooking = new BinarySearchTree();
+    
 
     /**
      * Creates new form SearchReservationGUI
+     * @param bstBooking
      */
-    public SearchReservationGUI() {
+    public SearchReservationGUI(BinarySearchTree<Booking> bstBooking) {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.bstBooking = bstBooking;
     }
 
     /**
@@ -75,7 +78,6 @@ public class SearchReservationGUI extends javax.swing.JFrame {
         showInfo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         showInfo.setForeground(new java.awt.Color(137, 103, 103));
         showInfo.setRows(5);
-        showInfo.setText("//set info de reservacion\n");
         jScrollPane1.setViewportView(showInfo);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 320, 230));
@@ -123,39 +125,8 @@ public class SearchReservationGUI extends javax.swing.JFrame {
                 
 
             }else{
-//                int id = 250;
-//    String first_name = "Andrea";
-//    String second_name = "Linares";
-//    String email = "Hausiua";
-//    String gender = "female";
-//    String phoneNumber = "437829";
-//    int id3 =100;
-//    String first_name3 = "Andrea";
-//    String second_name3 = "Linares";
-//    String email3 = "Hausiua";
-//    String gender3= "female";
-//    String phoneNumber3 = "437829";
-//    int id2 = 300;
-//    String first_name2 = "Andrea";
-//    String second_name2 = "Linares";
-//    String email2 = "Hausiua";
-//    String gender2 = "female";
-//    String phoneNumber2 = "437829";
-//    Booking booking = new Booking(id, first_name, second_name, email,gender,phoneNumber, null,null);
-//    Booking booking2 = new Booking(id2, first_name2, second_name2, email2,gender2,phoneNumber2, null,null);
-//    Booking booking3= new Booking(id3, first_name3, second_name3, email3,gender3,phoneNumber3, null,null);
-//    BinarySearchTree<Booking> bst = new BinarySearchTree();
-//    bst.insertID(booking);
-//    bst.insertID(booking2);
-//    bst.insertID(booking3);
-//    String output = bst.postorder();
-//        System.out.println(output);
-        String NodeSearch = bst.SearchID(ID, bst.getRoot());
-//        System.out.println(NodeSearch);
-//        bst.deleteNode(bst.getRoot(), id); 
-//        output = bst.postorder();
-//        System.out.println(output);
-                
+        String NodeSearch = bstBooking.SearchID(ID, bstBooking.getRoot());
+
                 showInfo.setText(NodeSearch);
                 
             }
@@ -194,7 +165,7 @@ public class SearchReservationGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SearchReservationGUI().setVisible(true);
+                new SearchReservationGUI(bstBooking).setVisible(true);
             }
         });
     }

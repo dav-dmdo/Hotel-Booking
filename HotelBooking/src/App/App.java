@@ -4,7 +4,10 @@
  */
 package App;
 
+import DS.BinarySearchTree;
+import FileManagement.FileManager;
 import GUIS.MainGUI;
+import ImportantClasses.Booking;
 
 /**
  *
@@ -12,9 +15,22 @@ import GUIS.MainGUI;
  */
 public class App {
     //Atributos
-    MainGUI menu = new MainGUI();
+    MainGUI main;
+    BinarySearchTree bstBooking;
+    FileManager file = new FileManager();
+
+    public App() {
+        this.main = null;
+        this.bstBooking =  new BinarySearchTree();
+    }
+    
+    
+   
     
     //Methods
     public void showMenu(){
-    menu.show();}
+    
+    this.bstBooking= file.readBookingsCSV();
+    this.main = new MainGUI(bstBooking);
+    main.show();}
 }

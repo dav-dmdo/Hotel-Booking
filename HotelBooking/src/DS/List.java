@@ -5,7 +5,7 @@
  */
 package DS;
 
-import ImportantClasses.Client;
+import ImportantClasses.Person;
 import Interfaces.LinkedList;
 
 /**
@@ -66,8 +66,8 @@ public class List<T> implements LinkedList{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    public String printListPerson(List<Client> list){
-    ListNode <Client> pAux;
+    public String printListPerson(List<Person> list){
+    ListNode <Person> pAux;
     String resultado="CLIENTS: \n";
         if (this.isEmpty()){
             resultado="There are no elements on the list";

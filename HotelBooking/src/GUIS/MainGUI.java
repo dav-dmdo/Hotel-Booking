@@ -5,21 +5,30 @@
  */
 package GUIS;
 
+import DS.BinarySearchTree;
+import ImportantClasses.Booking;
+
 /**
  *
  * @author Andrea
  */
 public class MainGUI extends javax.swing.JFrame {
+    static BinarySearchTree<Booking> bstBooking;
 
     /**
      * Creates new form MainGUI
+     * @param bstBooking
      */
-    public MainGUI() {
+    public MainGUI(BinarySearchTree<Booking> bstBooking) {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.bstBooking = bstBooking;
+        
     }
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -156,7 +165,7 @@ public class MainGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchReservationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchReservationActionPerformed
-        SearchReservationGUI searchReservation = new SearchReservationGUI();
+        SearchReservationGUI searchReservation = new SearchReservationGUI(bstBooking);
         searchReservation.show();
     }//GEN-LAST:event_searchReservationActionPerformed
 
@@ -214,7 +223,7 @@ public class MainGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainGUI().setVisible(true);
+                new MainGUI(bstBooking).setVisible(true);
             }
         });
     }

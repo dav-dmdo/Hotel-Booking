@@ -12,11 +12,12 @@ import DS.List;
  * @author Andrea
  */
 public class Historical {
+    //static List list = new List();
     public List Person;
     public int numeroHab;
 
     public Historical(List Person, int numeroHab) {
-        this.Person = Person;
+        this.Person = null;
         this.numeroHab = numeroHab;
     }
     
