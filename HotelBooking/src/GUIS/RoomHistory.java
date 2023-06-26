@@ -128,7 +128,7 @@ public class RoomHistory extends javax.swing.JFrame {
             int roomNumberSend = Helpers.valorNumero(roomInput);
             
             if (roomNumberSend != -1) {
-                show.setText(room.SearchRoom(roomNumberSend, room.getRoot()));
+                show.setText(room.printRoomSearch(room.SearchRoom(roomNumberSend, room.getRoot())));
                 roomNumber.setText("");
                 
                

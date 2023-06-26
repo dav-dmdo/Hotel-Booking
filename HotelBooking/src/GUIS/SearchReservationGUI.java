@@ -6,6 +6,7 @@
 package GUIS;
 
 import DS.BinarySearchTree;
+import DS.NodeABB;
 import ImportantClasses.Booking;
 import ImportantClasses.Helpers;
 import javax.swing.JOptionPane;
@@ -124,7 +125,7 @@ public class SearchReservationGUI extends javax.swing.JFrame {
             if (ID == -1) {
 
             } else {
-                String NodeSearch = bstBooking.SearchID(ID, bstBooking.getRoot());
+                String NodeSearch = bstBooking.printIDSearch(bstBooking.SearchID(ID, bstBooking.getRoot()));
 
                 showInfo.setText(NodeSearch);
                 clientID.setText("");
