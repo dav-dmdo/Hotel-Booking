@@ -125,6 +125,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="exit">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="cc" green="cc" red="cc" type="rgb"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
             </Property>
@@ -237,7 +240,7 @@
                   <Color blue="68" green="68" red="89" type="rgb"/>
                 </Property>
                 <Property name="rows" type="int" value="5"/>
-                <Property name="text" type="java.lang.String" value="WELCOME TO (HOTEL NAME)! here you have the&#xa;options to pick:&#xa;&#xa;1) Register a client: here you will be able to see &#xa;whereclients are staying in.&#xa;2) Search reservation: here you will be able to see&#xa;the reservation details of a costumer.&#xa;3) Search room history: here you will be able to&#xa;see all the people who previously stayed in that&#xa;room.&#xa;4) Check-In:  Assign a room to a client.&#xa;5) Check-Out: Closes client reservation."/>
+                <Property name="text" type="java.lang.String" value="WELCOME TO OUR HOTEL! here you have the&#xa;options to pick:&#xa;&#xa;1) Register a client: here you will be able to see &#xa;whereclients are staying in.&#xa;2) Search reservation: here you will be able to see&#xa;the reservation details of a costumer.&#xa;3) Search room history: here you will be able to&#xa;see all the people who previously stayed in that&#xa;room.&#xa;4) Check-In:  Assign a room to a client.&#xa;5) Check-Out: Closes client reservation."/>
               </Properties>
             </Component>
           </SubComponents>
