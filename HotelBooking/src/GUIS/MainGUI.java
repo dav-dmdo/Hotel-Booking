@@ -5,21 +5,33 @@
  */
 package GUIS;
 
+import DS.BinarySearchTree;
+import ImportantClasses.Booking;
+import ImportantClasses.Historical;
+
 /**
  *
  * @author Andrea
  */
 public class MainGUI extends javax.swing.JFrame {
+    static BinarySearchTree<Booking> bstBooking;
+    static BinarySearchTree<Historical> bstHistory;
 
     /**
      * Creates new form MainGUI
+     * @param bstBooking
      */
-    public MainGUI() {
+    public MainGUI(BinarySearchTree<Booking> bstBooking, BinarySearchTree<Historical> bstHistory) {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.bstBooking = bstBooking;
+        this.bstHistory = bstHistory;
+        
     }
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -90,7 +102,7 @@ public class MainGUI extends javax.swing.JFrame {
         });
         jPanel1.add(CheckOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 320, -1, -1));
 
-        exit.setBackground(new java.awt.Color(255, 255, 255));
+        exit.setBackground(new java.awt.Color(204, 204, 204));
         exit.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         exit.setForeground(new java.awt.Color(137, 102, 102));
         exit.setText("X");
@@ -136,7 +148,7 @@ public class MainGUI extends javax.swing.JFrame {
         jTextArea1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jTextArea1.setForeground(new java.awt.Color(137, 104, 104));
         jTextArea1.setRows(5);
-        jTextArea1.setText("WELCOME TO (HOTEL NAME)! here you have the\noptions to pick:\n\n1) Register a client: here you will be able to see \nwhereclients are staying in.\n2) Search reservation: here you will be able to see\nthe reservation details of a costumer.\n3) Search room history: here you will be able to\nsee all the people who previously stayed in that\nroom.\n4) Check-In:  Assign a room to a client.\n5) Check-Out: Closes client reservation.");
+        jTextArea1.setText("WELCOME TO OUR HOTEL! here you have the\noptions to pick:\n\n1) Register a client: here you will be able to see \nwhereclients are staying in.\n2) Search reservation: here you will be able to see\nthe reservation details of a costumer.\n3) Search room history: here you will be able to\nsee all the people who previously stayed in that\nroom.\n4) Check-In:  Assign a room to a client.\n5) Check-Out: Closes client reservation.");
         jScrollPane1.setViewportView(jTextArea1);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, 310, 140));
@@ -156,12 +168,12 @@ public class MainGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchReservationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchReservationActionPerformed
-        SearchReservationGUI searchReservation = new SearchReservationGUI();
+        SearchReservationGUI searchReservation = new SearchReservationGUI(bstBooking);
         searchReservation.show();
     }//GEN-LAST:event_searchReservationActionPerformed
 
     private void searchRoomHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchRoomHistoryActionPerformed
-        RoomHistory seeRoomHistory = new RoomHistory();
+        RoomHistory seeRoomHistory = new RoomHistory(bstHistory);
         seeRoomHistory.show();
     }//GEN-LAST:event_searchRoomHistoryActionPerformed
 
@@ -214,7 +226,7 @@ public class MainGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainGUI().setVisible(true);
+                new MainGUI(bstBooking, bstHistory).setVisible(true);
             }
         });
     }

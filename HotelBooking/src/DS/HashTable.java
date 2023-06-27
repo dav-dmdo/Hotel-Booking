@@ -7,7 +7,6 @@ package DS;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import javax.swing.JCheckBox;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -85,38 +84,40 @@ public class HashTable {
     }
 
     // Método para leer datos desde un archivo y almacenarlos en la tabla
-    public void read(String filename, String a, JTextArea b, JTextField c) {
-        HashTable hashtable = new HashTable(1000);   // Se crea una tabla hash vacía
+    public void read(HashTable hashtable,String filename, JTextArea b, JTextField c, Integer cont) {
+        
+        hashtable.clear();
 
         try {
             BufferedReader reader = new BufferedReader(new FileReader(filename));   // Se crea un lector para el archivo
             String line;
-            int cont = 0;
             while ((line = reader.readLine()) != null) {   // Se lee el archivo línea por línea
                 String[] data = line.split(",");   // Se separan los datos por comas
-                String key = data[1].trim() + " " + data[2].trim();   // Se crea una clave a partir de los datos
-                String value = data[0].trim();   //Se obtiene el valor correspondiente a la clave en los datos
+                Object key = data[1].trim() + " " + data[2].trim();   // Se crea una clave a partir de los datos
+                Object value = data[0].trim();   //Se obtiene el valor correspondiente a la clave en los datos
 
                 hashtable.insert(key, value);   // Se inserta la clave y el valor en la tabla hash
 
-                // Si la clave coincide con una cadena de texto dada, se muestra el valor correspondiente en un JTextArea
-                if (key.equals(c.getText())) {
-                    b.setText("El usuario: " + key + " esta hospedado en la habitacion: " + value);
-                    
-                } else {
-                    cont++;   // Si no coincide, se aumenta un contador
-                }
             }
 
-            // Si el contador llega a cierto valor, se busca la clave en la tabla y se muestra el resultado en el JTextArea
-            if (cont == 301) {
-                String client = findKey(c.getText());
-                b.setText(client);
+            String client = hashtable.findKey(c.getText());
+            b.setText(client);
+
+            if (cont == 0) {
+                hashtable.traverse();
+                
             }
 
             reader.close();   // Se cierra el lector
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void clear() {
+        for (int i = 0; i < capacity; i++) {
+            keys[i] = null;
+            values[i] = null;
         }
     }
 
@@ -129,5 +130,21 @@ public class HashTable {
             }
         }
         return count;
+    }
+
+    public void deletebkey(Object key) {
+        int hash1 = Math.abs(key.hashCode() % capacity);    // Se calcula la posición en la tabla hash usando el hashcode de la clave
+        int hash2 = Math.abs(key.hashCode() % (capacity - 2) + 1);  // Se calcula un segundo hash para manejar colisiones
+
+        // Se busca la posición correspondiente a la clave, usando el segundo hash para saltar a posiciones diferentes
+        while (keys[hash1] != null && !keys[hash1].equals(key)) {
+            hash1 = (hash1 + hash2) % capacity;
+        }
+
+        // Si se encontró la clave, se elimina el elemento de la tabla
+        if (keys[hash1] != null && keys[hash1].equals(key)) {
+            keys[hash1] = null;
+            values[hash1] = null;
+        }
     }
 }
