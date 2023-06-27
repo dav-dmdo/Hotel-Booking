@@ -16,7 +16,14 @@ public class BSTree <T> {
     
     public BSTree(DataTypeMethods <T> dtm){
         root = null;
-        this.dtm = 
+        this.dtm = dtm;
+    }
+    
+    public void search(T data){
+        NodeABB<T> aux= root;
+        while(aux != null){
+            boolean found = dtm.isEqual(aux.getData(), data);
+        }
     }
     
     
