@@ -7,7 +7,6 @@ package DS;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import javax.swing.JCheckBox;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -85,8 +84,8 @@ public class HashTable {
     }
 
     // Método para leer datos desde un archivo y almacenarlos en la tabla
-    public void read(String filename, JTextArea b, JTextField c, Integer cont) {
-        HashTable hashtable = new HashTable(1000);   // Se crea una tabla hash vacía
+    public void read(HashTable hashtable,String filename, JTextArea b, JTextField c, Integer cont) {
+        
         hashtable.clear();
 
         try {
@@ -100,7 +99,6 @@ public class HashTable {
                 hashtable.insert(key, value);   // Se inserta la clave y el valor en la tabla hash
 
             }
-
 
             String client = hashtable.findKey(c.getText());
             b.setText(client);
