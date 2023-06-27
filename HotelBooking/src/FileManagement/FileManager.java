@@ -116,6 +116,10 @@ public class FileManager {
         }  
     }
     
+    public void insertGuests(String array[] ){
+        
+    }
+    
     public BinarySearchTree<Historical> insertrecords(String array[], BinarySearchTree bstBooking){
         Person p = new Person(Integer.parseInt(array[0]), array[1], array[2], array[3], array[4] , array[5]);
         
@@ -147,6 +151,6 @@ public class FileManager {
         }  
         
         return bst;
-    }  
+    } 
     
 }
