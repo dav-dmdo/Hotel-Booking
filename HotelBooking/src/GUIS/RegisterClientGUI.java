@@ -12,15 +12,17 @@ import DS.HashTable;
  * @author Andrea
  */
 public class RegisterClientGUI extends javax.swing.JFrame {
-
+    static HashTable hstGuests;
     /**
      * Creates new form RegisterClientGUI
      */
-    public RegisterClientGUI() {
+    public RegisterClientGUI(HashTable hstGuests) {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.hstGuests = hstGuests;
+        
     }
 
     /**
@@ -99,7 +101,6 @@ public class RegisterClientGUI extends javax.swing.JFrame {
         ShowClient.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         ShowClient.setForeground(new java.awt.Color(137, 103, 103));
         ShowClient.setRows(5);
-        ShowClient.setText("//set info client");
         jScrollPane1.setViewportView(ShowClient);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, -1, 200));
@@ -127,12 +128,9 @@ public class RegisterClientGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_inputNameActionPerformed
 
-        int cont = 0;
     private void RegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterButtonActionPerformed
-     
-        HashTable hash = new HashTable(1000);
-        hash.read(hash,"test\\status.csv", ShowClient,inputName,cont);
-        cont++;
+        String fullname = inputName.getText();
+        ShowClient.setText(hstGuests.findKey(fullname));
     }//GEN-LAST:event_RegisterButtonActionPerformed
 
     /**
@@ -165,7 +163,7 @@ public class RegisterClientGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegisterClientGUI().setVisible(true);
+                new RegisterClientGUI(hstGuests).setVisible(true);
             }
         });
     }

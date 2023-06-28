@@ -183,7 +183,6 @@
                   <Color blue="67" green="67" red="89" type="rgb"/>
                 </Property>
                 <Property name="rows" type="int" value="5"/>
-                <Property name="text" type="java.lang.String" value="//set info client"/>
               </Properties>
             </Component>
           </SubComponents>

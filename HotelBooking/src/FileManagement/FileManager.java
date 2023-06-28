@@ -4,11 +4,10 @@
  */
 package FileManagement;
 
-
 import DS.BSTree;
 import DS.BinarySearchTree;
 import DS.HashTable;
-import DS.List;
+import DS.Lista;
 import DS.ListNode;
 import ImportantClasses.Booking;
 import ImportantClasses.BookingMethods;
@@ -23,148 +22,103 @@ import java.io.File;
 
 import java.io.IOException;
 
-
-
 /**
  *
  * @author david
  */
 public class FileManager {
-    
+
     final String bookingsPath = "test\\bookings.csv";
-    final String roomsPath = "test\\rooms.csv";
     final String statusPath = "test\\status.csv";
     final String recordsPath = "test\\records.csv";
-    
+
     public HashTable guests;
     public BinarySearchTree rooms;
     public BinarySearchTree bookings;
-    
-    public FileManager(HashTable guests, BinarySearchTree rooms, BinarySearchTree bookings ){
-        this.guests = guests;
-        this.rooms = rooms;
-        this.bookings = bookings;
-    }
 
-    public FileManager() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
-    public void initializeProgram(){
-        this.readBookingsCSV();
-        this.readRoomsCSV();
-        this.readStatusCSV();
-        this.readRecordsCSV();              
-    }
-    
-    public BinarySearchTree<Booking> insertBookingsToTree(String array[], BinarySearchTree bstBooking){
-        Booking booking = new Booking(Integer.parseInt(array[0]), array[1],array[2], array[3], array[4], array[5], array[6],array[7],array[8]);
+    private BinarySearchTree<Booking> insertBookingsToTree(String array[], BinarySearchTree bstBooking) {
+        Booking booking = new Booking(Integer.parseInt(array[0]), array[1], array[2], array[3], array[4], array[5], array[6], array[7], array[8]);
         bstBooking.insertID(booking);
         return bstBooking;
 
-        
     }
-    public BinarySearchTree<Booking> readBookingsCSV(){
-        BookingMethods bm = new BookingMethods();
+
+    public BinarySearchTree<Booking> readBookingsCSV() {
         BinarySearchTree<Booking> booking = new BinarySearchTree();
-        try(BufferedReader br = new BufferedReader(new FileReader(new File(bookingsPath)))){
-      
-        String line;
-        String[] values; 
-        br.readLine();
-        while((line = br.readLine()) != null){
-            values = line.split(",");  
-           booking = insertBookingsToTree(values, booking); 
-            
+        try (BufferedReader br = new BufferedReader(new FileReader(new File(bookingsPath)))) {
+
+            String line;
+            String[] values;
+            br.readLine();
+            while ((line = br.readLine()) != null) {
+                values = line.split(",");
+                booking = insertBookingsToTree(values, booking);
+
+            }
+        } catch (IOException e) {
+            System.out.println("Error produced while reading: " + bookingsPath + "\n" + e.getMessage());
         }
-        }catch(IOException e){
-            System.out.println("Error produced while reading: "+bookingsPath+"\n"+e.getMessage());
-        }         
-        
+
         return booking;
     }
-    
-    public void readRoomsCSV(){
-        try(BufferedReader br = new BufferedReader(new FileReader(new File(roomsPath)))){
-        String line;
-        String[] values; 
-        br.readLine();
-        while((line = br.readLine()) != null){
-            values = line.split(",");           
-            
+
+
+    public HashTable readStatusCSV() {
+        HashTable hsTGuests = new HashTable(1000);
+
+        try (BufferedReader br = new BufferedReader(new FileReader(new File(statusPath)))) {
+            String line;
+            String[] values;
+            br.readLine();
+            while ((line = br.readLine()) != null) {
+                values = line.split(",");
+                insertGuests(values, hsTGuests);
+            }
+        } catch (IOException e) {
+            System.out.println("Error produced while reading: " + statusPath + "\n" + e.getMessage());
         }
-        }catch(IOException e){
-            System.out.println("Error produced while reading: "+roomsPath+"\n"+e.getMessage());
-        }  
-        
+        return hsTGuests;
     }
-    public void readRoomsCSV2(){
-        try(BufferedReader br = new BufferedReader(new FileReader(new File(roomsPath)))){
-        String line;
-        String[] values; 
-        br.readLine();
-        String datos="";
-        while((line = br.readLine()) != null){
-            datos += line;     
-            
+
+    private void insertGuests(String array[], HashTable hsTGuests) {
+        if(!array[0].isBlank()){
+            Object key = array[1].trim()+" "+array[2].trim();
+            Object value = array[0].trim();
+            hsTGuests.insert(key,value);            
         }
-        values = datos.split(",");
-        
-        
-        }catch(IOException e){
-            System.out.println("Error produced while reading: "+roomsPath+"\n"+e.getMessage());
-        }  
-        
     }
-    public void readStatusCSV(){
-        try(BufferedReader br = new BufferedReader(new FileReader(new File(statusPath)))){
-        String line;
-        String[] values; 
-        br.readLine();
-        while((line = br.readLine()) != null){
-            values = line.split(",");           
-            
-        }
-        }catch(IOException e){
-            System.out.println("Error produced while reading: "+statusPath+"\n"+e.getMessage());
-        }  
-    }
-    
-    public void insertGuests(String array[] ){
-        
-    }
-    
-    public BinarySearchTree<Historical> insertrecords(String array[], BinarySearchTree bstBooking){
-        Person p = new Person(Integer.parseInt(array[0]), array[1], array[2], array[3], array[4] , array[5]);
-        
-        List l = new List();
+
+    private BinarySearchTree<Historical> insertrecords(String array[], BinarySearchTree bstBooking) {
+        Person p = new Person(Integer.parseInt(array[0]), array[1], array[2], array[3], array[4], array[5]);
+
+        Lista l = new Lista();
         l.addFirst(p);
         //System.out.println(l.printListPerson(l));
         Historical history = new Historical(l, Integer.parseInt(array[6]));
         bstBooking.insertRoom(history);
-        
+
         return bstBooking;
-        
-        
+
     }
-    public BinarySearchTree<Historical> readRecordsCSV(){
+
+    public BinarySearchTree<Historical> readRecordsCSV() {
         BinarySearchTree bst = new BinarySearchTree();
-        try(BufferedReader br = new BufferedReader(new FileReader(new File(recordsPath)))){
-        
-        String line;
-        String[] values; 
-        br.readLine();
-        while((line = br.readLine()) != null){
-            values = line.split(",");
-            bst = insertrecords(values,  bst);
-            //System.out.println(line);
-            
+        try (BufferedReader br = new BufferedReader(new FileReader(new File(recordsPath)))) {
+
+            String line;
+            String[] values;
+            br.readLine();
+            while ((line = br.readLine()) != null) {
+                values = line.split(",");
+                bst = insertrecords(values, bst);
+                //System.out.println(line);
+
+            }
+        } catch (IOException e) {
+            System.out.println("Error produced while reading: " + recordsPath + "\n" + e.getMessage());
         }
-        }catch(IOException e){
-            System.out.println("Error produced while reading: "+recordsPath+"\n"+e.getMessage());
-        }  
-        
+
         return bst;
-    } 
-    
+    }
+
 }

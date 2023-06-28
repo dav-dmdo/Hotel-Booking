@@ -13,20 +13,20 @@ import Interfaces.LinkedList;
  * @author Andrea
  * @param <T>
  */
-public class List<T> 
+public class Lista<T> 
 {
     private ListNode pFirst;
     private ListNode pLast;
     private int size;
     
 
-    public List() {
+    public Lista() {
         this.pFirst = this.pLast=null;
         this.size=0;
        // this.DTM = DTM;
     }
 
-    public List(ListNode pFirst, ListNode pLast, int size) {
+    public Lista(ListNode pFirst, ListNode pLast, int size) {
         this.pFirst = pFirst;
         this.pLast = pLast;
         this.size = size;
@@ -89,7 +89,7 @@ public class List<T>
         return resultado;
  }
     
-    public String printListPerson(List<Person> list){
+    public String printListPerson(Lista<Person> list){
         System.out.println(list.size);
         String resultado= "";
         resultado+="CLIENTS: \n\n";

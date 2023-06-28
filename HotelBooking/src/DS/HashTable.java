@@ -77,9 +77,9 @@ public class HashTable {
 
         // Si se encontró la clave, se devuelve un mensaje con su valor asociado; de lo contrario, se devuelve un mensaje de que no se encontró
         if (keys[hash1] != null && keys[hash1].equals(key)) {
-            return "El usuario: " + key + " esta hospedado en la habitacion: " + values[hash1];
+            return "El usuario: " + key + " esta\nhospedado en la habitacion: " + values[hash1];
         } else {
-            return "El usuario: " + key + " no se encuentra registrado.";
+            return "El usuario: " + key + " no se\nencuentra registrado.";
         }
     }
 

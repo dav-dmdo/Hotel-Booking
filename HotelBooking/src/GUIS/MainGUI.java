@@ -6,6 +6,7 @@
 package GUIS;
 
 import DS.BinarySearchTree;
+import DS.HashTable;
 import ImportantClasses.Booking;
 import ImportantClasses.Historical;
 
@@ -16,18 +17,20 @@ import ImportantClasses.Historical;
 public class MainGUI extends javax.swing.JFrame {
     static BinarySearchTree<Booking> bstBooking;
     static BinarySearchTree<Historical> bstHistory;
+    static HashTable hstGuests;
 
     /**
      * Creates new form MainGUI
      * @param bstBooking
      */
-    public MainGUI(BinarySearchTree<Booking> bstBooking, BinarySearchTree<Historical> bstHistory) {
+    public MainGUI(BinarySearchTree<Booking> bstBooking, BinarySearchTree<Historical> bstHistory, HashTable hstGuests) {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.bstBooking = bstBooking;
         this.bstHistory = bstHistory;
+        this.hstGuests = hstGuests;
         
     }
 
@@ -191,7 +194,7 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void registerClient1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerClient1ActionPerformed
 
-        RegisterClientGUI registerClientGUI = new RegisterClientGUI();
+        RegisterClientGUI registerClientGUI = new RegisterClientGUI(hstGuests);
         registerClientGUI.show();
 
     }//GEN-LAST:event_registerClient1ActionPerformed
@@ -226,7 +229,7 @@ public class MainGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainGUI(bstBooking, bstHistory).setVisible(true);
+                new MainGUI(bstBooking, bstHistory, hstGuests).setVisible(true);
             }
         });
     }
