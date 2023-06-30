@@ -6,6 +6,7 @@ package ControllerAndRelated;
 
 import DS.BSTree;
 import ImportantDataTypes.DataTypeMethods;
+import ImportantDataTypes.Room;
 import Nodes.BinaryNode;
 
 /**
@@ -13,6 +14,8 @@ import Nodes.BinaryNode;
  * @author david
  */
 public class BSTreeMethods {
+    
+    
     public static <T> void insertBalancedFromSortedArray(BSTree<T> tree, T[] array){
         insertBalancedFromSortedArray(tree,array,0,array.length-1);              
     }
@@ -21,10 +24,9 @@ public class BSTreeMethods {
         if (start > end)
             return;        
         Integer center = (start + end)/2;
-        T toAdd = array[center];
+        tree.insert(array[center]);        
         insertBalancedFromSortedArray(tree,array,start,center-1);      
         insertBalancedFromSortedArray(tree,array,center+1,end);          
-        tree.insert(toAdd);        
     }
     
     public static <T> BinaryNode<T> search(BSTree<T> tree, Integer key){
@@ -39,34 +41,55 @@ public class BSTreeMethods {
         else
             return search(dtm, root.rightSon(), key);
     } 
+    /**
+     * Busca un room Simple que este disponible. Si lo encuentra lo retorna,
+     * sino, retorna null
+     * @param <T>
+     * @param roomTree
+     * @return BinaryNode<Room> 
+     */
+    private static <T> BinaryNode<Room> searchAvailableRoom(BSTree<Room> roomTree, int start, int stop){
+        BinaryNode<Room> roomNode = null;
+        for (int i = start; i <= stop; i++) {
+            roomNode = search(roomTree.dtm(), roomTree.root(), i);
+            if (roomNode.data().isAvailable){
+                return roomNode;
+            }            
+        }
+        return roomNode;
+    }
     
+    private static <T> BinaryNode<Room> searchAvailableRoom(BSTree<Room> roomTree, String roomType){
+        BinaryNode<Room> roomNode = null;
+        switch(roomType){
+            case "simple":
+                roomNode = searchAvailableRoom(roomTree, 1, 100);
+                return roomNode;
+            case "doble":
+                roomNode = searchAvailableRoom(roomTree, 101, 225);
+                return roomNode;
+            case "triple":
+                roomNode = searchAvailableRoom(roomTree, 226, 267);
+                return roomNode;
+            case "suite":
+                roomNode = searchAvailableRoom(roomTree, 268, 300);
+                return roomNode;
+        }
+        return roomNode;
+    }
     
-    
-//    public static <T> String inorderString(BSTree<T> tree){
-//        
-//    }
-//    
-//    
-//    public static <T> String nodeToStringProcess(DataTypeMethods<T> dtm, BinaryNode<T> node){
-//        return dtm.toString(node.data());
-//    }
-//    public static <T> void nodeToPrintProcess(DataTypeMethods<T> dtm, BinaryNode<T> node){
-//        System.out.println( dtm.toString(node.data()));
-//    }
-//    
-//    
-//    private static <T> BinaryNode<T> processNode(DataTypeMethods<T> dtm, BinaryNode<T> nodeToProcess, String process){
-//        
-//        switch(process){
-//            case "toString":
-//                nodeToStringProcess(dtm, nodeToProcess);
-//                return nodeToProcess;
-//            case "toPrint":
-//                nodeToPrintProcess(dtm, nodeToProcess);
-//                return nodeToProcess;               
-//        }       
-//        return nodeToProcess;
-//    }   
+    public static <T> BinaryNode<Room> searchAvailableSimple(BSTree<Room> roomTree){
+        return searchAvailableRoom(roomTree, "simple");
+    }
+    public static <T> BinaryNode<Room> searchAvailableDoble(BSTree<Room> roomTree){
+        return searchAvailableRoom(roomTree, "doble");
+    }
+    public static <T> BinaryNode<Room> searchAvailableTriple(BSTree<Room> roomTree){
+        return searchAvailableRoom(roomTree, "triple");
+    }
+    public static <T> BinaryNode<Room> searchAvailableSuite(BSTree<Room> roomTree){
+        return searchAvailableRoom(roomTree, "suite");
+    }   
     
     public static <T> String preorderString(BSTree<T> tree){
         return preorderString(tree, tree.root());
@@ -106,6 +129,44 @@ public class BSTreeMethods {
         return stringTree;        
     }
     
+//    public static <T> BinaryNode<T> preorderTest(BSTree<T> tree, BinaryNode<T> root, String process){
+//        BinaryNode<T> binaryNode= null;        
+//        if (root != null){
+//            binaryNode = chooseProcess(root, process, tree.dtm());
+//            binaryNode = chooseProcess(preorderTest(tree, root.leftSon(), process), process, tree.dtm());            
+//            binaryNode = chooseProcess(preorderTest(tree, root.rightSon(), process), process, tree.dtm());            
+//        }
+//        return binaryNode;
+//    } 
+//    
+//    private static <T> BinaryNode<T> processNode(BinaryNode<T> binaryNode){        
+//        return binaryNode;
+//    }
+//    
+//    private static <T> BinaryNode<T> chooseProcess(BinaryNode<T> binaryNode, String process, DataTypeMethods<T> dtm){
+//        switch(process){
+//            case "toString":
+//                nodeToString(binaryNode, dtm);                
+//                return binaryNode;
+//            case "toPrint":
+//                nodeToPrint(binaryNode, dtm);                
+//                return binaryNode;
+//        }
+//        return binaryNode;
+//    }
+//    
+//    
+//    private static <T> String nodeToString(BinaryNode<T> binaryNode, DataTypeMethods<T> dtm){
+//        return dtm.toString(binaryNode.data());
+//    }
+//    private static <T> void nodeToPrint(BinaryNode<T> binaryNode, DataTypeMethods<T> dtm){
+//        if (binaryNode != null)
+//            System.out.println(dtm.toString(binaryNode.data()));
+//    }
+//    
+//    
+    
+           
     
     
 }

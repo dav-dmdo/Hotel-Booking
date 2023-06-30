@@ -28,17 +28,7 @@ public class HashTable <T> {
         }
         
     }
-    
-    
-    
-    
-    
-    //public T search(String key){
-        
-    //}
-    
-    
-    
+   
     private Integer getKey(T data){
         if(keyType){
             String key = getStringKey(data);

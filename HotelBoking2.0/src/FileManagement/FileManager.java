@@ -9,6 +9,7 @@ import static ControllerAndRelated.BSTreeMethods.insertBalancedFromSortedArray;
 import static ControllerAndRelated.BSTreeMethods.search;
 import DS.BSTree;
 import DS.DoubleLinkedList;
+import DS.HashTable;
 import ImportantDataTypes.Booking;
 import ImportantDataTypes.Client;
 import ImportantDataTypes.Room;
@@ -27,7 +28,7 @@ public class FileManager {
     final String recordsPath = "test\\records.csv";
     final String roomsPath = "test\\rooms.csv";
     
-    //private HashTable statusHashTable;
+    private HashTable<Booking> statusHashTable;
     private BSTree<Booking> bookingsBSTree;
     private BSTree<Room> roomsBSTree;
     
@@ -105,25 +106,10 @@ public class FileManager {
         this.bookingsBSTree.add(booking);        
     }
     private void statusProcess(String[] values){
-        String roomNumberString = values[0];
-        if (roomNumberString.isEmpty())
-            return;
-        Integer roomNumber = Integer.valueOf(roomNumberString);
-        BinaryNode<Room> room = search(roomsBSTree, roomNumber);
-        if(room != null)
-            room.data().isAvailable = false;
-        
-        Integer ci = Integer.valueOf(values[0].trim());
-        String firstName = values[1].trim();
-        String lastName = values[2].trim();
-        String email = values[3].trim();
-        String gender =values[4].trim();
-        String phone =values[6].trim();        
-        
-        Client client = new Client(ci, firstName, lastName, email, gender, phone);
-        
-        
+        Booking booking = createBookingFromStatusArray(values);
+        // insertar en el hashTable
     }
+    
     private void recordsProcess(String[] values){
         Booking booking = createBookingFromRecordArray(values);
         BinaryNode<Room> roomNode = search(roomsBSTree, booking.roomNumber);
@@ -178,6 +164,32 @@ public class FileManager {
         Integer roomFloor = Integer.valueOf(values[2].trim());
         return new Room(roomNumber, roomType, roomFloor) ;      
     }
+    
+    private Booking createBookingFromStatusArray(String[] values){
+        Booking booking = null;
+        String roomNumberString = values[0];
+        if (roomNumberString.isEmpty())
+            return booking;
+        Integer roomNumber = Integer.valueOf(roomNumberString);
+        BinaryNode<Room> room = search(roomsBSTree, roomNumber);
+        if(room != null)
+            room.data().isAvailable = false;
+        
+        String firstName = values[1].trim();
+        String lastName = values[2].trim();
+        String email = values[3].trim();
+        String gender =values[4].trim();
+        String phone =values[5].trim();        
+        
+        Client client = new Client( firstName, lastName, email, gender, phone);
+        
+        String date =values[6].trim();        
+        booking = new Booking(client, roomNumber, date);
+        room.data().currentGuest = booking;        // possible null pointer
+        return booking;
+    }
+    
+    
     
     
     
