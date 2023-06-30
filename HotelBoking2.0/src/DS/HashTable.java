@@ -4,6 +4,7 @@
  */
 package DS;
 
+import static ControllerAndRelated.DoubleLinkedListMethods.search;
 import ImportantDataTypes.DataTypeMethods;
 import Nodes.DoubleNode;
 
@@ -70,10 +71,10 @@ public class HashTable<T> {
 //        return list;
 //    }
 
-    public T searchByKey(Object key) {
+    public T searchByKey(Object key) {        
         Integer hash = (keyType) ? hashFunction((String) key) : hashFunction((Integer) key);
         DoubleLinkedList<T> list = table[hash];
-        DoubleNode<T> node = list.search((T) key);
+        DoubleNode<T> node = search(list, key.toString());
         if (node != null) {
             return node.data();
         }
@@ -98,10 +99,10 @@ public class HashTable<T> {
     }
 
     private Integer disperse(String key) {
-        Integer sum = null;
+        Integer sum = 0;
         char[] chars = key.toCharArray();
-        for (int i = chars.length; i >= 0; i--) {
-            sum += chars[i] * i;
+        for (int i = chars.length-1; i >= 0; i--) {
+            sum += chars[i] * (1+i);
         }
         return sum;
     }

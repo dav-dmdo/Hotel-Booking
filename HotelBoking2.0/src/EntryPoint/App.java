@@ -39,12 +39,13 @@ public class App {
         this.hstStatus = new HashTable<> (479, new BookingMethods(), true);        
         fileManager = new FileManager(bookingsBSTree, roomsBSTree);
         fileManager.initializeProgram();
-        Controller controller = new Controller(this.bookingsBSTree, this.roomsBSTree, this.hstStatus);
+        this.controller = new Controller(this.bookingsBSTree, this.roomsBSTree, this.hstStatus);
     }
     
     public void start(){
         MainGUI view = new MainGUI(bookingsBSTree, roomsBSTree, hstStatus);
         view.show();
+        System.out.println(controller.checkIn(12902463));
         
     }
     

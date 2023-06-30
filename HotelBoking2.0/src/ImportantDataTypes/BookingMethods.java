@@ -68,7 +68,8 @@ public class BookingMethods implements DataTypeMethods<Booking>{
 
     @Override
     public boolean isEqual(Booking data1, String identifier) {
-       return getIdentification(data1).equals(identifier);
+        String clientFullName = data1.client.firstName+" "+data1.client.lastName;
+       return clientFullName.equals(identifier);
     }
 
     @Override

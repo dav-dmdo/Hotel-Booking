@@ -24,4 +24,28 @@ public class DoubleLinkedListMethods {
         }        
         return listToString;
     }
+    
+    public static <T> DoubleNode<T> search(DoubleLinkedList<T> list, String key){
+        DoubleNode<T> aux = list.head();
+        if(!list.isEmpty()){
+            boolean stop = false;
+            while((aux != null) && (!stop)){
+                stop = (list.dtm().isEqual(aux.data(), key));
+                aux = (stop)? aux:aux.next();
+            }
+        }
+        return aux;        
+    }
+    
+    public static <T> DoubleNode<T> search(DoubleLinkedList<T> list, Integer key){
+        DoubleNode<T> aux = list.head();
+        if(!list.isEmpty()){
+            boolean stop = false;
+            while((aux != null) && (!stop)){
+                stop = (list.dtm().isEqual(aux.data(), key));
+                aux = (stop)? aux:aux.next();
+            }
+        }
+        return aux;        
+    }
 }
