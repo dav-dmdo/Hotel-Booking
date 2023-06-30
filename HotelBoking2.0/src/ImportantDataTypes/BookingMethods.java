@@ -27,7 +27,7 @@ public class BookingMethods implements DataTypeMethods<Booking>{
 
     @Override
     public String toString(Booking data) {
-        return "ID: "+ data.client.id+" Accommodation dates: "+data.arrivalDate+"-"+data.departurDate+" Room Type: "+ data.roomType;
+        return "ID: "+ data.client.id+" Accommodation dates: "+data.arrivalDate+"-"+data.departureDate+" Room Type: "+ data.roomType + "\n";
     }
 
     @Override
@@ -43,6 +43,36 @@ public class BookingMethods implements DataTypeMethods<Booking>{
     @Override
     public String getStringKey(Booking data) {
         return ""+ data.client.id + data.roomType;
+    }
+
+    @Override
+    public boolean isEqual(Booking data1, Integer identifier) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean greaterThan(Booking data1, Integer identifier) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean lessThan(Booking data1, Integer identifier) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean isEqual(Booking data1, String identifier) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean greaterThan(Booking data1, String identifier) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean lessThan(Booking data1, String identifier) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }

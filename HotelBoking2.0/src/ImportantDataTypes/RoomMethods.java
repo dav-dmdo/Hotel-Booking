@@ -44,5 +44,35 @@ public class RoomMethods implements DataTypeMethods<Room>{
     public String getStringKey(Room data) {
         return data.roomNumber + data.roomType + data.roomFloor;
     }
+
+    @Override
+    public boolean isEqual(Room data1, Integer identifier) {
+        return getIdentification(data1).equals(identifier);
+    }
+
+    @Override
+    public boolean greaterThan(Room data1, Integer identifier) {
+        return getIdentification(data1).compareTo(identifier) > 0;
+    }
+
+    @Override
+    public boolean lessThan(Room data1, Integer identifier) {
+         return getIdentification(data1).compareTo(identifier) < 0;
+    }
+
+    @Override
+    public boolean isEqual(Room data1, String identifier) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean greaterThan(Room data1, String identifier) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean lessThan(Room data1, String identifier) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

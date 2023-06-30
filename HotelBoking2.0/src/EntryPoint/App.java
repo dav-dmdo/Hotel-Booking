@@ -4,6 +4,9 @@
  */
 package EntryPoint;
 
+import static ControllerAndRelated.BSTreeMethods.inorderString;
+import static ControllerAndRelated.BSTreeMethods.postorderString;
+import static ControllerAndRelated.BSTreeMethods.preorderString;
 import DS.BSTree;
 import DS.HashTable;
 import FileManagement.FileManager;
@@ -27,18 +30,18 @@ public class App {
     public App(){
         this.bookingsBSTree = new BSTree<>(new BookingMethods());
         this.roomsBSTree = new BSTree<>(new RoomMethods()); 
-        //this.hstStatus = new HashTable<> (477, new ClientMethods(), true);
+        this.hstStatus = new HashTable<> (477, new ClientMethods(), true);
     }
     
     public void start(){
         fileManager = new FileManager(bookingsBSTree, roomsBSTree);
         fileManager.initializeProgram();
 
-        System.out.println(this.bookingsBSTree.preorder());
-        System.out.println("---------");
-        System.out.println(this.bookingsBSTree.dtm().toString(this.bookingsBSTree.root().data()));
-        System.out.println("---------");
-        System.out.println(this.roomsBSTree.preorder());
+        System.out.println(inorderString(roomsBSTree));
+        System.out.println("------------------------------------");
+        System.out.println(inorderString(bookingsBSTree));
+        System.out.println("------------------------------------");
+        System.out.println(postorderString(roomsBSTree));
     }
     
 }

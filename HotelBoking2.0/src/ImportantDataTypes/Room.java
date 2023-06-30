@@ -15,17 +15,14 @@ public class Room {
     public String roomType;
     public Integer roomFloor;
     public boolean isAvailable;
-    public DoubleLinkedList<Client> record;
+    public DoubleLinkedList<Booking> record;
 
     public Room(Integer roomNumber, String roomType, Integer roomFloor) {
         this.roomNumber = roomNumber;
         this.roomType = roomType;
         this.roomFloor = roomFloor;
-        this.record = new DoubleLinkedList<>(new ClientMethods());
-        this.isAvailable = true; // initialized as false, then if found in Status, set to true;
-    }    
-  
-    public void insertarClienteenRecord(Client client){
+        this.record = new DoubleLinkedList<>(new BookingMethods());
+        this.isAvailable = true; // initialized as true, then if found in Status, set to false;
     }
     
 }

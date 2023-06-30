@@ -11,17 +11,22 @@ package ImportantDataTypes;
 public class Booking {
     public Client client;
     public String roomType;
+    public Integer roomNumber;
     public String arrivalDate;
-    public String departurDate;
+    public String departureDate;
+   
 
-    public Booking(Client client, String roomType, String arrivalDate, String departurDate) {
+    public Booking(Client client, String roomType, String arrivalDate, String departureDate) {
         this.client = client;
         this.roomType = roomType;
         this.arrivalDate = arrivalDate;
-        this.departurDate = departurDate;
+        this.departureDate = departureDate;
     }
     
-    
-    
-    
+    public Booking(Client client, Integer roomNumber, String departureDate) {
+        this.client = client;
+        this.roomNumber = roomNumber;
+        this.departureDate = departureDate;
+    }
+       
 }

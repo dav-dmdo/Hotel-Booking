@@ -5,7 +5,10 @@
 package FileManagement;
 
 
+import static ControllerAndRelated.BSTreeMethods.insertBalancedFromSortedArray;
+import static ControllerAndRelated.BSTreeMethods.search;
 import DS.BSTree;
+import DS.DoubleLinkedList;
 import ImportantDataTypes.Booking;
 import ImportantDataTypes.Client;
 import ImportantDataTypes.Room;
@@ -28,6 +31,9 @@ public class FileManager {
     private BSTree<Booking> bookingsBSTree;
     private BSTree<Room> roomsBSTree;
     
+    private final Room[] roomsArray = new Room[300];
+    public int roomsCounter = 0;
+    
     public FileManager(){
         
     }
@@ -39,10 +45,11 @@ public class FileManager {
     
     
     public void initializeProgram(){
-        //this.readStatusCSV();
         this.readRoomsCSV();
+        insertBalancedFromSortedArray(roomsBSTree, roomsArray);
         this.readBookingsCSV();
-        //this.readRecordsCSV();
+        this.readStatusCSV();
+        this.readRecordsCSV();
     }
     
     private void readBookingsCSV(){
@@ -94,13 +101,15 @@ public class FileManager {
     }
     
     private void bookingProcess(String[] values){
-        Booking booking = createBookingFromArray(values);
+        Booking booking = createBookingFromBookingArray(values);
         this.bookingsBSTree.add(booking);        
-        
     }
     private void statusProcess(String[] values){
-        Integer roomNumber = Integer.valueOf(values[0]);
-        BinaryNode<Room> room = this.roomsBSTree.SearchRoom(roomNumber);
+        String roomNumberString = values[0];
+        if (roomNumberString.isEmpty())
+            return;
+        Integer roomNumber = Integer.valueOf(roomNumberString);
+        BinaryNode<Room> room = search(roomsBSTree, roomNumber);
         if(room != null)
             room.data().isAvailable = false;
         
@@ -116,25 +125,37 @@ public class FileManager {
         
     }
     private void recordsProcess(String[] values){
-        Integer ci = Integer.valueOf(values[0].trim());
+        Booking booking = createBookingFromRecordArray(values);
+        BinaryNode<Room> roomNode = search(roomsBSTree, booking.roomNumber);
+        if (roomNode != null){
+            Room room = roomNode.data();
+            DoubleLinkedList<Booking> record = room.record;
+            record.addLast(booking);
+        }        
+    }
+    
+    private void roomsProcess(String[] values){
+       Room room = createRoomFromArray(values);
+       roomsArray[roomsCounter++] = room;        
+    }
+    
+    ///////////////////////////////////////////////////////////////////////////
+    private Booking createBookingFromRecordArray(String[] values){
+         Integer ci = Integer.valueOf(values[0].trim());
         String firstName = values[1].trim();
         String lastName = values[2].trim();
         String email = values[3].trim();
         String gender =values[4].trim();
-        String phone =values[6].trim();        
         
-        Client client = new Client(ci, firstName, lastName, email, gender, phone);
+        Client client = new Client(ci, firstName, lastName, email, gender);
         
+        String date =values[6].trim();
+        Integer roomNumber = Integer.valueOf(values[6].trim());
+        
+        return new Booking(client, roomNumber, date);        
     }
-    private void roomsProcess(String[] values){
-       Room room = createRoomFromArray(values);
-        this.roomsBSTree.add(room);        
-    }
     
-    
-    
-    
-    private Booking createBookingFromArray(String[] values){
+    private Booking createBookingFromBookingArray(String[] values){
         Integer ci = Integer.valueOf(values[0].trim());
         String firstName = values[1].trim();
         String lastName = values[2].trim();
@@ -157,5 +178,7 @@ public class FileManager {
         Integer roomFloor = Integer.valueOf(values[2].trim());
         return new Room(roomNumber, roomType, roomFloor) ;      
     }
-      
+    
+    
+    
 }

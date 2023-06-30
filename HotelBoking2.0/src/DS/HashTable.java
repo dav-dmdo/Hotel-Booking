@@ -21,7 +21,7 @@ public class HashTable <T> {
         this.size = 0;
         this.capacity= capacity;
         this.dtm = dtm;
-        this.table = (DoubleLinkedList<T>[]) new Object[capacity];
+        this.table = new DoubleLinkedList[capacity];
         this.keyType = keyType;
         for (int i = 0; i < table.length; i++) {
             table[i] = new DoubleLinkedList<>(dtm);            

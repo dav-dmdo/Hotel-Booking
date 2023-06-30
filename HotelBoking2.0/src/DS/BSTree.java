@@ -81,7 +81,7 @@ public class BSTree<T> {
         if(dtm.lessThan(data, root.data())){
             root.leftSon(insert(root.leftSon(), data));
         }else{
-            root.rightSon(insert(root.leftSon(), data));
+            root.rightSon(insert(root.rightSon(), data));
         }
         return root;
     }
@@ -97,45 +97,7 @@ public class BSTree<T> {
             return search(root.leftSon(), data);
         else
             return search(root.rightSon(), data);
-    }
-    
-    public String preorder(){
-        return preorder(this.root);
-    }
-    
-    private String preorder(BinaryNode<T> root){
-        String stringTree = "";
-        if (root != null){
-            stringTree += dtm.toString(root.data());
-            stringTree += preorder(root.leftSon());
-            stringTree += preorder(root.rightSon());
-        }
-        return stringTree+"\n";                
-    }
-    
-    public BinaryNode<T> SearchRoom(int valor){
-        return SearchRoom(valor, this.root);
-    }
-    
-    
-     public BinaryNode<T> SearchRoom(int valor, BinaryNode<T> root) {       
-        
-        if (this.isEmpty()) {            
-            return null;
-        } else {
-            if (dtm.getIdentification(root.data())==valor) {             
-                return root;
-            } else {
-                if (valor < dtm.getIdentification(root.data())) {
-                    return SearchRoom(valor, root.leftSon());
-                } else {
-                    return SearchRoom(valor, root.rightSon());
-                }
-            }
-        }
-    }
-    
-    
+    }    
     
     /**
      * @return the root

@@ -10,6 +10,18 @@ package ImportantDataTypes;
  */
 public interface DataTypeMethods<T> {
 
+    boolean isEqual(T data1, Integer identifier);
+
+    boolean greaterThan(T data1, Integer identifier);
+
+    boolean lessThan(T data1, Integer identifier);
+    
+    boolean isEqual(T data1, String identifier);
+
+    boolean greaterThan(T data1, String identifier);
+
+    boolean lessThan(T data1, String identifier);
+    
     boolean isEqual(T data1, T data2);
 
     boolean greaterThan(T data1, T data2);
