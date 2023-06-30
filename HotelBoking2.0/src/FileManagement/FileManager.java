@@ -51,11 +51,11 @@ public class FileManager {
     private void readStatusCSV(){
         readCSVToApplyProcess(statusPath);        
     }
-    private void readRecordsCSV(){
-        readCSVToApplyProcess(recordsPath);        
-    }
     private void readRoomsCSV(){
         readCSVToApplyProcess(roomsPath);        
+    }
+    private void readRecordsCSV(){
+        readCSVToApplyProcess(recordsPath);        
     }
     
     private void readCSVToApplyProcess(String path) {

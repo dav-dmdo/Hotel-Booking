@@ -11,7 +11,7 @@ import ImportantDataTypes.DataTypeMethods;
  * @author david
  */
 public class HashTable <T> {
-    private DoubleLinkedList<T>[] table;
+    private DoubleLinkedList<T>[] table; //cada posicion del 
     private Integer capacity;
     private Integer size;
     private DataTypeMethods<T> dtm;
@@ -29,7 +29,26 @@ public class HashTable <T> {
         
     }
     
-    private Integer getNumericalKey(T data){
+    
+    
+    
+    
+    //public T search(String key){
+        
+    //}
+    
+    
+    
+    private Integer getKey(T data){
+        if(keyType){
+            String key = getStringKey(data);
+            return hashFunction(key);
+        }
+            Integer key = getNumericalKey(data);
+            return hashFunction(key);
+    }
+    
+    private Integer getNumericalKey(T data){        
         return dtm.getNumericalKey(data);
     }
     
@@ -57,20 +76,6 @@ public class HashTable <T> {
     
     private Integer hashFunction(Integer key){
         return (disperse(key) % capacity);
-    }
-    
-    
-    //public T search(String key){
-        
-    //}
-    
-    private Integer getKey(T data){
-        if(keyType){
-            String key = getStringKey(data);
-            return hashFunction(key);
-        }
-            Integer key = getNumericalKey(data);
-            return hashFunction(key);
     }
     
     

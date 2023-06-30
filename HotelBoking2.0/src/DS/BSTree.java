@@ -10,6 +10,7 @@ import Nodes.BinaryNode;
 /**
  *
  * @author david
+ * 
  */
 public class BSTree<T> {
     private BinaryNode<T> root;

@@ -24,5 +24,8 @@ public class Room {
         this.record = new DoubleLinkedList<>(new ClientMethods());
         this.isAvailable = true; // initialized as false, then if found in Status, set to true;
     }    
+  
+    public void insertarClienteenRecord(Client client){
+    }
     
 }
