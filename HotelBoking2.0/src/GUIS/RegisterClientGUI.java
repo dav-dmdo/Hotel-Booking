@@ -12,16 +12,16 @@ import DS.HashTable;
  * @author Andrea
  */
 public class RegisterClientGUI extends javax.swing.JFrame {
-   // static HashTable hstGuests;
+   static HashTable hstGuests;
     /**
      * Creates new form RegisterClientGUI
      */
-    public RegisterClientGUI() {
+    public RegisterClientGUI(HashTable hstGuests) {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-       // this.hstGuests = hstGuests;
+        this.hstGuests = hstGuests;
         
     }
 
@@ -163,7 +163,7 @@ public class RegisterClientGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegisterClientGUI().setVisible(true);
+                new RegisterClientGUI(hstGuests).setVisible(true);
             }
         });
     }

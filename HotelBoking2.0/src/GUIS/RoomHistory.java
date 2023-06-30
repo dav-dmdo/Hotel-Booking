@@ -5,7 +5,14 @@
  */
 package GUIS;
 
+import static ControllerAndRelated.BSTreeMethods.search;
+import DS.BSTree;
+import static GUIS.SearchReservationGUI.bstBooking;
+import ImportantDataTypes.Booking;
 import ImportantDataTypes.Helpers;
+import ImportantDataTypes.Room;
+import Nodes.BinaryNode;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -13,17 +20,18 @@ import ImportantDataTypes.Helpers;
  * @author Andrea
  */
 public class RoomHistory extends javax.swing.JFrame {
-   // static BinarySearchTree room = new BinarySearchTree();
+    static BSTree<Room> bstRoom;
+   
 
     /**
      * Creates new form RoomHistory
      */
-    public RoomHistory() {
+    public RoomHistory(BSTree<Room> btsRoom) {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        //this.room = room;
+        this.bstRoom = bstRoom;
     }
 
     /**
@@ -123,18 +131,21 @@ public class RoomHistory extends javax.swing.JFrame {
     private void searchRoomHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchRoomHistoryActionPerformed
         try {
 
-            String roomInput = roomNumber.getText();
-            int roomNumberSend = Helpers.valorNumero(roomInput);
-            
-            if (roomNumberSend != -1) {
-                //show.setText(room.printRoomSearch(room.SearchRoom(roomNumberSend, room.getRoot())));
+            String ID_String = roomNumber.getText();
+            int ID = Helpers.valorNumero(ID_String);
+            if (ID !=-1) {
+                
+                BinaryNode<Room> found = search(bstRoom, ID);
+                
+                show.setText(bstRoom.dtm().toString(found.data()));
+
+                //showInfo.setText(NodeSearch);
                 roomNumber.setText("");
                 
-               
-                
+
             }
         } catch (NullPointerException e) {
-            show.setText(roomNumber.getText() + " isn't an existing room.");
+            show.setText(roomNumber.getText() + " doesn't have a reservation.");
             roomNumber.setText("");
         }
     }//GEN-LAST:event_searchRoomHistoryActionPerformed
@@ -169,7 +180,7 @@ public class RoomHistory extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RoomHistory().setVisible(true);
+                new RoomHistory(bstRoom).setVisible(true);
             }
         });
     }

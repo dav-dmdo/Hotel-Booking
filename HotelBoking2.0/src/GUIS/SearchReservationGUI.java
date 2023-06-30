@@ -6,7 +6,12 @@
 package GUIS;
 
 
+import static ControllerAndRelated.BSTreeMethods.search;
+import DS.BSTree;
+import ImportantDataTypes.Booking;
 import ImportantDataTypes.Helpers;
+import Nodes.BinaryNode;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -14,19 +19,19 @@ import ImportantDataTypes.Helpers;
  * @author Andrea
  */
 public class SearchReservationGUI extends javax.swing.JFrame {
-   // static BinarySearchTree<Booking> bstBooking = new BinarySearchTree();
+   static BSTree<Booking> bstBooking;
     
 
     /**
      * Creates new form SearchReservationGUI
      * @param bstBooking
      */
-    public SearchReservationGUI() {
+    public SearchReservationGUI(BSTree<Booking> bstBooking) {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        //this.bstBooking = bstBooking;
+        this.bstBooking = bstBooking;
     }
 
     /**
@@ -69,6 +74,11 @@ public class SearchReservationGUI extends javax.swing.JFrame {
 
         clientID.setBackground(java.awt.SystemColor.controlHighlight);
         clientID.setForeground(new java.awt.Color(137, 103, 103));
+        clientID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clientIDActionPerformed(evt);
+            }
+        });
         jPanel1.add(clientID, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 200, -1));
 
         showInfo.setEditable(false);
@@ -120,13 +130,15 @@ public class SearchReservationGUI extends javax.swing.JFrame {
 
             String ID_String = clientID.getText();
             int ID = Helpers.valorNumero(ID_String);
-            if (ID == -1) {
-
-            } else {
-                //String NodeSearch = bstBooking.printIDSearch(bstBooking.SearchID(ID, bstBooking.getRoot()));
+            if (ID !=-1) {
+                
+                BinaryNode<Booking> found = search(bstBooking, ID);
+                
+                showInfo.setText(bstBooking.dtm().toString(found.data()));
 
                 //showInfo.setText(NodeSearch);
                 clientID.setText("");
+                
 
             }
         } catch (NullPointerException e) {
@@ -135,6 +147,10 @@ public class SearchReservationGUI extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_searchReservationActionPerformed
+
+    private void clientIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clientIDActionPerformed
 
     /**
      * @param args the command line arguments
@@ -166,7 +182,7 @@ public class SearchReservationGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SearchReservationGUI().setVisible(true);
+                new SearchReservationGUI(bstBooking).setVisible(true);
             }
         });
     }
