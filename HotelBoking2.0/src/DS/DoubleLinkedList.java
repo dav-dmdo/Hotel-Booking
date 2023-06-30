@@ -109,7 +109,7 @@ public class DoubleLinkedList<T> {
         if(!isEmpty()){
             boolean stop = false;
             while ((aux!=null) && (!stop)){
-                stop = (dtm.isEqual(aux.data(), data));
+                stop = (dtm().isEqual(aux.data(), data));
                 aux = (stop)? aux:aux.next();
             }               
         }
@@ -172,10 +172,12 @@ public class DoubleLinkedList<T> {
     public void tail(DoubleNode<T> tail) {
         this.tail = tail;
     }
-    
-    
-    
-    
-    
+
+    /**
+     * @return the dtm
+     */
+    public DataTypeMethods<T> dtm() {
+        return dtm;
+    }   
     
 }

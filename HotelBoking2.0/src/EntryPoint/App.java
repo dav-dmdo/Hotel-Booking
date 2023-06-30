@@ -8,6 +8,7 @@ import static ControllerAndRelated.BSTreeMethods.inorderString;
 import static ControllerAndRelated.BSTreeMethods.postorderString;
 import static ControllerAndRelated.BSTreeMethods.preorderString;
 import static ControllerAndRelated.BSTreeMethods.*;
+import ControllerAndRelated.Controller;
 import DS.BSTree;
 import DS.HashTable;
 import FileManagement.FileManager;
@@ -30,20 +31,20 @@ public class App {
     BSTree<Room> roomsBSTree;  
     HashTable<Booking> hstStatus;
     MainGUI view;
+    Controller controller;
     
     public App(){
         this.bookingsBSTree = new BSTree<>(new BookingMethods());
         this.roomsBSTree = new BSTree<>(new RoomMethods()); 
-        this.hstStatus = new HashTable<> (479, new BookingMethods(), true);
-        
+        this.hstStatus = new HashTable<> (479, new BookingMethods(), true);        
+        fileManager = new FileManager(bookingsBSTree, roomsBSTree);
+        fileManager.initializeProgram();
+        Controller controller = new Controller(this.bookingsBSTree, this.roomsBSTree, this.hstStatus);
     }
     
     public void start(){
-        fileManager = new FileManager(bookingsBSTree, roomsBSTree);
-        fileManager.initializeProgram();
         MainGUI view = new MainGUI(bookingsBSTree, roomsBSTree, hstStatus);
         view.show();
-        
         
     }
     
