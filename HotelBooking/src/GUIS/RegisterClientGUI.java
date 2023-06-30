@@ -5,24 +5,26 @@
  */
 package GUIS;
 
+import DS.HashTable;
+
 /**
  *
  * @author Andrea
  */
 public class RegisterClientGUI extends javax.swing.JFrame {
-
+    static HashTable hstGuests;
     /**
      * Creates new form RegisterClientGUI
      */
-    public RegisterClientGUI() {
+    public RegisterClientGUI(HashTable hstGuests) {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.hstGuests = hstGuests;
+        
     }
 
-    
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,8 +43,8 @@ public class RegisterClientGUI extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         inputName = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
+        ShowClient = new javax.swing.JTextArea();
+        RegisterButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -93,27 +95,25 @@ public class RegisterClientGUI extends javax.swing.JFrame {
         });
         jPanel1.add(inputName, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 260, -1));
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setBackground(java.awt.SystemColor.controlHighlight);
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jTextArea1.setForeground(new java.awt.Color(137, 103, 103));
-        jTextArea1.setRows(5);
-        jTextArea1.setText("//set info client");
-        jScrollPane1.setViewportView(jTextArea1);
+        ShowClient.setEditable(false);
+        ShowClient.setBackground(java.awt.SystemColor.controlHighlight);
+        ShowClient.setColumns(20);
+        ShowClient.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        ShowClient.setForeground(new java.awt.Color(137, 103, 103));
+        ShowClient.setRows(5);
+        jScrollPane1.setViewportView(ShowClient);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 170, -1, 200));
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(137, 103, 103));
-        jButton1.setText("Register");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        RegisterButton.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        RegisterButton.setForeground(new java.awt.Color(137, 103, 103));
+        RegisterButton.setText("Register");
+        RegisterButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                RegisterButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 130, -1, -1));
+        jPanel1.add(RegisterButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 130, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 520, 400));
 
@@ -128,10 +128,10 @@ public class RegisterClientGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_inputNameActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        //Comment
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void RegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterButtonActionPerformed
+        String fullname = inputName.getText();
+        ShowClient.setText(hstGuests.findKey(fullname));
+    }//GEN-LAST:event_RegisterButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,15 +163,16 @@ public class RegisterClientGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegisterClientGUI().setVisible(true);
+                new RegisterClientGUI(hstGuests).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton RegisterButton;
+    private javax.swing.JTextArea ShowClient;
     private javax.swing.JButton exit;
     private javax.swing.JTextField inputName;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -179,6 +180,5 @@ public class RegisterClientGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }

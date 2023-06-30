@@ -5,19 +5,19 @@
  */
 package ImportantClasses;
 
-import DS.List;
+import DS.Lista;
 
 /**
  *
  * @author Andrea
  */
 public class Historical {
-    //static List list = new List();
-    public List Person;
+    //static Lista list = new Lista();
+    public Lista Person;
     public int numeroHab;
 
-    public Historical(List Person, int numeroHab) {
-        this.Person = null;
+    public Historical(Lista Person, int numeroHab) {
+        this.Person = Person;
         this.numeroHab = numeroHab;
     }
     

@@ -6,6 +6,7 @@
 package GUIS;
 
 import DS.BinarySearchTree;
+import DS.NodeABB;
 import ImportantClasses.Booking;
 import ImportantClasses.Helpers;
 import javax.swing.JOptionPane;
@@ -121,18 +122,20 @@ public class SearchReservationGUI extends javax.swing.JFrame {
 
             String ID_String = clientID.getText();
             int ID = Helpers.valorNumero(ID_String);
-            if (ID== -1) {
-                
+            if (ID == -1) {
 
-            }else{
-        String NodeSearch = bstBooking.SearchID(ID, bstBooking.getRoot());
+            } else {
+                String NodeSearch = bstBooking.printIDSearch(bstBooking.SearchID(ID, bstBooking.getRoot()));
 
                 showInfo.setText(NodeSearch);
-                
+                clientID.setText("");
+
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error! type: " + e);
+        } catch (NullPointerException e) {
+            showInfo.setText(clientID.getText() + " doesn't have a reservation.");
+            clientID.setText("");
         }
+
     }//GEN-LAST:event_searchReservationActionPerformed
 
     /**

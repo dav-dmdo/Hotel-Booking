@@ -5,6 +5,7 @@
  */
 package GUIS;
 
+import DS.BinarySearchTree;
 import ImportantClasses.Helpers;
 import javax.swing.JOptionPane;
 
@@ -13,15 +14,17 @@ import javax.swing.JOptionPane;
  * @author Andrea
  */
 public class RoomHistory extends javax.swing.JFrame {
+    static BinarySearchTree room = new BinarySearchTree();
 
     /**
      * Creates new form RoomHistory
      */
-    public RoomHistory() {
+    public RoomHistory( BinarySearchTree room) {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.room = room;
     }
 
     /**
@@ -39,7 +42,7 @@ public class RoomHistory extends javax.swing.JFrame {
         roomNumber = new javax.swing.JTextField();
         searchRoomHistory = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        show = new javax.swing.JTextArea();
         jLabel3 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
 
@@ -60,7 +63,7 @@ public class RoomHistory extends javax.swing.JFrame {
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
 
         roomNumber.setBackground(java.awt.SystemColor.controlHighlight);
-        roomNumber.setForeground(new java.awt.Color(0, 0, 0));
+        roomNumber.setForeground(new java.awt.Color(137, 103, 103));
         roomNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 roomNumberActionPerformed(evt);
@@ -79,14 +82,14 @@ public class RoomHistory extends javax.swing.JFrame {
         });
         jPanel1.add(searchRoomHistory, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 90, 120, -1));
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jTextArea1.setForeground(new java.awt.Color(137, 103, 103));
-        jTextArea1.setRows(5);
-        jTextArea1.setText("//set info con la historia del room\n");
-        jScrollPane1.setViewportView(jTextArea1);
+        show.setEditable(false);
+        show.setBackground(new java.awt.Color(255, 255, 255));
+        show.setColumns(20);
+        show.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        show.setForeground(new java.awt.Color(137, 103, 103));
+        show.setRows(5);
+        show.setText("\n");
+        jScrollPane1.setViewportView(show);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 320, 240));
 
@@ -121,13 +124,19 @@ public class RoomHistory extends javax.swing.JFrame {
     private void searchRoomHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchRoomHistoryActionPerformed
         try {
 
-            String room = roomNumber.getText();
-            int roomNumber = Helpers.valorNumero(room);
-            if (roomNumber != -1) {
+            String roomInput = roomNumber.getText();
+            int roomNumberSend = Helpers.valorNumero(roomInput);
+            
+            if (roomNumberSend != -1) {
+                show.setText(room.printRoomSearch(room.SearchRoom(roomNumberSend, room.getRoot())));
+                roomNumber.setText("");
+                
                
+                
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error! type: " + e);
+        } catch (NullPointerException e) {
+            show.setText(roomNumber.getText() + " isn't an existing room.");
+            roomNumber.setText("");
         }
     }//GEN-LAST:event_searchRoomHistoryActionPerformed
 
@@ -161,7 +170,7 @@ public class RoomHistory extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RoomHistory().setVisible(true);
+                new RoomHistory(room).setVisible(true);
             }
         });
     }
@@ -173,8 +182,8 @@ public class RoomHistory extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField roomNumber;
     private javax.swing.JButton searchRoomHistory;
+    private javax.swing.JTextArea show;
     // End of variables declaration//GEN-END:variables
 }

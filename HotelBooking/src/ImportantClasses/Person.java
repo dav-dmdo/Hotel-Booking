@@ -16,16 +16,17 @@ public class Person {
     public String gender;
     //public String phoneNumber;
     public String arrival;
-    
-    public Person(Integer id, String firstName, String lastName, String email, String gender, String phoneNumber, String arrival){
+
+    public Person(Integer id, String firstName, String lastName, String email, String gender, String arrival) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.gender = gender;
         this.arrival = arrival;
-       // this.phoneNumber = phoneNumber;
     }
+    
+    
 
     
     

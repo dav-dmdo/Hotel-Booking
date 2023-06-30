@@ -4,37 +4,41 @@
  */
 package ImportantClasses;
 
+import DS.NodeABB;
 import Interfaces.DataTypeMethods;
 
 /**
  *
  * @author david
  */
-public class BookingMethods implements DataTypeMethods <Booking> {
+public class BookingMethods implements DataTypeMethods <NodeABB> {
 
     @Override
-    public boolean isEqual(Booking data1, Booking data2) {
-        return getKey(data1).equals(getKey(data2));
+    public boolean isEqual(int data1, NodeABB data2) {
+        return data1== (getKey(data2));
     }
 
     @Override
-    public boolean greaterThan(Booking data1, Booking data2) {
-        return getKey(data1).compareTo(getKey(data2)) > 0;
+    public boolean greaterThan(int data1, NodeABB data2) {
+        return data1 >(getKey(data2));
     }
 
     @Override
-    public boolean lessThan(Booking data1, Booking data2) {
-        return getKey(data1).compareTo(getKey(data2)) < 0;
+    public boolean lessThan(int data1, NodeABB data2) {
+        return data1<getKey(data2);
     }
 
     @Override
-    public String toString(Booking data) {
+    public String toString(NodeABB datas) {
+        NodeABB<Booking> nodes = datas;
+        Booking data= nodes.getData();
         return "ID: " + data.id + "\nNAME: " + data.firstName + " " + data.lastName + "\nEMAIL: " + data.email + "\nGENRE: " + data.gender + "\nPHONE NUMBER: " + data.phoneNumber + "\nARRIVAL: " + data.arrivalDate + "\nDEPARTURE DATE: " + data.departureDate + "\n\n";
     }
 
     @Override
-    public Integer getKey(Booking data) {
-        return data.id;        
+    public Integer getKey(NodeABB node) {
+        NodeABB<Booking> nodes = node;
+        return nodes.getData().id;        
     }
     
 }

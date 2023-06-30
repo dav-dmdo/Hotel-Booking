@@ -4,6 +4,8 @@
  */
 package Interfaces;
 
+import DS.NodeABB;
+
 /**
  *
  * @author david
@@ -11,11 +13,11 @@ package Interfaces;
  */
 public interface DataTypeMethods<T> {
     
-    boolean isEqual(T data1, T data2);
+    boolean isEqual(int data1, T data2);
     
-    boolean greaterThan(T data1, T data2);
+    boolean greaterThan(int data1, T data2);
     
-    boolean lessThan(T data1, T data2); 
+    boolean lessThan(int data1, T data2); 
 
     String toString(T data);
     
