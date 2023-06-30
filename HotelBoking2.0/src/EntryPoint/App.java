@@ -11,6 +11,7 @@ import static ControllerAndRelated.BSTreeMethods.*;
 import DS.BSTree;
 import DS.HashTable;
 import FileManagement.FileManager;
+import GUIS.MainGUI;
 import ImportantDataTypes.Booking;
 import ImportantDataTypes.BookingMethods;
 import ImportantDataTypes.Client;
@@ -28,16 +29,21 @@ public class App {
     BSTree<Booking> bookingsBSTree;
     BSTree<Room> roomsBSTree;  
     HashTable<Booking> hstStatus;
+    MainGUI view;
     
     public App(){
         this.bookingsBSTree = new BSTree<>(new BookingMethods());
         this.roomsBSTree = new BSTree<>(new RoomMethods()); 
         this.hstStatus = new HashTable<> (479, new BookingMethods(), true);
+        
     }
     
     public void start(){
         fileManager = new FileManager(bookingsBSTree, roomsBSTree);
         fileManager.initializeProgram();
+        MainGUI view = new MainGUI(bookingsBSTree, roomsBSTree, hstStatus);
+        view.show();
+        
         
     }
     

@@ -5,20 +5,32 @@
  */
 package GUIS;
 
+import DS.BSTree;
+import DS.HashTable;
+import ImportantDataTypes.Booking;
+import ImportantDataTypes.Room;
+
 /**
  *
  * @author Andrea
  */
-public class CheckOut extends javax.swing.JFrame {
+public class CheckOut extends javax.swing.JFrame { 
+    static BSTree<Booking> bstBooking;
+    static BSTree<Room> bstRoom;
+    static HashTable hstGuests;
 
     /**
      * Creates new form CheckOut
      */
-    public CheckOut() {
+    public CheckOut(BSTree<Room> bstRoom,BSTree<Booking> bstBooking, HashTable hstGuests) {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
-        this.setResizable(false);
+        this.setResizable(false); 
+        this.bstRoom = bstRoom;
+        this.bstBooking = bstBooking;
+        this.hstGuests= hstGuests;
+       
        
     }
 
@@ -125,7 +137,7 @@ public class CheckOut extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CheckOut().setVisible(true);
+                new CheckOut(bstRoom, bstBooking, hstGuests).setVisible(true);
             }
         });
     }

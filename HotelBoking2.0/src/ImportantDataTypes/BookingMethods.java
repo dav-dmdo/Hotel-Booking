@@ -47,22 +47,22 @@ public class BookingMethods implements DataTypeMethods<Booking>{
 
     @Override
     public boolean isEqual(Booking data1, Integer identifier) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return getIdentification(data1).equals(identifier);
     }
 
     @Override
     public boolean greaterThan(Booking data1, Integer identifier) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       return getIdentification(data1).compareTo(identifier)>0;
     }
 
     @Override
     public boolean lessThan(Booking data1, Integer identifier) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       return getIdentification(data1).compareTo(identifier)<0;
     }
 
     @Override
     public boolean isEqual(Booking data1, String identifier) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+       return getIdentification(data1).equals(identifier);
     }
 
     @Override
