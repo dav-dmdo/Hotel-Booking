@@ -16,6 +16,7 @@ public class Room {
     public Integer roomFloor;
     public boolean isAvailable;
     public DoubleLinkedList<Booking> record;
+    public Booking currentGuest;
 
     public Room(Integer roomNumber, String roomType, Integer roomFloor) {
         this.roomNumber = roomNumber;
@@ -23,6 +24,7 @@ public class Room {
         this.roomFloor = roomFloor;
         this.record = new DoubleLinkedList<>(new BookingMethods());
         this.isAvailable = true; // initialized as true, then if found in Status, set to false;
+        this.currentGuest = null;
     }
     
 }

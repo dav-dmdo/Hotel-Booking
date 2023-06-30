@@ -42,7 +42,7 @@ public class BookingMethods implements DataTypeMethods<Booking>{
 
     @Override
     public String getStringKey(Booking data) {
-        return ""+ data.client.id + data.roomType;
+        return ""+data.client.firstName+" "+data.client.lastName;
     }
 
     @Override

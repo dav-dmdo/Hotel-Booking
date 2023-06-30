@@ -28,7 +28,6 @@ public class HashTable<T> {
         for (int i = 0; i < table.length; i++) {
             table[i] = new DoubleLinkedList<>(dtm);
         }
-
     }
 
     /**
