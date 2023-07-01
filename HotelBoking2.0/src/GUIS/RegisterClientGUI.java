@@ -128,7 +128,10 @@ public class RegisterClientGUI extends javax.swing.JFrame {
     private void inputNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inputNameActionPerformed
-
+/**
+ * This calls controller to show the registration of the client.
+ * @param evt 
+ */
     private void RegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterButtonActionPerformed
         String fullname = inputName.getText();
         String showInfo = controller.searchGuestString(inputName.getText());
