@@ -6,16 +6,14 @@
 package GUIS;
 
 
-<<<<<<< HEAD
-import static ControllerAndRelated.BSTreeMethods.search;
+
 import ControllerAndRelated.Controller;
-=======
-import DS.BSTree;
+
 import ImportantDataTypes.Booking;
->>>>>>> 89a4d1651ec6250f6447f0316b8d68af8b493f8a
+
 import ImportantDataTypes.Helpers;
 
-import javax.swing.JOptionPane;
+
 import static ControllerAndRelated.BSTreeMethods.searchRoomByNumber;
 
 
@@ -136,7 +134,7 @@ public class SearchReservationGUI extends javax.swing.JFrame {
             String ID_String = clientID.getText();
             int ID = Helpers.valorNumero(ID_String);
             if (ID !=-1) {
-<<<<<<< HEAD
+
                 String info = controller.getBookingString(ID);
                 if (info =="") {
                     showInfo.setText("There isnt a reservation under the "+ clientID.getText()+ " ID");
@@ -144,12 +142,7 @@ public class SearchReservationGUI extends javax.swing.JFrame {
                 }
                 else{
                 showInfo.setText(info);
-=======
-                
-                BinaryNode<Booking> found = searchRoomByNumber(bstBooking, ID);
-                
-                showInfo.setText(bstBooking.dtm().toString(found.data()));
->>>>>>> 89a4d1651ec6250f6447f0316b8d68af8b493f8a
+
 
                 //showInfo.setText(NodeSearch);
                 clientID.setText("");
