@@ -49,14 +49,16 @@ public class HashTable<T> {
      * @param key
      */
 
-    public void deleteByKey(Object key) {
+    public DoubleNode<T> deleteByKey(Object key) {
+        DoubleNode<T> nodeToDelete = null;
         DoubleLinkedList<T> list = (DoubleLinkedList<T>) searchByKey(key);
         if (list != null) {
-            DoubleNode<T> nodeToDelete = list.delete((T) key);
+            nodeToDelete = list.delete((T) key);
             if (nodeToDelete != null) {
                 size--;
             }
         }
+        return nodeToDelete;
     }
 
     /**

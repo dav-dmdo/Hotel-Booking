@@ -29,17 +29,17 @@ public class BSTreeMethods {
         insertBalancedFromSortedArray(tree,array,center+1,end);          
     }
     
-    public static <T> BinaryNode<T> search(BSTree<T> tree, Integer key){
-        return search(tree.dtm(), tree.root(), key);
+    public static <T> BinaryNode<T> searchRoomByNumber(BSTree<T> tree, Integer key){
+        return searchRoomByNumber(tree.dtm(), tree.root(), key);
     }
     
-    private static <T> BinaryNode<T> search(DataTypeMethods<T> dtm, BinaryNode<T> root, Integer key){
+    private static <T> BinaryNode<T> searchRoomByNumber(DataTypeMethods<T> dtm, BinaryNode<T> root, Integer key){
         if ((root == null) || (dtm.isEqual(root.data(), key)))
             return root;        
         if(dtm.greaterThan(root.data(), key))
-            return search(dtm, root.leftSon(), key);
+            return searchRoomByNumber(dtm, root.leftSon(), key);
         else
-            return search(dtm, root.rightSon(), key);
+            return searchRoomByNumber(dtm, root.rightSon(), key);
     } 
     /**
      * Busca un room Simple que este disponible. Si lo encuentra lo retorna,
@@ -51,7 +51,7 @@ public class BSTreeMethods {
     private static <T> BinaryNode<Room> searchAvailableRoom(BSTree<Room> roomTree, int start, int stop){
         BinaryNode<Room> roomNode = null;
         for (int i = start; i <= stop; i++) {
-            roomNode = search(roomTree.dtm(), roomTree.root(), i);
+            roomNode = searchRoomByNumber(roomTree.dtm(), roomTree.root(), i);
             if (roomNode.data().isAvailable){
                 return roomNode;
             }            

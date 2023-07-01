@@ -4,7 +4,6 @@
  */
 package ControllerAndRelated;
 
-import static ControllerAndRelated.BSTreeMethods.search;
 import static ControllerAndRelated.BSTreeMethods.*;
 import static ControllerAndRelated.DoubleLinkedListMethods.listToString;
 import DS.BSTree;
@@ -13,6 +12,8 @@ import DS.HashTable;
 import ImportantDataTypes.Booking;
 import ImportantDataTypes.Room;
 import Nodes.BinaryNode;
+import Nodes.DoubleNode;
+import static ControllerAndRelated.BSTreeMethods.searchRoomByNumber;
 
 /**
  *
@@ -53,15 +54,35 @@ public class Controller {
         
         return successfull;
     }   
-    
-    
+    /**
+     * Si successfull es 0, checkout exitoso. Si es 1, no se encontro el booking en
+     * el hashtable.
+     * @param key
+     * @return 
+     */
+    public int checkOut(Object key){
+        int successfull = 0;
+        DoubleNode<Booking> bookingNode = statusHST.deleteByKey(key);
+        if(bookingNode == null){
+            successfull = 1;
+            return successfull;            
+        }
+        Booking booking = bookingNode.data();
+        BinaryNode<Room> roomNode = searchRoomByNumber(roomsBSTree, booking.roomNumber); //validar sin roomNode es nulo o no
+        Room room = roomNode.data();
+        room.isAvailable = true;
+        room.currentGuest = null;
+        DoubleLinkedList<Booking> record = room.record;
+        record.addLast(booking);
+        return successfull;
+    }  
     
     
     
 
     public String getRoomRecord(Integer roomNumber){
         String recordsString = "";
-        BinaryNode<Room> roomNode = search(this.roomsBSTree, roomNumber);
+        BinaryNode<Room> roomNode = searchRoomByNumber(this.roomsBSTree, roomNumber);
         if (roomNode != null){
             DoubleLinkedList<Booking> records = roomNode.data().record;
             recordsString = listToString(records);
@@ -71,12 +92,12 @@ public class Controller {
     
     
     public BinaryNode<Booking> getBookingNode(Integer id){
-        BinaryNode<Booking> bookingNode = search(bookingsBSTree, id);
+        BinaryNode<Booking> bookingNode = searchRoomByNumber(bookingsBSTree, id);
         return bookingNode;
     }
     
     public Booking getBookingT(Integer id){
-        BinaryNode<Booking> bookingNode = search(bookingsBSTree, id);
+        BinaryNode<Booking> bookingNode = searchRoomByNumber(bookingsBSTree, id);
         Booking booking = null;
         if(bookingNode != null)
             booking = bookingNode.data();
@@ -84,7 +105,7 @@ public class Controller {
     }
     
     public String getBookingString(Integer id){
-        BinaryNode<Booking> bookingNode = search(bookingsBSTree, id);
+        BinaryNode<Booking> bookingNode = searchRoomByNumber(bookingsBSTree, id);
         String booking = "";
         if(bookingNode != null)
             booking = bookingsBSTree.dtm().toString(bookingNode.data());

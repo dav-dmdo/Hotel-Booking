@@ -45,7 +45,16 @@ public class App {
     public void start(){
         MainGUI view = new MainGUI(bookingsBSTree, roomsBSTree, hstStatus);
         view.show();
-        System.out.println(controller.checkIn(12902463));
+        System.out.println(controller.checkIn(0));
+        System.out.println("-----------------------");
+        System.out.println(controller.checkOut("Karilynn Gant"));
+        System.out.println("-----------------------");
+        System.out.println(controller.getRoomRecord(100));
+        
+        
+        
+        
+        
         
     }
     

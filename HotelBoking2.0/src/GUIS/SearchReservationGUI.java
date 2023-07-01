@@ -6,12 +6,12 @@
 package GUIS;
 
 
-import static ControllerAndRelated.BSTreeMethods.search;
 import DS.BSTree;
 import ImportantDataTypes.Booking;
 import ImportantDataTypes.Helpers;
 import Nodes.BinaryNode;
 import javax.swing.JOptionPane;
+import static ControllerAndRelated.BSTreeMethods.searchRoomByNumber;
 
 
 /**
@@ -132,7 +132,7 @@ public class SearchReservationGUI extends javax.swing.JFrame {
             int ID = Helpers.valorNumero(ID_String);
             if (ID !=-1) {
                 
-                BinaryNode<Booking> found = search(bstBooking, ID);
+                BinaryNode<Booking> found = searchRoomByNumber(bstBooking, ID);
                 
                 showInfo.setText(bstBooking.dtm().toString(found.data()));
 
