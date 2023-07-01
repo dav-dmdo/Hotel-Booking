@@ -29,29 +29,34 @@ public class App {
     FileManager fileManager;
     BSTree<Booking> bookingsBSTree;
     BSTree<Room> roomsBSTree;  
-    HashTable<Booking> hstStatus;
+    HashTable<Booking> statusHST;
     MainGUI view;
     Controller controller;
     
     public App(){
         this.bookingsBSTree = new BSTree<>(new BookingMethods());
         this.roomsBSTree = new BSTree<>(new RoomMethods()); 
-        this.hstStatus = new HashTable<> (479, new BookingMethods(), true);        
-        fileManager = new FileManager(bookingsBSTree, roomsBSTree);
+        this.statusHST = new HashTable<> (479, new BookingMethods(), true);        
+        fileManager = new FileManager(bookingsBSTree, roomsBSTree, statusHST);
         fileManager.initializeProgram();
-        this.controller = new Controller(this.bookingsBSTree, this.roomsBSTree, this.hstStatus);
+        this.controller = new Controller(this.bookingsBSTree, this.roomsBSTree, this.statusHST);
     }
     
     public void start(){
         MainGUI view = new MainGUI(controller);
         view.show();
 
+
         System.out.println(controller.checkIn(0));
         System.out.println("-----------------------");
         System.out.println(controller.checkOut("Karilynn Gant"));
         System.out.println("-----------------------");
         System.out.println(controller.getRoomRecord(100));
-        
+       
+
+        System.out.println("-----------------------");
+        System.out.println(controller.checkOut("Kay McPherson"));
+
         
         
     }

@@ -59,7 +59,7 @@ public class CheckIn extends javax.swing.JFrame {
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel2.setText("Please enter the name of the owner of the reservation");
+        jLabel2.setText("Please enter the ID of the owner of the reservation");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, -1, -1));
 
         checkInInput.setBackground(new java.awt.Color(204, 204, 204));

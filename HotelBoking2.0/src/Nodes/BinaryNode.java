@@ -19,6 +19,10 @@ public class BinaryNode<T> {
         this.rightSon = null;
         this.data = data;
     }
+    
+    public boolean isLeaf(){
+        return (leftSon == null)&&(rightSon==null);
+    }
 
     /**
      * @return the leftSon

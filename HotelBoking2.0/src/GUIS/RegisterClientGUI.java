@@ -5,6 +5,7 @@
  */
 package GUIS;
 
+import ControllerAndRelated.Controller;
 import DS.HashTable;
 
 /**
@@ -12,16 +13,16 @@ import DS.HashTable;
  * @author Andrea
  */
 public class RegisterClientGUI extends javax.swing.JFrame {
-   static HashTable hstGuests;
+   static Controller controller;
     /**
      * Creates new form RegisterClientGUI
      */
-    public RegisterClientGUI(HashTable hstGuests) {
+    public RegisterClientGUI(Controller controller) {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        this.hstGuests = hstGuests;
+        this.controller = controller;
         
     }
 
@@ -130,7 +131,15 @@ public class RegisterClientGUI extends javax.swing.JFrame {
 
     private void RegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterButtonActionPerformed
         String fullname = inputName.getText();
-       // ShowClient.setText(hstGuests.findKey(fullname));
+        String showInfo = controller.searchGuestString(inputName.getText());
+        //System.out.println( + showInfo);
+            System.out.println(fullname);
+        if (showInfo == "") {
+            ShowClient.setText("This client wasnt found! ");
+            
+        }else{
+        ShowClient.setText(showInfo);}
+       
     }//GEN-LAST:event_RegisterButtonActionPerformed
 
     /**
@@ -163,7 +172,7 @@ public class RegisterClientGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegisterClientGUI(hstGuests).setVisible(true);
+                new RegisterClientGUI(controller).setVisible(true);
             }
         });
     }

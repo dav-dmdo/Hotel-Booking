@@ -129,44 +129,31 @@ public class BSTreeMethods {
         return stringTree;        
     }
     
-//    public static <T> BinaryNode<T> preorderTest(BSTree<T> tree, BinaryNode<T> root, String process){
-//        BinaryNode<T> binaryNode= null;        
-//        if (root != null){
-//            binaryNode = chooseProcess(root, process, tree.dtm());
-//            binaryNode = chooseProcess(preorderTest(tree, root.leftSon(), process), process, tree.dtm());            
-//            binaryNode = chooseProcess(preorderTest(tree, root.rightSon(), process), process, tree.dtm());            
-//        }
-//        return binaryNode;
-//    } 
-//    
-//    private static <T> BinaryNode<T> processNode(BinaryNode<T> binaryNode){        
-//        return binaryNode;
-//    }
-//    
-//    private static <T> BinaryNode<T> chooseProcess(BinaryNode<T> binaryNode, String process, DataTypeMethods<T> dtm){
-//        switch(process){
-//            case "toString":
-//                nodeToString(binaryNode, dtm);                
-//                return binaryNode;
-//            case "toPrint":
-//                nodeToPrint(binaryNode, dtm);                
-//                return binaryNode;
-//        }
-//        return binaryNode;
-//    }
-//    
-//    
-//    private static <T> String nodeToString(BinaryNode<T> binaryNode, DataTypeMethods<T> dtm){
-//        return dtm.toString(binaryNode.data());
-//    }
-//    private static <T> void nodeToPrint(BinaryNode<T> binaryNode, DataTypeMethods<T> dtm){
-//        if (binaryNode != null)
-//            System.out.println(dtm.toString(binaryNode.data()));
-//    }
-//    
-//    
     
-           
     
+//    public static <T> BinaryNode<T> deleteNode(BSTree<T> tree, Integer key) {
+//        return deleteNode(tree.root(), key, tree.dtm());
+//    }
+//    public static <T> BinaryNode<T> deleteNode(BinaryNode<T> root, T key, DataTypeMethods<T> dtm, BSTree<T> tree) {
+//        if (root == null) {
+//            return root;
+//        }
+//        if (dtm.lessThan(root.data(), key)) {
+//            root.rightSon((deleteNode(root.rightSon(), key, dtm,tree)));
+//        } else if (dtm.greaterThan(root.data(), key)) {
+//            root.leftSon(deleteNode(root.leftSon(), key, dtm,tree));
+//        } else {
+//            if (root.isLeaf()) {
+//                root = null;
+//            } else if (root.rightSon() != null) {
+//                root.data(searchParentForInsertion(tree.root(), key));
+//                root.setRight(deleteNode(root.getRight(), root.getData().id));
+//            } else {
+//                root.setData(previousBooking(root).getData());
+//                root.setLeft(deleteNode(root.getLeft(), root.getData().id));
+//            }
+//        }
+//        return root;
+//    }
     
 }

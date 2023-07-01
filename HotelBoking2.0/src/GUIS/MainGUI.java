@@ -179,8 +179,8 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_searchRoomHistoryActionPerformed
 
     private void CheckOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckOutActionPerformed
-        //CheckOut seeCheckOut= new CheckOut(controller);
-        //seeCheckOut.show();
+        CheckOut seeCheckOut= new CheckOut(controller);
+        seeCheckOut.show();
     }//GEN-LAST:event_CheckOutActionPerformed
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
@@ -194,8 +194,8 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void registerClient1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerClient1ActionPerformed
 
-//        RegisterClientGUI registerClientGUI = new RegisterClientGUI(controller);
-//        registerClientGUI.show();
+        RegisterClientGUI registerClientGUI = new RegisterClientGUI(controller);
+        registerClientGUI.show();
 
     }//GEN-LAST:event_registerClient1ActionPerformed
 
