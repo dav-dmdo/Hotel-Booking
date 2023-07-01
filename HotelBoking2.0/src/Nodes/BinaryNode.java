@@ -18,10 +18,15 @@ public class BinaryNode<T> {
         this.leftSon = null;
         this.rightSon = null;
         this.data = data;
-    }
-    
+    }    
     public boolean isLeaf(){
         return (leftSon == null)&&(rightSon==null);
+    }    
+    public boolean hasLeft(){
+        return (leftSon != null);
+    }
+    public boolean hasRight(){
+        return (rightSon != null);
     }
 
     /**

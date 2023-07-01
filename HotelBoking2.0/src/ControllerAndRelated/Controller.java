@@ -30,6 +30,7 @@ public class Controller {
         this.statusHST = statusHST;
     }
     /**
+     * Se ele
      *si successfull es 0, proceso exitoso. si es 1, no se encontro 
      * reservacion, si es 2 no se encontro habitacion disponible
      * @param id
@@ -37,12 +38,13 @@ public class Controller {
      */
     public int checkIn(Integer id){
         int successfull = 0;        
-        Booking booking = getBookingT(id);
+        Booking booking = getBookingT(id); //debe eliminarse este booking
         if (booking== null){
             successfull = 1;
             return successfull;
         }        
-        BinaryNode<Room> roomNode = searchRoom(booking.roomType);
+        
+        BinaryNode<Room> roomNode = searchRoomByType(booking.roomType);
         if (roomNode == null){
             successfull = 2;
             return successfull;
@@ -73,9 +75,10 @@ public class Controller {
         room.isAvailable = true;
         room.currentGuest = null;
         DoubleLinkedList<Booking> record = room.record;
-        record.addLast(booking);
+        record.add(booking);
         return successfull;
-    }    
+    }
+    
 
     public String getRoomRecord(Integer roomNumber){
         String recordsString = "";
@@ -87,12 +90,20 @@ public class Controller {
         return recordsString;
     }
     
-    
+    /**
+     * 
+     * @param id
+     * @return 
+     */
     public BinaryNode<Booking> getBookingNode(Integer id){
         BinaryNode<Booking> bookingNode = searchRoomByNumber(bookingsBSTree, id);
         return bookingNode;
     }
-    
+    /**
+     * 
+     * @param id
+     * @return Booking
+     */
     public Booking getBookingT(Integer id){
         BinaryNode<Booking> bookingNode = searchRoomByNumber(bookingsBSTree, id);
         Booking booking = null;
@@ -107,26 +118,6 @@ public class Controller {
         if(bookingNode != null)
             booking = bookingsBSTree.dtm().toString(bookingNode.data());
         return booking;
-    }
-    
-    private BinaryNode<Room> searchRoom(String roomType){
-        BinaryNode<Room> availableRoom =null;
-        switch(roomType){
-            case "simple":
-                availableRoom = searchAvailableSimple(roomsBSTree);
-                return availableRoom;
-            case "doble":
-                availableRoom = searchAvailableDoble(roomsBSTree);
-                return availableRoom;
-            case "triple":
-                availableRoom = searchAvailableTriple(roomsBSTree);
-                return availableRoom;
-            case "suite":
-                availableRoom = searchAvailableSuite(roomsBSTree);
-                return availableRoom;
-                
-        }
-        return availableRoom;
     }
     
     public Booking searchGuestBooking(String key){
@@ -151,4 +142,29 @@ public class Controller {
     
     
     
+    /**
+     * Busca el room disonible por tipo de habitacion. Esto lo hace llamando a 
+     * los metodos satic de la clase BSTreeMethods
+     * @param roomType
+     * @return 
+     */
+    private BinaryNode<Room> searchRoomByType(String roomType){
+        BinaryNode<Room> availableRoom =null;
+        switch(roomType){
+            case "simple":
+                availableRoom = searchAvailableSimple(roomsBSTree);
+                return availableRoom;
+            case "doble":
+                availableRoom = searchAvailableDoble(roomsBSTree);
+                return availableRoom;
+            case "triple":
+                availableRoom = searchAvailableTriple(roomsBSTree);
+                return availableRoom;
+            case "suite":
+                availableRoom = searchAvailableSuite(roomsBSTree);
+                return availableRoom;
+                
+        }
+        return availableRoom;
+    }
 }

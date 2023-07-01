@@ -28,12 +28,11 @@ public class DoubleLinkedList<T> {
         return  size == 0;
     }
     
-    public void add(T data){
-        
+    public void add(T data){        
         addLast(data);
     }
     
-    public void addLast(T data){
+    private void addLast(T data){
         if (isEmpty()){
             head = tail = new DoubleNode<>(data, null, null);
         }else{
@@ -43,7 +42,7 @@ public class DoubleLinkedList<T> {
         size++;
     }
     
-    public void addFirst(T data){
+    private void addFirst(T data){
         
         if (isEmpty()){
             head = tail = new DoubleNode<> (data, null, null);

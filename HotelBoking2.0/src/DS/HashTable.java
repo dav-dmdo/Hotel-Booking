@@ -11,11 +11,12 @@ import static ControllerAndRelated.DoubleLinkedListMethods.*;
 /**
  *
  * @author david
+ * @param <T>
  */
 public class HashTable<T> {
 
-    private DoubleLinkedList<T>[] table; //cada posicion del 
-    private Integer capacity;
+    private final DoubleLinkedList<T>[] table; //cada posicion del array es una lista doble
+    private final Integer capacity; //tamano del array  (load factor<0.75)
     private Integer size;
     private final DataTypeMethods<T> dtm;
     private final boolean keyType; //True means key type is String
@@ -38,14 +39,15 @@ public class HashTable<T> {
 
     public void insert(T data) {
         Integer key = getKey(data);
-        DoubleLinkedList<T> list = table()[key];
-        list.addLast(data);
+        DoubleLinkedList<T> list = table[key];
+        list.add(data);
         size++;
     }
 
     /**
      *
      * @param key
+     * @return 
      */
 
     public DoubleNode<T> delete(String key) {
@@ -88,24 +90,6 @@ public class HashTable<T> {
         return aux;
     }
     
-    
-    
-//    
-//    public T searchByKey(Object key) {
-//        String key2 = key.toString();
-//        if(!keyType){
-//            Integer key= Integer.parseInt(key2);
-//        }
-//        
-//        Integer hash = hashFuction(key);
-//        DoubleLinkedList<T> list = table[hash];
-//        DoubleNode<T> node = searchStringKey(list, key.toString());
-//        if (node != null) {
-//            return node.data();
-//        }
-//        return null;
-//    }
-
     private Integer getKey(T data) {
         if (keyType) {
             String key = getStringKey(data);
