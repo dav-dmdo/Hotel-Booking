@@ -8,6 +8,7 @@ import ImportantDataTypes.DataTypeMethods;
 import Nodes.BinaryNode;
 
 /**
+ * @param <T>
  * @see BSTreeMethods.java
  *
  * @author david
