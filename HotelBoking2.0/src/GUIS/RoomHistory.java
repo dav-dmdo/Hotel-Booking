@@ -5,14 +5,15 @@
  */
 package GUIS;
 
-import static ControllerAndRelated.BSTreeMethods.search;
 import ControllerAndRelated.Controller;
+
 import DS.BSTree;
 import ImportantDataTypes.Booking;
 import ImportantDataTypes.Helpers;
 import ImportantDataTypes.Room;
 import Nodes.BinaryNode;
 import javax.swing.JOptionPane;
+import static ControllerAndRelated.BSTreeMethods.searchRoomByNumber;
 
 
 /**
@@ -135,6 +136,7 @@ public class RoomHistory extends javax.swing.JFrame {
             int ID = Helpers.valorNumero(ID_String);
             if (ID !=-1) {
                 
+
                 String roomInfo = controller.getRoomRecord(ID);
                 if (roomInfo == "") {
                     show.setText("This room doesnt exist");
@@ -143,7 +145,6 @@ public class RoomHistory extends javax.swing.JFrame {
                 else
                 System.out.println(roomInfo);
                 show.setText("ROOM "+ID+" \n\n"+ roomInfo);
-
                 //showInfo.setText(NodeSearch);
                 roomNumber.setText("");
                 

@@ -45,6 +45,18 @@ public class App {
     public void start(){
         MainGUI view = new MainGUI(controller);
         view.show();
+<<<<<<< HEAD
+=======
+        System.out.println(controller.checkIn(0));
+        System.out.println("-----------------------");
+        System.out.println(controller.checkOut("Karilynn Gant"));
+        System.out.println("-----------------------");
+        System.out.println(controller.getRoomRecord(100));
+        
+        
+        
+        
+>>>>>>> 89a4d1651ec6250f6447f0316b8d68af8b493f8a
         
         
     }

@@ -6,7 +6,6 @@ package FileManagement;
 
 
 import static ControllerAndRelated.BSTreeMethods.insertBalancedFromSortedArray;
-import static ControllerAndRelated.BSTreeMethods.search;
 import DS.BSTree;
 import DS.DoubleLinkedList;
 import DS.HashTable;
@@ -17,6 +16,7 @@ import Nodes.BinaryNode;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import static ControllerAndRelated.BSTreeMethods.searchRoomByNumber;
 
 /**
  *
@@ -112,7 +112,7 @@ public class FileManager {
     
     private void recordsProcess(String[] values){
         Booking booking = createBookingFromRecordArray(values);
-        BinaryNode<Room> roomNode = search(roomsBSTree, booking.roomNumber);
+        BinaryNode<Room> roomNode = searchRoomByNumber(roomsBSTree, booking.roomNumber);
         if (roomNode != null){
             Room room = roomNode.data();
             DoubleLinkedList<Booking> record = room.record;
@@ -127,7 +127,7 @@ public class FileManager {
     
     ///////////////////////////////////////////////////////////////////////////
     private Booking createBookingFromRecordArray(String[] values){
-         Integer ci = Integer.valueOf(values[0].trim());
+        Integer ci = Integer.valueOf(values[0].trim());
         String firstName = values[1].trim();
         String lastName = values[2].trim();
         String email = values[3].trim();
@@ -135,7 +135,7 @@ public class FileManager {
         
         Client client = new Client(ci, firstName, lastName, email, gender);
         
-        String date =values[6].trim();
+        String date =values[5].trim();
         Integer roomNumber = Integer.valueOf(values[6].trim());
         
         return new Booking(client, roomNumber, date);        
@@ -171,7 +171,7 @@ public class FileManager {
         if (roomNumberString.isEmpty())
             return booking;
         Integer roomNumber = Integer.valueOf(roomNumberString);
-        BinaryNode<Room> room = search(roomsBSTree, roomNumber);
+        BinaryNode<Room> room = searchRoomByNumber(roomsBSTree, roomNumber);
         if(room != null)
             room.data().isAvailable = false;
         
