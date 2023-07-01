@@ -28,7 +28,7 @@ public class FileManager {
     final String recordsPath = "test\\records.csv";
     final String roomsPath = "test\\rooms.csv";
     
-    private HashTable<Booking> statusHashTable;
+    private HashTable<Booking> statusHST;
     private BSTree<Booking> bookingsBSTree;
     private BSTree<Room> roomsBSTree;
     
@@ -39,9 +39,10 @@ public class FileManager {
         
     }
 
-    public FileManager(BSTree<Booking> bookingsBSTree, BSTree<Room> roomsBSTree) {
+    public FileManager(BSTree<Booking> bookingsBSTree, BSTree<Room> roomsBSTree, HashTable<Booking> statusHST) {
         this.bookingsBSTree = bookingsBSTree;
         this.roomsBSTree = roomsBSTree;
+        this.statusHST = statusHST;
     }
     
     
@@ -107,7 +108,8 @@ public class FileManager {
     }
     private void statusProcess(String[] values){
         Booking booking = createBookingFromStatusArray(values);
-        // insertar en el hashTable
+        if(booking != null)
+            statusHST.insert(booking);
     }
     
     private void recordsProcess(String[] values){

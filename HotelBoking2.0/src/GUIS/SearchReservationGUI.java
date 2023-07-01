@@ -6,12 +6,9 @@
 package GUIS;
 
 
-import DS.BSTree;
+import ControllerAndRelated.Controller;
 import ImportantDataTypes.Booking;
 import ImportantDataTypes.Helpers;
-import Nodes.BinaryNode;
-import javax.swing.JOptionPane;
-import static ControllerAndRelated.BSTreeMethods.searchRoomByNumber;
 
 
 /**
@@ -19,19 +16,19 @@ import static ControllerAndRelated.BSTreeMethods.searchRoomByNumber;
  * @author Andrea
  */
 public class SearchReservationGUI extends javax.swing.JFrame {
-   static BSTree<Booking> bstBooking;
+  static Controller controller;
     
 
     /**
      * Creates new form SearchReservationGUI
      * @param bstBooking
      */
-    public SearchReservationGUI(BSTree<Booking> bstBooking) {
+    public SearchReservationGUI(Controller controller) {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        this.bstBooking = bstBooking;
+        this.controller = controller;
     }
 
     /**
@@ -131,18 +128,22 @@ public class SearchReservationGUI extends javax.swing.JFrame {
             String ID_String = clientID.getText();
             int ID = Helpers.valorNumero(ID_String);
             if (ID !=-1) {
-                
-                BinaryNode<Booking> found = searchRoomByNumber(bstBooking, ID);
-                
-                showInfo.setText(bstBooking.dtm().toString(found.data()));
+                String info = controller.getBookingString(ID);
+                if (info =="") {
+                    showInfo.setText("There isnt a reservation under the "+ clientID.getText()+ " ID");
+                    
+                }
+                else{
+                showInfo.setText(info);
+
 
                 //showInfo.setText(NodeSearch);
                 clientID.setText("");
                 
 
-            }
+            }}
         } catch (NullPointerException e) {
-            showInfo.setText(clientID.getText() + " doesn't have a reservation.");
+            showInfo.setText("There isnt a reservation under the "+ clientID.getText()+ " ID");
             clientID.setText("");
         }
 
@@ -182,7 +183,7 @@ public class SearchReservationGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SearchReservationGUI(bstBooking).setVisible(true);
+                new SearchReservationGUI(controller).setVisible(true);
             }
         });
     }

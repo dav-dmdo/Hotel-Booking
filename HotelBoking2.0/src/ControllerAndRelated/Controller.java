@@ -48,7 +48,7 @@ public class Controller {
             return successfull;
         }
         Room availableRoom = roomNode.data();
-        statusHST.insertKey(booking);
+        statusHST.insert(booking);
         availableRoom.isAvailable = false;
         availableRoom.currentGuest = booking;
         
@@ -60,9 +60,9 @@ public class Controller {
      * @param key
      * @return 
      */
-    public int checkOut(Object key){
+    public int checkOut(String key){
         int successfull = 0;
-        DoubleNode<Booking> bookingNode = statusHST.deleteByKey(key);
+        DoubleNode<Booking> bookingNode = statusHST.delete(key);
         if(bookingNode == null){
             successfull = 1;
             return successfull;            
@@ -75,10 +75,7 @@ public class Controller {
         DoubleLinkedList<Booking> record = room.record;
         record.addLast(booking);
         return successfull;
-    }  
-    
-    
-    
+    }    
 
     public String getRoomRecord(Integer roomNumber){
         String recordsString = "";
@@ -130,6 +127,23 @@ public class Controller {
                 
         }
         return availableRoom;
+    }
+    
+    public Booking searchGuestBooking(String key){
+        Booking booking = null;
+        DoubleNode<Booking> bookingNode = statusHST.search(key);
+        if(bookingNode!= null)
+            booking = bookingNode.data();
+        return booking;        
+    }
+    
+    public String searchGuestString(String key){
+        String stringGuest = "";
+        Booking guest = searchGuestBooking(key);
+        if (guest == null)
+            return stringGuest;        
+        stringGuest = statusHST.dtm().toString(guest);
+        return stringGuest;        
     }
     
     
