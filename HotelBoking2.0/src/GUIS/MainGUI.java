@@ -6,10 +6,10 @@
 package GUIS;
 
 
+import ControllerAndRelated.Controller;
 import DS.BSTree;
 import DS.HashTable;
-import ImportantDataTypes.Booking;
-import ImportantDataTypes.Room;
+
 
 
 /**
@@ -17,25 +17,18 @@ import ImportantDataTypes.Room;
  * @author Andrea
  */
 public class MainGUI extends javax.swing.JFrame {
-    static BSTree<Booking> bstBooking;
-    static BSTree<Room> bstRoom;
-    static HashTable hstGuests;
-//    static BinarySearchTree<Booking> bstBooking;
-//    static BinarySearchTree<Historical> bstHistory;
-//    static HashTable hstGuests;
+    static Controller controller;
 
     /**
      * Creates new form MainGUI
      * @param bstBooking
      */
-    public MainGUI(BSTree bstBooking, BSTree bstRoom, HashTable hstGuests) {
+    public MainGUI(Controller controller) {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        this.bstBooking = bstBooking;
-        this.bstRoom = bstRoom;
-        this.hstGuests = hstGuests;
+        this.controller = controller;
         
     }
 
@@ -176,18 +169,18 @@ public class MainGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchReservationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchReservationActionPerformed
-        SearchReservationGUI searchReservation = new SearchReservationGUI(bstBooking);
+        SearchReservationGUI searchReservation = new SearchReservationGUI(controller);
         searchReservation.show();
     }//GEN-LAST:event_searchReservationActionPerformed
 
     private void searchRoomHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchRoomHistoryActionPerformed
-        RoomHistory seeRoomHistory = new RoomHistory(bstRoom);
+        RoomHistory seeRoomHistory = new RoomHistory(controller);
         seeRoomHistory.show();
     }//GEN-LAST:event_searchRoomHistoryActionPerformed
 
     private void CheckOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckOutActionPerformed
-        CheckOut seeCheckOut= new CheckOut(bstRoom, bstBooking, hstGuests);
-        seeCheckOut.show();
+        //CheckOut seeCheckOut= new CheckOut(controller);
+        //seeCheckOut.show();
     }//GEN-LAST:event_CheckOutActionPerformed
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
@@ -195,14 +188,14 @@ public class MainGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_exitActionPerformed
 
     private void CheckInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckInActionPerformed
-       CheckIn seeCheckIn= new CheckIn(bstRoom, bstBooking, hstGuests);
+       CheckIn seeCheckIn= new CheckIn(controller);
         seeCheckIn.show();
     }//GEN-LAST:event_CheckInActionPerformed
 
     private void registerClient1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerClient1ActionPerformed
 
-        RegisterClientGUI registerClientGUI = new RegisterClientGUI(hstGuests);
-        registerClientGUI.show();
+//        RegisterClientGUI registerClientGUI = new RegisterClientGUI(controller);
+//        registerClientGUI.show();
 
     }//GEN-LAST:event_registerClient1ActionPerformed
 
@@ -236,7 +229,7 @@ public class MainGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainGUI(bstBooking, bstRoom, hstGuests).setVisible(true);
+                new MainGUI(controller).setVisible(true);
             }
         });
     }

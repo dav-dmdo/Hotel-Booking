@@ -3,19 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Princ/Downloads/UNIMET/Sistemas/Proyecto%202%20EDD/Hotel-Booking/HotelBoking2.0/src/GUIS/MainGUI.java</file>
             <file>file:/C:/Users/Princ/Downloads/UNIMET/Sistemas/Proyecto%202%20EDD/Hotel-Booking/HotelBoking2.0/src/GUIS/SearchReservationGUI.java</file>
-            <file>file:/C:/Users/Princ/Downloads/UNIMET/Sistemas/Proyecto%202%20EDD/Hotel-Booking/HotelBoking2.0/src/ControllerAndRelated/HashTableMethods.java</file>
-            <file>file:/C:/Users/Princ/Downloads/UNIMET/Sistemas/Proyecto%202%20EDD/Hotel-Booking/HotelBoking2.0/src/ImportantDataTypes/Helpers.java</file>
-            <file>file:/C:/Users/Princ/Downloads/UNIMET/Sistemas/Proyecto%202%20EDD/Hotel-Booking/HotelBoking2.0/src/GUIS/CheckIn.java</file>
-            <file>file:/C:/Users/Princ/Downloads/UNIMET/Sistemas/Proyecto%202%20EDD/Hotel-Booking/HotelBoking2.0/src/GUIS/RegisterClientGUI.java</file>
-            <file>file:/C:/Users/Princ/Downloads/UNIMET/Sistemas/Proyecto%202%20EDD/Hotel-Booking/HotelBoking2.0/src/DS/DoubleLinkedList.java</file>
-            <file>file:/C:/Users/Princ/Downloads/UNIMET/Sistemas/Proyecto%202%20EDD/Hotel-Booking/HotelBoking2.0/src/DS/HashTable.java</file>
-            <file>file:/C:/Users/Princ/Downloads/UNIMET/Sistemas/Proyecto%202%20EDD/Hotel-Booking/HotelBoking2.0/src/DS/BSTree.java</file>
-            <file>file:/C:/Users/Princ/Downloads/UNIMET/Sistemas/Proyecto%202%20EDD/Hotel-Booking/HotelBoking2.0/src/ControllerAndRelated/DoubleLinkedListMethods.java</file>
+            <file>file:/C:/Users/Princ/Downloads/UNIMET/Sistemas/Proyecto%202%20EDD/Hotel-Booking/HotelBoking2.0/src/GUIS/RoomHistory.java</file>
+            <file>file:/C:/Users/Princ/Downloads/UNIMET/Sistemas/Proyecto%202%20EDD/Hotel-Booking/HotelBoking2.0/src/ImportantDataTypes/Room.java</file>
             <file>file:/C:/Users/Princ/Downloads/UNIMET/Sistemas/Proyecto%202%20EDD/Hotel-Booking/HotelBoking2.0/src/EntryPoint/App.java</file>
-            <file>file:/C:/Users/Princ/Downloads/UNIMET/Sistemas/Proyecto%202%20EDD/Hotel-Booking/HotelBoking2.0/src/ControllerAndRelated/BSTreeMethods.java</file>
-            <file>file:/C:/Users/Princ/Downloads/UNIMET/Sistemas/Proyecto%202%20EDD/Hotel-Booking/HotelBoking2.0/src/GUIS/CheckOut.java</file>
+            <file>file:/C:/Users/Princ/Downloads/UNIMET/Sistemas/Proyecto%202%20EDD/Hotel-Booking/HotelBoking2.0/src/ImportantDataTypes/RoomMethods.java</file>
         </group>
     </open-files>
 </project-private>

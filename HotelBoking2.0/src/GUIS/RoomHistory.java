@@ -6,8 +6,8 @@
 package GUIS;
 
 import static ControllerAndRelated.BSTreeMethods.search;
+import ControllerAndRelated.Controller;
 import DS.BSTree;
-import static GUIS.SearchReservationGUI.bstBooking;
 import ImportantDataTypes.Booking;
 import ImportantDataTypes.Helpers;
 import ImportantDataTypes.Room;
@@ -20,18 +20,18 @@ import javax.swing.JOptionPane;
  * @author Andrea
  */
 public class RoomHistory extends javax.swing.JFrame {
-    static BSTree<Room> bstRoom;
+    static Controller controller;
    
 
     /**
      * Creates new form RoomHistory
      */
-    public RoomHistory(BSTree<Room> btsRoom) {
+    public RoomHistory(Controller controller) {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        this.bstRoom = bstRoom;
+        this.controller = controller;
     }
 
     /**
@@ -135,9 +135,14 @@ public class RoomHistory extends javax.swing.JFrame {
             int ID = Helpers.valorNumero(ID_String);
             if (ID !=-1) {
                 
-                BinaryNode<Room> found = search(bstRoom, ID);
-                
-                show.setText(bstRoom.dtm().toString(found.data()));
+                String roomInfo = controller.getRoomRecord(ID);
+                if (roomInfo == "") {
+                    show.setText("This room doesnt exist");
+                    
+                }
+                else
+                System.out.println(roomInfo);
+                show.setText("ROOM "+ID+" \n\n"+ roomInfo);
 
                 //showInfo.setText(NodeSearch);
                 roomNumber.setText("");
@@ -180,7 +185,7 @@ public class RoomHistory extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RoomHistory(bstRoom).setVisible(true);
+                new RoomHistory(controller).setVisible(true);
             }
         });
     }
