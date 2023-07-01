@@ -4,20 +4,21 @@
  */
 package DS;
 
-import static ControllerAndRelated.DoubleLinkedListMethods.search;
 import ImportantDataTypes.DataTypeMethods;
 import Nodes.DoubleNode;
+import static ControllerAndRelated.DoubleLinkedListMethods.*;
 
 /**
  *
  * @author david
+ * @param <T>
  */
 public class HashTable<T> {
 
-    private DoubleLinkedList<T>[] table; //cada posicion del 
-    private Integer capacity;
+    private final DoubleLinkedList<T>[] table; //cada posicion del array es una lista doble
+    private final Integer capacity; //tamano del array  (load factor<0.75)
     private Integer size;
-    private DataTypeMethods<T> dtm;
+    private final DataTypeMethods<T> dtm;
     private final boolean keyType; //True means key type is String
 
     public HashTable(Integer capacity, DataTypeMethods<T> dtm, boolean keyType) {
@@ -36,29 +37,35 @@ public class HashTable<T> {
      * @param data
      */
 
-    public void insertKey(T data) {
+    public void insert(T data) {
         Integer key = getKey(data);
         DoubleLinkedList<T> list = table[key];
-
-        list.addLast(data);
+        list.add(data);
         size++;
     }
 
     /**
      *
      * @param key
+     * @return 
      */
 
-    public DoubleNode<T> deleteByKey(Object key) {
-        DoubleNode<T> nodeToDelete = null;
-        DoubleLinkedList<T> list = (DoubleLinkedList<T>) searchByKey(key);
-        if (list != null) {
-            nodeToDelete = list.delete((T) key);
-            if (nodeToDelete != null) {
-                size--;
-            }
+    public DoubleNode<T> delete(String key) {
+        DoubleNode<T> aux= null;
+        Integer hash = hashFunction(key);
+        DoubleLinkedList<T> list = table[hash];
+        if(!list.isEmpty()){
+            System.out.println(list.dtm().toString(list.head().data()));
+            aux = searchStringKey(list, key);
+            
         }
-        return nodeToDelete;
+        if (aux != null){
+            deleteByStringKey(list, key);
+            size--;
+        }
+        
+        
+        return aux;
     }
 
     /**
@@ -73,16 +80,16 @@ public class HashTable<T> {
 //        return list;
 //    }
 
-    public T searchByKey(Object key) {        
-        Integer hash = (keyType) ? hashFunction((String) key) : hashFunction((Integer) key);
+    public DoubleNode<T> search(String key){
+        DoubleNode<T> aux = null;
+        Integer hash = this.hashFunction(key);
         DoubleLinkedList<T> list = table[hash];
-        DoubleNode<T> node = search(list, key.toString());
-        if (node != null) {
-            return node.data();
+        if (!list.isEmpty()){
+            aux = searchStringKey(list, key);
         }
-        return null;
+        return aux;
     }
-
+    
     private Integer getKey(T data) {
         if (keyType) {
             String key = getStringKey(data);
@@ -93,11 +100,11 @@ public class HashTable<T> {
     }
 
     private Integer getNumericalKey(T data) {
-        return dtm.getNumericalKey(data);
+        return dtm().getNumericalKey(data);
     }
 
     private String getStringKey(T data) {
-        return dtm.getStringKey(data);
+        return dtm().getStringKey(data);
     }
 
     private Integer disperse(String key) {
@@ -109,7 +116,7 @@ public class HashTable<T> {
         return sum;
     }
 
-    private Integer hashFunction(String key) {
+    public Integer hashFunction(String key) {
         return (disperse(key) % capacity);
     }
 
@@ -118,8 +125,24 @@ public class HashTable<T> {
         return sum;
     }
 
-    private Integer hashFunction(Integer key) {
+    public Integer hashFunction(Integer key) {
         return (disperse(key) % capacity);
     }
 
+    /**
+     * @return the dtm
+     */
+    public DataTypeMethods<T> dtm() {
+        return dtm;
+    }
+
+    /**
+     * @return the table
+     */
+    public DoubleLinkedList<T>[] table() {
+        return table;
+    }
+
+    
+    
 }

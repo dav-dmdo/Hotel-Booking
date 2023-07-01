@@ -5,30 +5,25 @@
  */
 package GUIS;
 
-import DS.BSTree;
-import DS.HashTable;
-import ImportantDataTypes.Booking;
-import ImportantDataTypes.Room;
+import ControllerAndRelated.Controller;
+import ImportantDataTypes.Helpers;
+
 
 /**
  *
  * @author Andrea
  */
 public class CheckIn extends javax.swing.JFrame {
-    static BSTree<Booking> bstBooking;
-    static BSTree<Room> bstRoom;
-    static HashTable hstGuests;
+    static Controller controller;
     /**
      * Creates new form CheckIN
      */
-    public CheckIn(BSTree<Room> bstRoom,BSTree<Booking> bstBooking, HashTable hstGuests) {
+    public CheckIn(Controller controller) {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        this.bstRoom = bstRoom;
-        this.bstBooking = bstBooking;
-        this.hstGuests= hstGuests;
+        this.controller = controller;
        
     }
 
@@ -44,10 +39,10 @@ public class CheckIn extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        checkInInput = new javax.swing.JTextField();
         exit = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        show = new javax.swing.JTextArea();
         checkin = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
@@ -64,12 +59,12 @@ public class CheckIn extends javax.swing.JFrame {
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel2.setText("Please enter the name of the owner of the reservation");
+        jLabel2.setText("Please enter the ID of the owner of the reservation");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, -1, -1));
 
-        jTextField1.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 230, -1));
+        checkInInput.setBackground(new java.awt.Color(204, 204, 204));
+        checkInInput.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(checkInInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 230, -1));
 
         exit.setBackground(new java.awt.Color(255, 255, 255));
         exit.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -82,14 +77,13 @@ public class CheckIn extends javax.swing.JFrame {
         });
         jPanel1.add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 10, 40, -1));
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jTextArea1.setForeground(new java.awt.Color(137, 103, 103));
-        jTextArea1.setRows(5);
-        jTextArea1.setText("//set info check-in details\n");
-        jScrollPane1.setViewportView(jTextArea1);
+        show.setEditable(false);
+        show.setBackground(new java.awt.Color(255, 255, 255));
+        show.setColumns(20);
+        show.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        show.setForeground(new java.awt.Color(137, 103, 103));
+        show.setRows(5);
+        jScrollPane1.setViewportView(show);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 330, 220));
 
@@ -117,8 +111,19 @@ public class CheckIn extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_exitActionPerformed
 
+    /**
+     * This shows a message checking if the checkin was succesful.
+     * @param evt 
+     */
     private void checkinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkinActionPerformed
-        // TODO add your handling code here:
+        int id = Helpers.valorNumero(checkInInput.getText());
+        int succesful = controller.checkIn(id);
+        if (succesful == 0) {
+            show.setText("Your check in of id " +id+ " has been succesful! ");
+            
+        }
+        else{
+         show.setText("Your id " +id+ " doesn't have a reservation! ");}
     }//GEN-LAST:event_checkinActionPerformed
 
     /**
@@ -152,12 +157,13 @@ public class CheckIn extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CheckIn(bstRoom, bstBooking, hstGuests).setVisible(true);
+                new CheckIn(controller).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField checkInInput;
     private javax.swing.JButton checkin;
     private javax.swing.JButton exit;
     private javax.swing.JLabel jLabel1;
@@ -165,7 +171,6 @@ public class CheckIn extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextArea show;
     // End of variables declaration//GEN-END:variables
 }

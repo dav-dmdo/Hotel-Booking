@@ -5,31 +5,27 @@
  */
 package GUIS;
 
-import DS.BSTree;
-import DS.HashTable;
-import ImportantDataTypes.Booking;
-import ImportantDataTypes.Room;
+import ControllerAndRelated.Controller;
+import ImportantDataTypes.Helpers;
+import javax.swing.JOptionPane;
+
 
 /**
  *
  * @author Andrea
  */
 public class CheckOut extends javax.swing.JFrame { 
-    static BSTree<Booking> bstBooking;
-    static BSTree<Room> bstRoom;
-    static HashTable hstGuests;
-
+    static Controller controller;
     /**
      * Creates new form CheckOut
      */
-    public CheckOut(BSTree<Room> bstRoom,BSTree<Booking> bstBooking, HashTable hstGuests) {
+    public CheckOut(Controller controller) {
         initComponents();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setResizable(false); 
-        this.bstRoom = bstRoom;
-        this.bstBooking = bstBooking;
-        this.hstGuests= hstGuests;
+        this.controller = controller;
+        
        
        
     }
@@ -87,6 +83,11 @@ public class CheckOut extends javax.swing.JFrame {
         checkout1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         checkout1.setForeground(new java.awt.Color(137, 103, 103));
         checkout1.setText("Check-Out");
+        checkout1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkout1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(checkout1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 92, -1, 20));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUIS/Pictures/image-removebg-preview (3).png"))); // NOI18N
@@ -106,6 +107,19 @@ public class CheckOut extends javax.swing.JFrame {
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
         this.dispose();
     }//GEN-LAST:event_exitActionPerformed
+
+    private void checkout1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkout1ActionPerformed
+      String input = nameInput.getText();
+        int succesful = controller.checkOut(input);
+            if (succesful == 0) {
+                JOptionPane.showMessageDialog(this, "You have checked out succesfully!");
+                
+            }else{
+            JOptionPane.showMessageDialog(this, "This isnt an existing host.");
+            nameInput.setText("");
+            
+}
+    }//GEN-LAST:event_checkout1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -137,7 +151,7 @@ public class CheckOut extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CheckOut(bstRoom, bstBooking, hstGuests).setVisible(true);
+                new CheckOut(controller).setVisible(true);
             }
         });
     }

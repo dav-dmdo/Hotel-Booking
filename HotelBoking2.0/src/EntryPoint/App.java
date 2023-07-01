@@ -4,9 +4,7 @@
  */
 package EntryPoint;
 
-import static ControllerAndRelated.BSTreeMethods.inorderString;
-import static ControllerAndRelated.BSTreeMethods.postorderString;
-import static ControllerAndRelated.BSTreeMethods.preorderString;
+
 import static ControllerAndRelated.BSTreeMethods.*;
 import ControllerAndRelated.Controller;
 import DS.BSTree;
@@ -29,32 +27,22 @@ public class App {
     FileManager fileManager;
     BSTree<Booking> bookingsBSTree;
     BSTree<Room> roomsBSTree;  
-    HashTable<Booking> hstStatus;
+    HashTable<Booking> statusHST;
     MainGUI view;
     Controller controller;
     
     public App(){
         this.bookingsBSTree = new BSTree<>(new BookingMethods());
         this.roomsBSTree = new BSTree<>(new RoomMethods()); 
-        this.hstStatus = new HashTable<> (479, new BookingMethods(), true);        
-        fileManager = new FileManager(bookingsBSTree, roomsBSTree);
+        this.statusHST = new HashTable<> (479, new BookingMethods(), true);        
+        fileManager = new FileManager(this.bookingsBSTree, this.roomsBSTree, this.statusHST);
         fileManager.initializeProgram();
-        this.controller = new Controller(this.bookingsBSTree, this.roomsBSTree, this.hstStatus);
+        this.controller = new Controller(this.bookingsBSTree, this.roomsBSTree, this.statusHST);
     }
     
     public void start(){
-        MainGUI view = new MainGUI(bookingsBSTree, roomsBSTree, hstStatus);
-        view.show();
-        System.out.println(controller.checkIn(0));
-        System.out.println("-----------------------");
-        System.out.println(controller.checkOut("Karilynn Gant"));
-        System.out.println("-----------------------");
-        System.out.println(controller.getRoomRecord(100));
-        
-        
-        
-        
-        
+        MainGUI view = new MainGUI(controller);
+        view.show();        
         
     }
     

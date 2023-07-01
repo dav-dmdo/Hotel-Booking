@@ -31,8 +31,7 @@ public class BookingMethods implements DataTypeMethods<Booking>{
         if ((data.roomType != null)&&(data.arrivalDate != null) && (data.departureDate != null))
             return "|Full name: " + data.client.firstName+" "+data.client.lastName+" | Accommodation dates: "+data.arrivalDate+"-"+data.departureDate+" | Room Type: "+ data.roomType + "|\n";
         else
-            return "|Full name: " + data.client.firstName+" "+data.client.lastName+" | Departure date: "+data.departureDate+"|\n";
-        
+            return "|Full name: " + data.client.firstName+" "+data.client.lastName+" | Departure date: "+data.departureDate+"|\n";        
         
     }
 

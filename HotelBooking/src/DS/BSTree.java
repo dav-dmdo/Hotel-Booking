@@ -21,13 +21,13 @@ public class BSTree <T> {
         this.dtm = dtm;
     }
     
-<<<<<<< HEAD
     public void search(T data){
         NodeABB<T> aux= root;
         while(aux != null){
-            boolean found = dtm.isEqual(aux.getData(), data);
+            boolean found = dtm.isEqual((int) aux.getData(), data);
         }
-=======
+    }
+
     //Primitives
      public boolean isEmpty() {
         return getRoot() == null;
@@ -291,7 +291,7 @@ public class BSTree <T> {
      */
     public void setDtm(DataTypeMethods<T> dtm) {
         this.dtm = dtm;
->>>>>>> 97daf1b3d7d6652a7024f8ba44fdeeb99151ab64
+
     }
     
     

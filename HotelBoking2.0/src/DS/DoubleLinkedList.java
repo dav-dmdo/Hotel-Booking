@@ -28,12 +28,11 @@ public class DoubleLinkedList<T> {
         return  size == 0;
     }
     
-    public void add(T data){
-        
+    public void add(T data){        
         addLast(data);
     }
     
-    public void addLast(T data){
+    private void addLast(T data){
         if (isEmpty()){
             head = tail = new DoubleNode<>(data, null, null);
         }else{
@@ -43,7 +42,7 @@ public class DoubleLinkedList<T> {
         size++;
     }
     
-    public void addFirst(T data){
+    private void addFirst(T data){
         
         if (isEmpty()){
             head = tail = new DoubleNode<> (data, null, null);
@@ -89,7 +88,7 @@ public class DoubleLinkedList<T> {
         return toDelete;         
     }
     
-    private DoubleNode<T> remove(DoubleNode<T> toDelete){
+    public DoubleNode<T> remove(DoubleNode<T> toDelete){
         if (toDelete.prev() == null)
             return deleteFirstNode();
         if (toDelete.next() == null)
@@ -101,10 +100,10 @@ public class DoubleLinkedList<T> {
     
     private void skip(DoubleNode<T> toDelete){
         toDelete.next().prev(toDelete.prev());
-        toDelete.prev().next(toDelete.next());
-        
+        toDelete.prev().next(toDelete.next());        
     }
-    public DoubleNode<T> search(T data){
+    
+    private DoubleNode<T> search(T data){
         DoubleNode<T> aux = head;
         if(!isEmpty()){
             boolean stop = false;
@@ -116,7 +115,7 @@ public class DoubleLinkedList<T> {
         return aux;
     }
     
-    public DoubleNode<T> delete(T data){
+    private DoubleNode<T> delete(T data){
         DoubleNode<T> found = search(data);
         if (found!=null){
             return remove(found);

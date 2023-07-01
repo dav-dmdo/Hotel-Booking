@@ -10,16 +10,31 @@ import ImportantDataTypes.Room;
 import Nodes.BinaryNode;
 
 /**
- *
+ * Esta clase proporciona metodos especificos del arbol binario de busqueda
+ * que no necesariamente son replicables en todos los arboles
  * @author david
  */
 public class BSTreeMethods {
     
-    
+    /**
+     * @see insertBalancedFromSortedArray()
+     * @param <T>
+     * @param tree
+     * @param array 
+     */
     public static <T> void insertBalancedFromSortedArray(BSTree<T> tree, T[] array){
         insertBalancedFromSortedArray(tree,array,0,array.length-1);              
     }
-    
+    /**
+     * Este metodo recibe un array de objetos ordenado de forma creciente y lo
+     * utiliza para insertar en un arbol binario de busqueda, generando un arbol 
+     * perfecto
+     * @param <T>
+     * @param tree
+     * @param array
+     * @param start
+     * @param end 
+     */
     private static <T> void insertBalancedFromSortedArray(BSTree<T> tree, T[] array, Integer start, Integer end){
         if (start > end)
             return;        
@@ -29,10 +44,28 @@ public class BSTreeMethods {
         insertBalancedFromSortedArray(tree,array,center+1,end);          
     }
     
+    /**Recibe un numero entero y lo utiliza para buscar la habitacion
+     * correspondiente en el arbol de rooms
+     * @see searchRoomByNumber()
+     * @param <T>
+     * @param tree
+     * @param key
+     * @return BinaryNode<T> 
+     */
+    
     public static <T> BinaryNode<T> searchRoomByNumber(BSTree<T> tree, Integer key){
         return searchRoomByNumber(tree.dtm(), tree.root(), key);
     }
     
+    /**
+     * Recibe un numero entero y lo utiliza para buscar la habitacion
+     * correspondiente en el arbol de rooms
+     * @param <T>
+     * @param dtm
+     * @param root
+     * @param key
+     * @return BinaryNode<T> 
+     */
     private static <T> BinaryNode<T> searchRoomByNumber(DataTypeMethods<T> dtm, BinaryNode<T> root, Integer key){
         if ((root == null) || (dtm.isEqual(root.data(), key)))
             return root;        
@@ -41,11 +74,19 @@ public class BSTreeMethods {
         else
             return searchRoomByNumber(dtm, root.rightSon(), key);
     } 
+    
+    
+    
     /**
-     * Busca un room Simple que este disponible. Si lo encuentra lo retorna,
-     * sino, retorna null
+     * Busca un room que este disponible. Si lo encuentra lo retorna,
+     * sino, retorna null. El room disponible buscado debe estar entre un rango
+     * de habitaciones que corresponda al tipo de habitacion buscada
+     * 
+     * @see searchAvailableRoom(BSTree<Room> roomTree, String roomType)
      * @param <T>
      * @param roomTree
+     * @param start
+     * @param stop 
      * @return BinaryNode<Room> 
      */
     private static <T> BinaryNode<Room> searchAvailableRoom(BSTree<Room> roomTree, int start, int stop){
@@ -59,6 +100,22 @@ public class BSTreeMethods {
         return roomNode;
     }
     
+    
+    /**
+     * Esta funcion se apoya de la funcion anterior  para buscar una habitacion
+     * disponible del tipo especificado. Cuando se reciba un Booking, se lee el
+     * tipo de habitacion y se busca una habitacion disponible que corresponda.
+     * Si la encuentra, la retorna, sino retorna null.
+     * @see 
+     * searchAvailableSimple(BSTree<Room> roomTree)
+     * searchAvailableDoble(BSTree<Room> roomTree)
+     * searchAvailableTriple(BSTree<Room> roomTree)
+     * searchAvailableSuite(BSTree<Room> roomTree)
+     * @param <T>
+     * @param roomTree
+     * @param roomType
+     * @return 
+     */
     private static <T> BinaryNode<Room> searchAvailableRoom(BSTree<Room> roomTree, String roomType){
         BinaryNode<Room> roomNode = null;
         switch(roomType){
@@ -78,15 +135,39 @@ public class BSTreeMethods {
         return roomNode;
     }
     
+    /**
+     * Busca una habitacion simple disponible
+     * @param <T>
+     * @param roomTree
+     * @return 
+     */
     public static <T> BinaryNode<Room> searchAvailableSimple(BSTree<Room> roomTree){
         return searchAvailableRoom(roomTree, "simple");
     }
+    /**
+     * Busca una habitacion doble disponible
+     * @param <T>
+     * @param roomTree
+     * @return 
+     */
     public static <T> BinaryNode<Room> searchAvailableDoble(BSTree<Room> roomTree){
         return searchAvailableRoom(roomTree, "doble");
     }
+    /**
+     * Busca una habitacion triple disponible
+     * @param <T>
+     * @param roomTree
+     * @return 
+     */
     public static <T> BinaryNode<Room> searchAvailableTriple(BSTree<Room> roomTree){
         return searchAvailableRoom(roomTree, "triple");
     }
+    /**
+     * Busca una habitacion suite disponible
+     * @param <T>
+     * @param roomTree
+     * @return 
+     */
     public static <T> BinaryNode<Room> searchAvailableSuite(BSTree<Room> roomTree){
         return searchAvailableRoom(roomTree, "suite");
     }   
@@ -128,45 +209,5 @@ public class BSTreeMethods {
         }
         return stringTree;        
     }
-    
-//    public static <T> BinaryNode<T> preorderTest(BSTree<T> tree, BinaryNode<T> root, String process){
-//        BinaryNode<T> binaryNode= null;        
-//        if (root != null){
-//            binaryNode = chooseProcess(root, process, tree.dtm());
-//            binaryNode = chooseProcess(preorderTest(tree, root.leftSon(), process), process, tree.dtm());            
-//            binaryNode = chooseProcess(preorderTest(tree, root.rightSon(), process), process, tree.dtm());            
-//        }
-//        return binaryNode;
-//    } 
-//    
-//    private static <T> BinaryNode<T> processNode(BinaryNode<T> binaryNode){        
-//        return binaryNode;
-//    }
-//    
-//    private static <T> BinaryNode<T> chooseProcess(BinaryNode<T> binaryNode, String process, DataTypeMethods<T> dtm){
-//        switch(process){
-//            case "toString":
-//                nodeToString(binaryNode, dtm);                
-//                return binaryNode;
-//            case "toPrint":
-//                nodeToPrint(binaryNode, dtm);                
-//                return binaryNode;
-//        }
-//        return binaryNode;
-//    }
-//    
-//    
-//    private static <T> String nodeToString(BinaryNode<T> binaryNode, DataTypeMethods<T> dtm){
-//        return dtm.toString(binaryNode.data());
-//    }
-//    private static <T> void nodeToPrint(BinaryNode<T> binaryNode, DataTypeMethods<T> dtm){
-//        if (binaryNode != null)
-//            System.out.println(dtm.toString(binaryNode.data()));
-//    }
-//    
-//    
-    
-           
-    
     
 }
