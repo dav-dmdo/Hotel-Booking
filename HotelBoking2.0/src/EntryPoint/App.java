@@ -20,7 +20,7 @@ import ImportantDataTypes.RoomMethods;
 import Nodes.BinaryNode;
 
 /**
- *
+ * This class will initialize the entire program and call controller.
  * @author david
  */
 public class App {

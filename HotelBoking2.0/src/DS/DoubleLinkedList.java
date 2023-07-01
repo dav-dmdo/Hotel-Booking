@@ -8,27 +8,14 @@ import ImportantDataTypes.DataTypeMethods;
 import Nodes.DoubleNode;
 
 /**
-
-Esta clase representa una lista doblemente enlazada genérica que puede contener cualquier tipo de dato.
-
-Proporciona métodos para agregar, eliminar y buscar nodos en la lista.
-
-@author david
-
-@param <T> el tipo de datos de los elementos en la lista
-*/
+ *
+ * @author david
+ */
 public class DoubleLinkedList<T> {
     private int size;
     private DoubleNode<T> head;
     private DoubleNode<T> tail;
     private final DataTypeMethods<T> dtm;
-    
-    
-    /**
-Constructor para la clase DoubleLinkedList.
-Inicializa una lista vacía con un objeto DataTypeMethods para realizar comparaciones en los elementos de la lista.
-@param dtm el objeto DataTypeMethods a utilizar para comparaciones
-*/
 
     public DoubleLinkedList(DataTypeMethods<T> dtm) {
         this.size = 0;
@@ -36,30 +23,14 @@ Inicializa una lista vacía con un objeto DataTypeMethods para realizar comparac
         this.tail = null;
         this.dtm = dtm;
     }
-    /**
-
-Devuelve si la lista está vacía.
-@return verdadero si la lista está vacía, falso de lo contrario
-*/
+    
     public boolean isEmpty(){
         return  size == 0;
     }
     
-    /**
-
-Agrega un elemento al final de la lista.
-@param data el elemento a agregar a la lista
-*/
-    
     public void add(T data){        
         addLast(data);
     }
-    
-    /**
-
-Agrega un elemento al final de la lista.
-@param data el elemento a agregar a la lista
-*/
     
     private void addLast(T data){
         if (isEmpty()){
@@ -70,13 +41,6 @@ Agrega un elemento al final de la lista.
         }
         size++;
     }
-    
-    /**
-
-Agrega un elemento al principio de la lista.
-
-@param data el elemento a agregar a la lista
-*/
     
     private void addFirst(T data){
         
@@ -89,23 +53,12 @@ Agrega un elemento al principio de la lista.
         size++;
     }
     
-    /**
-
-Elimina el primer elemento de la lista y devuelve su valor.
-@return el valor del primer elemento de la lista, o nulo si la lista está vacía
-*/
-    
     public T deleteFirstT(){
         DoubleNode<T> toDelete = deleteFirstNode();
         if (toDelete != null)
             return toDelete.data();
         return null;        
     }
-    /**
-
-Elimina el primer elemento de la lista y devuelve su nodo.
-@return el nodo del primer elemento de la lista, o nulo si la lista está vacía
-*/
     
     public DoubleNode<T> deleteFirstNode(){                
         DoubleNode<T> toDelete = head;        
@@ -121,12 +74,6 @@ Elimina el primer elemento de la lista y devuelve su nodo.
         return toDelete;         
     }
     
-    /**
-
-Elimina el último elemento de la lista y devuelve su nodo.
-@return el nodo del último elemento de la lista, o nulo si la lista está vacía
-*/
-    
     public DoubleNode<T> deleteLastNode(){                
         DoubleNode<T> toDelete = tail;        
         if (!isEmpty()){
@@ -141,13 +88,6 @@ Elimina el último elemento de la lista y devuelve su nodo.
         return toDelete;         
     }
     
-    /**
-
-Elimina un nodo de la lista.
-@param toDelete el nodo a eliminar de la lista
-@return el nodo eliminado, o nulo si el nodo no se encuentra en la lista
-*/
-    
     public DoubleNode<T> remove(DoubleNode<T> toDelete){
         if (toDelete.prev() == null)
             return deleteFirstNode();
@@ -158,23 +98,10 @@ Elimina un nodo de la lista.
         return toDelete;        
     }
     
-    /**
-
-Método auxiliar para eliminar un nodo de la lista.
-@param toDelete el nodo a eliminar de la lista
-*/
-    
     private void skip(DoubleNode<T> toDelete){
         toDelete.next().prev(toDelete.prev());
         toDelete.prev().next(toDelete.next());        
     }
-    
-    /**
-
-Busca un nodo en la lista que contenga un elemento específico.
-@param data el elemento a buscar en la lista
-@return el nodo que contiene el elemento, o nulo si el elemento no se encuentra en la lista
-*/
     
     private DoubleNode<T> search(T data){
         DoubleNode<T> aux = head;
@@ -187,12 +114,6 @@ Busca un nodo en la lista que contenga un elemento específico.
         }
         return aux;
     }
-    /**
-
-Elimina el nodo en la lista que contiene un elemento específico.
-@param data el elemento a eliminar de la lista
-@return el nodo que se eliminó, o nulo si el elemento no se encuentra en la lista
-*/
     
     private DoubleNode<T> delete(T data){
         DoubleNode<T> found = search(data);

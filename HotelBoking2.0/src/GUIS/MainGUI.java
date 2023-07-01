@@ -167,31 +167,49 @@ public class MainGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ * THis calls searchReservation GUI.
+ * @param evt 
+ */
     private void searchReservationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchReservationActionPerformed
         SearchReservationGUI searchReservation = new SearchReservationGUI(controller);
         searchReservation.show();
     }//GEN-LAST:event_searchReservationActionPerformed
-
+/**
+ * Calls searchRoomHistory GUI
+ * @param evt 
+ */
     private void searchRoomHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchRoomHistoryActionPerformed
         RoomHistory seeRoomHistory = new RoomHistory(controller);
         seeRoomHistory.show();
     }//GEN-LAST:event_searchRoomHistoryActionPerformed
-
+/**
+ * Calls checkout GUI
+ * @param evt 
+ */
     private void CheckOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckOutActionPerformed
         CheckOut seeCheckOut= new CheckOut(controller);
         seeCheckOut.show();
     }//GEN-LAST:event_CheckOutActionPerformed
-
+/**
+ * Exists GUI.
+ * @param evt 
+ */
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
        this.dispose();
     }//GEN-LAST:event_exitActionPerformed
-
+/**
+ * Calls check in GUI.
+ * @param evt 
+ */
     private void CheckInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckInActionPerformed
        CheckIn seeCheckIn= new CheckIn(controller);
         seeCheckIn.show();
     }//GEN-LAST:event_CheckInActionPerformed
-
+/**
+ * Calls register client GUI
+ * @param evt 
+ */
     private void registerClient1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerClient1ActionPerformed
 
         RegisterClientGUI registerClientGUI = new RegisterClientGUI(controller);
