@@ -9,126 +9,212 @@ import Nodes.DoubleNode;
 
 /**
  *
+ * Clase que implementa una lista doblemente enlazada, la cual se utiliza en la
+ * implementación de una tabla Hash.
+ *
+ * @param <T> tipo de dato que se almacena en la lista
+ *
  * @author david
  */
 public class DoubleLinkedList<T> {
+
     private int size;
     private DoubleNode<T> head;
     private DoubleNode<T> tail;
     private final DataTypeMethods<T> dtm;
 
+    /**
+     *
+     * Constructor de la clase DoubleLinkedList.
+     *
+     * @param dtm objeto DataTypeMethods que contiene los métodos para obtener
+     * las claves numéricas o de texto.
+     */
     public DoubleLinkedList(DataTypeMethods<T> dtm) {
         this.size = 0;
         this.head = null;
         this.tail = null;
         this.dtm = dtm;
     }
-    
-    public boolean isEmpty(){
-        return  size == 0;
+
+    /**
+     *
+     * Verifica si la lista está vacía.
+     *
+     * @return true si la lista está vacía, false en caso contrario.
+     */
+    public boolean isEmpty() {
+        return size == 0;
     }
-    
-    public void add(T data){        
+
+    /**
+     *
+     * Añade un elemento al final de la lista.
+     *
+     * @param data dato a insertar en la lista.
+     */
+    public void add(T data) {
         addLast(data);
     }
-    
-    private void addLast(T data){
-        if (isEmpty()){
+
+    /**
+     *
+     * Añade un elemento al final de la lista.
+     *
+     * @param data dato a insertar en la lista.
+     */
+    private void addLast(T data) {
+        if (isEmpty()) {
             head = tail = new DoubleNode<>(data, null, null);
-        }else{
+        } else {
             tail.next(new DoubleNode<>(data, tail, null));
             tail(tail.next());
         }
         size++;
     }
-    
-    private void addFirst(T data){
-        
-        if (isEmpty()){
-            head = tail = new DoubleNode<> (data, null, null);
-        }else{
+
+    /**
+     *
+     * Añade un elemento al inicio de la lista.
+     *
+     * @param data dato a insertar en la lista.
+     */
+
+    private void addFirst(T data) {
+
+        if (isEmpty()) {
+            head = tail = new DoubleNode<>(data, null, null);
+        } else {
             head.prev(new DoubleNode<>(data, null, head));
             head(head.prev());
         }
         size++;
     }
-    
-    public T deleteFirstT(){
+
+    /**
+     *
+     * Elimina y devuelve el primer elemento de la lista.
+     *
+     * @return el primer elemento de la lista, o null si la lista está vacía.
+     */
+    public T deleteFirstT() {
         DoubleNode<T> toDelete = deleteFirstNode();
-        if (toDelete != null)
+        if (toDelete != null) {
             return toDelete.data();
-        return null;        
+        }
+        return null;
     }
-    
-    public DoubleNode<T> deleteFirstNode(){                
-        DoubleNode<T> toDelete = head;        
-        if (!isEmpty()){
-            head(head.next());            
+
+    /**
+     *
+     * Elimina y devuelve el primer nodo de la lista.
+     *
+     * @return el primer nodo de la lista, o null si la lista está vacía.
+     */
+    public DoubleNode<T> deleteFirstNode() {
+        DoubleNode<T> toDelete = head;
+        if (!isEmpty()) {
+            head(head.next());
             size--;
-            if(isEmpty()){
+            if (isEmpty()) {
                 tail = null;
-            }else{
+            } else {
                 head.prev();
-            }                    
+            }
         }
-        return toDelete;         
+        return toDelete;
     }
-    
-    public DoubleNode<T> deleteLastNode(){                
-        DoubleNode<T> toDelete = tail;        
-        if (!isEmpty()){
-            tail(tail.prev());            
+
+    /**
+     *
+     * Elimina y devuelve el último nodo de la lista.
+     *
+     * @return el último nodo de la lista, o null si la lista está vacía.
+     */
+
+    public DoubleNode<T> deleteLastNode() {
+        DoubleNode<T> toDelete = tail;
+        if (!isEmpty()) {
+            tail(tail.prev());
             size--;
-            if(isEmpty()){
+            if (isEmpty()) {
                 head = null;
-            }else{
+            } else {
                 tail.next(null);
-            }                    
+            }
         }
-        return toDelete;         
+        return toDelete;
     }
-    
-    public DoubleNode<T> remove(DoubleNode<T> toDelete){
-        if (toDelete.prev() == null)
+
+    /**
+     *
+     * Elimina un nodo específico de la lista.
+     *
+     * @param toDelete nodo a eliminar de la lista.
+     * @return el nodo eliminado.
+     */
+
+    public DoubleNode<T> remove(DoubleNode<T> toDelete) {
+        if (toDelete.prev() == null) {
             return deleteFirstNode();
-        if (toDelete.next() == null)
+        }
+        if (toDelete.next() == null) {
             return deleteLastNode();
+        }
         skip(toDelete);
         size--;
-        return toDelete;        
+        return toDelete;
     }
-    
-    private void skip(DoubleNode<T> toDelete){
+
+    /**
+     *
+     * Salta un nodo determinado, eliminándolo de la lista.
+     *
+     * @param toDelete nodo a eliminar de la lista.
+     */
+    private void skip(DoubleNode<T> toDelete) {
         toDelete.next().prev(toDelete.prev());
-        toDelete.prev().next(toDelete.next());        
+        toDelete.prev().next(toDelete.next());
     }
-    
-    private DoubleNode<T> search(T data){
+
+    /**
+     *
+     * Busca un nodo específico en la lista.
+     *
+     * @param data dato a buscar en la lista.
+     * @return el nodo que contiene el dato buscado, o null si el dato no se
+     * encuentra en la lista.
+     */
+    private DoubleNode<T> search(T data) {
         DoubleNode<T> aux = head;
-        if(!isEmpty()){
+        if (!isEmpty()) {
             boolean stop = false;
-            while ((aux!=null) && (!stop)){
+            while ((aux != null) && (!stop)) {
                 stop = (dtm().isEqual(aux.data(), data));
-                aux = (stop)? aux:aux.next();
-            }               
+                aux = (stop) ? aux : aux.next();
+            }
         }
         return aux;
     }
-    
-    private DoubleNode<T> delete(T data){
+
+    /**
+     *
+     * Elimina un elemento específico de la lista.
+     *
+     * @param data dato a eliminar de la lista.
+     * @return el nodo que contiene el dato eliminado, o null si el dato no se
+     * encuentra en la lista.
+     */
+
+    private DoubleNode<T> delete(T data) {
         DoubleNode<T> found = search(data);
-        if (found!=null){
+        if (found != null) {
             return remove(found);
-        }else{
+        } else {
             return null;
         }
-            
-        
+
     }
-    
-    
-    
-    
 
     /**
      * @return the size
@@ -177,6 +263,6 @@ public class DoubleLinkedList<T> {
      */
     public DataTypeMethods<T> dtm() {
         return dtm;
-    }   
-    
+    }
+
 }

@@ -107,7 +107,10 @@ public class CheckOut extends javax.swing.JFrame {
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
         this.dispose();
     }//GEN-LAST:event_exitActionPerformed
-
+/**
+ * This shows a message if your checkout was succesful.
+ * @param evt 
+ */
     private void checkout1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkout1ActionPerformed
       String input = nameInput.getText();
         int succesful = controller.checkOut(input);

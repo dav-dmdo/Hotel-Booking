@@ -16,7 +16,7 @@ import Nodes.DoubleNode;
 import static ControllerAndRelated.BSTreeMethods.searchRoomByNumber;
 
 /**
- *
+ * This class will allow you to use the search methods required for the GUI to run.
  * @author david
  */
 public class Controller {
@@ -30,7 +30,7 @@ public class Controller {
         this.statusHST = statusHST;
     }
     /**
-     * Se ele
+     * 
      *si successfull es 0, proceso exitoso. si es 1, no se encontro 
      * reservacion, si es 2 no se encontro habitacion disponible
      * @param id
@@ -39,7 +39,7 @@ public class Controller {
     public int checkIn(Integer id){
         int successfull = 0;        
         Booking booking = getBookingT(id); //debe eliminarse este booking
-        if (booking== null){
+        if (booking == null){
             successfull = 1;
             return successfull;
         }        
@@ -91,7 +91,7 @@ public class Controller {
     }
     
     /**
-     * 
+     * This calls the searchRoomByNumber method publicly
      * @param id
      * @return 
      */
@@ -100,7 +100,7 @@ public class Controller {
         return bookingNode;
     }
     /**
-     * 
+     * This searches a room and returns a booking.
      * @param id
      * @return Booking
      */
@@ -112,6 +112,12 @@ public class Controller {
         return booking;
     }
     
+    
+    /**
+     * This returns the data on a booking in a string to show in the GUI.
+     * @param id
+     * @return 
+     */
     public String getBookingString(Integer id){
         BinaryNode<Booking> bookingNode = searchRoomByNumber(bookingsBSTree, id);
         String booking = "";
@@ -120,6 +126,11 @@ public class Controller {
         return booking;
     }
     
+    /**
+     * This searches a guest and returns a booking.
+     * @param key
+     * @return 
+     */
     public Booking searchGuestBooking(String key){
         Booking booking = null;
         DoubleNode<Booking> bookingNode = statusHST.search(key);
@@ -127,7 +138,11 @@ public class Controller {
             booking = bookingNode.data();
         return booking;        
     }
-    
+    /**
+     * This searches a guest and returns a string of a booking.
+     * @param key
+     * @return 
+     */
     public String searchGuestString(String key){
         String stringGuest = "";
         Booking guest = searchGuestBooking(key);

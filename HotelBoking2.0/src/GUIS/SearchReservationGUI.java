@@ -124,7 +124,10 @@ public class SearchReservationGUI extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
       this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
-
+/**
+ * This searches a reservation by id.
+ * @param evt 
+ */
     private void searchReservationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchReservationActionPerformed
           try {
 
