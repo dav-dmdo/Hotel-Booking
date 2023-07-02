@@ -44,7 +44,7 @@ public class App {
     public void start(){
         MainGUI view = new MainGUI(controller);
         view.show();
-        
+        System.out.println("Recorridos Arboles de habitación. ");
         System.out.println("Preorder: ");
         System.out.println(preorderString(this.roomsBSTree));
         System.out.println("-------------------------------------------------");
@@ -52,9 +52,9 @@ public class App {
         System.out.println(inorderString(this.roomsBSTree));
         System.out.println("-------------------------------------------------");
         System.out.println("Postorder: ");
-        System.out.println(inorderString(this.roomsBSTree));
+        System.out.println(postorderString(this.roomsBSTree));
         System.out.println("-------------------------------------------------");
-        System.out.println("Busque en el hashtable aprox O(1): ");
+        System.out.println("Busqueda en el hashtable aprox O(1): ");
         printListsSize(statusHST);       
     }
     
