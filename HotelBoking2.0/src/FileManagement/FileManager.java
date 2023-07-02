@@ -229,9 +229,10 @@ public class FileManager {
         String phone =values[5].trim();        
         
         Client client = new Client( firstName, lastName, email, gender, phone);
+        String roomType = getRoomType(roomNumber);
         
         String date =values[6].trim();        
-        booking = new Booking(client, roomNumber, date);
+        booking = new Booking(client, roomType, roomNumber, date);
         room.data().currentGuest = booking;        // possible null pointer
         return booking;
     }
@@ -272,9 +273,23 @@ public class FileManager {
         
         String date =values[5].trim();
         Integer roomNumber = Integer.valueOf(values[6].trim());
+        String roomType = getRoomType(roomNumber);
         
-        return new Booking(client, roomNumber, date);        
+        return new Booking(client, roomType, roomNumber, date);        
     }
     
-    ///////////////////////////////////////////////////////////////////////////    
+    ///////////////////////////////////////////////////////////////////////////
+
+    private String getRoomType(Integer roomNumber){
+        String roomType = "";
+        if ((1<= roomNumber)&&(roomNumber<= 100))
+            roomType = "simple";
+        else if ((101<= roomNumber)&&(roomNumber<= 225))
+            roomType = "doble";
+        else if ((226<= roomNumber)&&(roomNumber<= 267))
+            roomType = "triple";
+        else if ((268<= roomNumber)&&(roomNumber<= 300))
+            roomType = "suite";
+        return roomType;        
+    }
 }

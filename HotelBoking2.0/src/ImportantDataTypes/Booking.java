@@ -28,5 +28,13 @@ public class Booking {
         this.roomNumber = roomNumber;
         this.departureDate = departureDate;
     }
-       
+
+    public Booking(Client client, String roomType, Integer roomNumber, String departureDate) {
+        this.client = client;
+        this.roomType = roomType;
+        this.roomNumber = roomNumber;
+        this.departureDate = departureDate;
+    }
+    
+    
 }

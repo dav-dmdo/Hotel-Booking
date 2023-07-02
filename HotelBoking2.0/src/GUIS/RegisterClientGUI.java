@@ -136,7 +136,7 @@ public class RegisterClientGUI extends javax.swing.JFrame {
         String fullname = inputName.getText();
         String showInfo = controller.searchGuestString(inputName.getText());
         //System.out.println( + showInfo);
-            System.out.println(fullname);
+            //System.out.println(fullname);
         if (showInfo == "") {
             ShowClient.setText("This client wasnt found! ");
             

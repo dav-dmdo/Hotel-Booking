@@ -28,10 +28,12 @@ public class BookingMethods implements DataTypeMethods<Booking>{
     @Override
     public String toString(Booking data) {
         String bookingString = "";
-        if ((data.roomType != null)&&(data.arrivalDate != null) && (data.departureDate != null))
-            return "|Full name: " + data.client.firstName+" "+data.client.lastName+" | Accommodation dates: "+data.arrivalDate+"-"+data.departureDate+" | Room Type: "+ data.roomType + "|\n";
+        if ((data.arrivalDate != null) && (data.departureDate != null) && (data.roomNumber != null))
+            return "|Full name: " + data.client.firstName+" "+data.client.lastName+" | Accommodation dates: "+data.arrivalDate+"-"+data.departureDate+" | Room Type: "+ data.roomType +" | Room Number: "+ data.roomNumber + "|\n";
+        else if ((data.roomNumber != null))
+            return "|Full name: " + data.client.firstName+" "+data.client.lastName+" | Departure date: "+data.departureDate+" | Room Type: "+ data.roomType +" | Room Number: "+ data.roomNumber + "|\n";
         else
-            return "|Full name: " + data.client.firstName+" "+data.client.lastName+" | Departure date: "+data.departureDate+"|\n";        
+            return "|Full name: " + data.client.firstName+" "+data.client.lastName+" | Departure date: "+data.departureDate+" | Room Type: "+ data.roomType + "|\n";        
         
     }
 

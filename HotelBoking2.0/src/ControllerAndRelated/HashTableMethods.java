@@ -15,14 +15,10 @@ import Nodes.DoubleNode;
  * @author david
  */
 public class HashTableMethods {
-    
-//    public static DoubleNode<Booking> search(HashTable<Booking> hashTable, String key){
-//        DoubleNode<Booking> aux = null;
-//        Integer hash = hashTable.hashFunction(key);
-//        DoubleLinkedList<Booking> list = hashTable.table()[hash];
-//        if (!list.isEmpty()){
-//            aux = searchStringKey(list, key);
-//            
-//        }
-//    }
+    public static <T> void printListsSize(HashTable<T> hashTable){
+        for (DoubleLinkedList<T> list : hashTable.table) {
+            System.out.println(list.size());
+        }
+        
+    }
 }

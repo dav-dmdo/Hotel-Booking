@@ -21,7 +21,7 @@ import static ControllerAndRelated.DoubleLinkedListMethods.*;
  */
 public class HashTable<T> {
 
-    private final DoubleLinkedList<T>[] table; //cada posicion del array es una lista doble
+    public final DoubleLinkedList<T>[] table; //cada posicion del array es una lista doble
     private final Integer capacity; //tamano del array  (load factor<0.75)
     private Integer size;
     private final DataTypeMethods<T> dtm;
@@ -71,7 +71,6 @@ public class HashTable<T> {
         Integer hash = hashFunction(key);
         DoubleLinkedList<T> list = table[hash];
         if (!list.isEmpty()) {
-            System.out.println(list.dtm().toString(list.head().data()));
             aux = searchStringKey(list, key);
 
         }

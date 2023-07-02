@@ -7,6 +7,7 @@ package EntryPoint;
 
 import static ControllerAndRelated.BSTreeMethods.*;
 import ControllerAndRelated.Controller;
+import static ControllerAndRelated.HashTableMethods.printListsSize;
 import DS.BSTree;
 import DS.HashTable;
 import FileManagement.FileManager;
@@ -42,8 +43,19 @@ public class App {
     
     public void start(){
         MainGUI view = new MainGUI(controller);
-        view.show();        
+        view.show();
         
+        System.out.println("Preorder: ");
+        System.out.println(preorderString(this.roomsBSTree));
+        System.out.println("-------------------------------------------------");
+        System.out.println("Inorder: ");
+        System.out.println(inorderString(this.roomsBSTree));
+        System.out.println("-------------------------------------------------");
+        System.out.println("Postorder: ");
+        System.out.println(inorderString(this.roomsBSTree));
+        System.out.println("-------------------------------------------------");
+        System.out.println("Busque en el hashtable aprox O(1): ");
+        printListsSize(statusHST);       
     }
     
 }

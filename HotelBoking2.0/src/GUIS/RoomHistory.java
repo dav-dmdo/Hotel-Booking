@@ -146,7 +146,7 @@ public class RoomHistory extends javax.swing.JFrame {
                     
                 }
                 else
-                System.out.println(roomInfo);
+                //System.out.println(roomInfo);
                 show.setText("ROOM "+ID+" \n\n"+ roomInfo);
                 //showInfo.setText(NodeSearch);
                 roomNumber.setText("");

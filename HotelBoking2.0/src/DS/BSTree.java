@@ -172,8 +172,37 @@ public class BSTree<T> {
         }
     }
     
+    public void delete(Integer key){
+        root = delete(this.root, key);
+    }   
     
+    private BinaryNode<T> delete(BinaryNode<T> root, Integer key){        
+        if(root == null)
+            return null;
+        if (dtm.lessThan(root.data(), key))
+            root.rightSon(delete(root.rightSon(), key));
+        else if(dtm.greaterThan(root.data(), key))
+            root.leftSon(delete(root.leftSon(), key));
+        else{
+            if (!root.hasLeft())
+                return root.rightSon();
+            else if (!root.hasRight())
+                return root.leftSon();
+            else{
+                BinaryNode<T> successor = findSuccessor(root.rightSon());
+                root.data(successor.data());
+                root.rightSon(delete(root.rightSon(), dtm.getNumericalKey(successor.data())));
+            }           
+        }
+        return root;
+    }
     
+    private BinaryNode<T> findSuccessor(BinaryNode<T> currentNode){
+        while (currentNode.leftSon()!= null){
+            currentNode = currentNode.leftSon();
+        }
+        return currentNode;
+    }
     
 
     /**

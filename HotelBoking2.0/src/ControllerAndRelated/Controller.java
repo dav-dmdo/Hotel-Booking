@@ -53,7 +53,9 @@ public class Controller {
         statusHST.insert(booking);
         availableRoom.isAvailable = false;
         availableRoom.currentGuest = booking;
-        
+        booking.roomNumber = availableRoom.roomNumber;
+        Integer key = bookingsBSTree.dtm().getNumericalKey(booking);
+        bookingsBSTree.delete(key);
         return successfull;
     }   
     /**
